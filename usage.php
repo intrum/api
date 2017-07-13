@@ -1,6 +1,18 @@
 <?php
-	//îïèñàíèå è äîêóìåíòàöèÿ ïî API INTRUM http://www.intrumnet.com/api/
+	//Ð¾Ð¿Ð¸ÑÐ°Ð½Ð¸Ðµ Ð¸ Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð°Ñ†Ð¸Ñ Ð¿Ð¾ API INTRUM http://www.intrumnet.com/api/
 	
+    if(!function_exists('pr')){
+        //ÐžÑ‚Ð»Ð°Ð´Ð¾Ñ‡Ð½Ð°Ñ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ñ
+        function pr() {
+            $args = func_get_args();
+            foreach ($args as $item) {
+                echo "<pre>";
+                print_r($item);
+                echo "</pre>";
+            }
+        }
+    }
+
 	require_once __DIR__ . '/api.intrum.php';
 	require_once __DIR__ . '/cache.intrum.php';
 	
@@ -14,10 +26,10 @@
 	$api = IntrumExternalAPI::getInstance()
 	->setup(
 		array(
-			"host"   => "yourdomain.intrumnet.com",
-			"apikey" => "b174cd05398db7cb2232b2a4119876f1",
-			"cache"  => true
-			//, "port" => 80 
+			"host"   => "intrum.local",//"yourdomain.intrumnet.com",
+			"apikey" => "d78782cd25befcf9d0482a0847eb3be8",
+			"cache"  => false,
+			"port"   => 80
 		)
 	);
 

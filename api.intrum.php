@@ -34,10 +34,22 @@
 			$this->port  = (isset($params['port']) ? ((int)$params['port']): 81);
 			$this->url   = "http://{$this->host}:{$this->port}/sharedapi";
 			$this->cache = $params['cache'];
+            
 			
 			return $this;
 		}
 		
+        private $debug = 0;
+        public $debugStack = array();
+        public function setDebug($set)
+        {
+            $this->debug = $set;
+        }
+        
+        public function printDebug()
+        {
+            pr($this->debugStack);
+        }
 		/*
 			Продукты
 		*/
@@ -65,6 +77,15 @@
 		{
 			return $this->send("/stock/filter",$params);
 		}
+        
+        //Получение конкретного объекта
+        public function getStockById($id)
+        {
+            $data = $this->getStockByFilter(array(
+                'byid' => $id
+            ));
+            return $data['data']['list'][0];
+        }
         
         //Картинки объектов
         public function getStockUrlPhoto($name)
@@ -97,7 +118,31 @@
 				'entity_id' => $entity_id
 			));
 		}
+        
+        //список групп объектов
+        public function getStockGroups()
+        {
+            return $this->send('/stock/groups');
+        }
 		
+        //Создание дерева групп объектов из списка объектов
+        public function createTreeStockGroup($list)
+        {
+            $tree = array();
+            foreach($list as $key=>$item){
+                if($item['copy'] == 0){
+                    $item['childs'] = array();
+                    $tree[ $item['id'] ] = $item;
+                    unset($list[$key]);
+                }
+            }
+            
+            foreach($list as $item){
+                $tree[ $item['copy'] ]['childs'][] = $item;
+            }
+            return $tree;
+        }
+        
 		/*
 			Сотрудники
 		*/
@@ -418,6 +463,7 @@
 
 			foreach($source as $i => $s){
 				if(!file_exists($s) or !is_readable($s)){
+                    pr($s);
 					unset($source[$i]);
 				}
 			}
@@ -470,6 +516,14 @@
 				$cache = IntrumExternalCache::getInstance()->pop($hash);
 				
 				if($cache !== false){
+                    if($this->debug){
+                        $this->debugStack[] = array(
+                            'url'     => $this->url . $sub_url,
+                            'isCache' => true,
+                            'params'  => $data,
+                            'result'  => $cache
+                        );
+                    }
 					return $cache;
 				}
 			}
@@ -497,17 +551,32 @@
             
 			$res = json_decode($response,true);
 			if(!$res){
-			    return array(
-				'error'=>$response
-			    ); 
-			}
-			//var_dump($response);
+                if ($this->debug) {
+                    $this->debugStack[] = array(
+                        'url'     => $this->url . $sub_url,
+                        'isError' => true,
+                        'params'  => $data,
+                        'result'  => $response
+                    );
+                }
+                return array(
+                    'error'=>$response
+                ); 
+            }
 			
 			if($this->cache == true){
 				IntrumExternalCache::getInstance()->push($hash,$res);
 			}
-			//echo $response;
-			return $res;
+			
+            if($this->debug) {
+                $this->debugStack[] = array(
+                    'url'     => $this->url . $sub_url,
+                    'params'  => $data,
+                    'result'  => $res
+                );
+            }
+
+            return $res;
 		}
 	}
 ?>
