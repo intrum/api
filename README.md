@@ -1,15 +1,14 @@
 
-SDK для работы с API CRM Intrum с примерами
+SDK РґР»В¤ СЂР°Р±РѕС‚С‹ СЃ API CRM Intrum СЃ РїСЂРёРјРµСЂР°РјРё
 
 ## Documentation
 
-Полная документация по всем методам api [Wiki documentation](http://www.intrumnet.com/api/) а так-же в файле index.html
+С•РѕР»РЅР°В¤ РґРѕРєСѓРјРµРЅС‚Р°С†РёВ¤ РїРѕ РІСЃРµРј РјРµС‚РѕРґР°Рј api [Wiki documentation](http://www.intrumnet.com/api/) Р° С‚Р°Рє-Р¶Рµ РІ С„Р°Р№Р»Рµ index.html
 
 ## Support
 
-При возникновении вопросов, можете писать запрос  [Email](info@intrumnet.com) на адресс.
-В [Facebock](https://www.facebook.com/groups/intrum/) facebock
+С•СЂРё РІРѕР·РЅРёРєРЅРѕРІРµРЅРёРё РІРѕРїСЂРѕСЃРѕРІ, РјРѕР¶РµС‚Рµ РїРёСЃР°С‚СЊ Р·Р°РїСЂРѕСЃ [Email](info@intrumnet.com). 
 
 ## License
 
-Этот пакет лицензируется в соответствии с [BSD 3-Clause license](http://opensource.org/licenses/BSD-3-Clause).
+РЃС‚РѕС‚ РїР°РєРµС‚ Р»РёС†РµРЅР·РёСЂСѓРµС‚СЃВ¤ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ [BSD 3-Clause license](http://opensource.org/licenses/BSD-3-Clause).
