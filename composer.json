@@ -1,5 +1,5 @@
 {
-    "name": "intrum/API-CRM-Intrum",
+    "name": "intrum/api",
     "description": "API CRM Intrum",
     "version": "1.0.0",
     "autoload": {
