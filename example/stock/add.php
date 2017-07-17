@@ -1,7 +1,7 @@
 <?php
 //описание и документация по API INTRUM http://www.intrumnet.com/api/
 
-    require_once __DIR__ . '/../../usage.php'; //настройте данный конфигурационный файл
+    require_once '../usage.php'; //настройте данный конфигурационный файл
 
     /*
      * Пример добавления продукта и загрузки файлов
@@ -77,7 +77,7 @@
         // загрузка файла
         $fileResult = $api->uploadFile(
             'stock',
-            __DIR__ . '/upload.jpg'
+            __DIR__ . '../upload.jpg'
         );
 
         // проверка что файл загружен успешно

@@ -568,17 +568,12 @@
 
             return $res;
 		}
-	}
-    
-    if (!function_exists('pr')) {
-        //Отладочная функция
-        function pr() {
-            $args = func_get_args();
-            foreach ($args as $item) {
-                echo "<pre>";
-                print_r($item);
-                echo "</pre>";
-            }
+        
+        public function webhookPut()
+        {
+            $input = file_get_contents('php://input');
+            $data = json_decode($input, 1);
+            return $data;
         }
-    }
+	}
 ?>

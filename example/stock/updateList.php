@@ -2,7 +2,7 @@
 /*
  * Пример редактирования списка объектов
  */
-require_once __DIR__ . '/../../usage.php'; //настройте данный конфигурационный файл
+require_once '../usage.php'; //настройте данный конфигурационный файл
 
 $list = array(
     array(
@@ -77,8 +77,6 @@ function crmIntrumEditGroupStock($list,$relations,$api)
     $filesHash = array();
     
     $updates = array();
-    
-    //pr($stocks,$list);
     
     $addFiles = array();
     $updates = array();
@@ -156,11 +154,11 @@ function crmIntrumEditGroupStock($list,$relations,$api)
         $updates[$key]['id'] = $key;
     }
     
-    pr($updates);
+    print_r($updates);
     
     $res = $api->updateStock($updates);
     
-    pr($res);
+    print_r($res);
 }
 
 function convertStock($stock,$relations,$api)

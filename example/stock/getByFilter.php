@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../usage.php'; //настройте данный конфигурационный файл
+require_once '../usage.php'; //настройте данный конфигурационный файл
 
 $typesData = $api->getStockTypes();
 
@@ -41,6 +41,8 @@ foreach ($list as $key => $item) {
         $list[$key]['fields'][$fieldKey]['name'] = $fields['data'][$type]['fields'][$field['id']]['name'];
     }
 }
+
+print_r($list);
 
 //($list);  Подходящие объекты, формат показан в примерах exportAll.php и exportByDate.php
 

@@ -1,19 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../usage.php'; //настройте данный конфигурационный файл
-
-/* или так 
-include  "../../api.intrum.php";
-$api = new IntrumExternalAPI();
-$api->setup(
-        array(
-            "host" => 'intrum.local',
-            "apikey" => 'd78782cd25befcf9d0482a0847eb3be8',
-            "port" => 80,
-            "cache" => false 
-        )
-    );
-*/
+require_once '../usage.php'; //настройте данный конфигурационный файл
 
 $typesData = $api->getStockTypes();
 /*  Результат в таком формате

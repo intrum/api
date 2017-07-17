@@ -1,13 +1,11 @@
 <?php
-//описание и документация по API INTRUM http://www.intrumnet.com/api/
 
 	# API Example_bills_add
 	# 
 	#	Пример добавления счётов
 	#
 
-	require_once __DIR__ . '/usage.php'; //настройте данный конфигурационный файл
-	
+	require_once '../usage.php'; //настройте данный конфигурационный файл
 	
 	//Массив счетов
 	$list = array(

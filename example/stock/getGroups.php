@@ -6,7 +6,7 @@
  * 
  */
 
-require_once __DIR__ . '/../../usage.php'; //настройте данный конфигурационный файл
+require_once '../usage.php'; //настройте данный конфигурационный файл
     
 $groups = $api->getStockGroups();
 
