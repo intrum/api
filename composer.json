@@ -1,0 +1,10 @@
+{
+    "name": "intrum/API-CRM-Intrum",
+    "description": "API CRM Intrum",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "Intrum\\": "src/"
+        }
+    }
+}

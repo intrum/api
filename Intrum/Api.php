@@ -1,7 +1,8 @@
 <?php
-	//описание и документация по API INTRUM http://www.intrumnet.com/api/
 	
-	class IntrumExternalAPI
+    namespace Intrum;
+
+	class Api
 	{
 		private static $instance = null;
 	
@@ -15,17 +16,6 @@
 
 			return self::$instance;
 		}
-		
-		/*
-			(
-				array(
-					"host"   => "domainname.intrumnet.com",
-					"apikey" => ключ api,
-					"port" => порт: 80 или 81, по умолчанию 81,
-					"cache"  => использовать ли кеширование true | false
-				)
-			)
-		*/
 		
 		public function setup(array $params)
 		{
@@ -48,7 +38,7 @@
         
         public function printDebug()
         {
-            pr($this->debugStack);
+            return $this->debugStack;
         }
 		/*
 			Продукты
@@ -579,4 +569,16 @@
             return $res;
 		}
 	}
+    
+    if (!function_exists('pr')) {
+        //Отладочная функция
+        function pr() {
+            $args = func_get_args();
+            foreach ($args as $item) {
+                echo "<pre>";
+                print_r($item);
+                echo "</pre>";
+            }
+        }
+    }
 ?>

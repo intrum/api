@@ -1,9 +1,8 @@
 <?php
-	/*
-		Класс IntrumExternalCache
-	*/
 
-	class IntrumExternalCache
+	namespace Intrum;
+
+	class Cache
 	{
 		private static $instance = null;
 		private $folder = null;
@@ -11,7 +10,7 @@
 	
 		private function __construct()
 		{
-			$this->folder = __DIR__ . "/cache";
+			$this->folder = "cache";
 			$this->expire = 600;
 		}
 		
