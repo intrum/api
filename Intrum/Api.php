@@ -311,8 +311,20 @@
 				'entity_id' => $entity_id
 			));
 		}
-		
-		/*
+        
+        //Добавление комментариев
+        /*
+         *  $params : {
+         *      enity_id, обзательный
+         *      text,     обязательный
+         *      author    опционально
+         *  }
+         */
+        public function addSalesComment(array $params) {
+            return $this->send("/sales/addComment", $params);
+        }
+
+        /*
 			Клиенты
 		*/
 		

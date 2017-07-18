@@ -223,6 +223,7 @@
 							<li><a href="#sales-details">Прикрепления</a></li>
 							<li><a href="#sales-insert">Добавление продаж</a></li>
 							<li><a href="#sales-update">Редактирование продаж</a></li>
+                            <li><a href="#sales-addComment">Добавление комментариев</a></li>
 							<li><a href="#sales-delete">Удаление продаж</a></li>
 						</ul>
 					</li>
@@ -2759,6 +2760,63 @@
 						Аналогично редактированию <a href="#stock-update">продуктов</a> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;(<span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> метод:<strong> updateSales</strong>)
 					</div>
 
+                    <div class="content-sub-head">
+						<a name="sales-addComment" class="fix-scroll">Добавление коммментариев</a>
+					</div>
+					<div class="content-text">
+					    Добавление комментариев к продажам (для выполнении данной операции должен быть разрешен доступ на редактирование)
+						<table>
+							<tbody>
+                                <tr>
+                                    <td width="100px">
+                                        <span class="param-name">URL:</span>								
+                                    </td>
+                                    <td>
+                                        <span class="text-select">http://domainname.intrumnet.com:81/sharedapi/sales/addComment</span>								
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                      <span class="param-name">
+                                          <a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a>
+                                      </span> 
+                                  </td>
+                                  <td>
+                                      метод:<strong> addStockComment</strong>
+                                  </td>
+                               </tr>
+                               <tr>
+                                   <td>
+                                       <span class="param-name">
+                                           Пример на гитхабе
+                                       </span> 
+                                   </td>
+                                   <td>
+                                       <a href='https://github.com/intrum/api/blob/master/example/sales/addComment.php' target="_blank">
+                                           Добавление комментария
+                                       </a>
+                                   </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="param-name">params:</span>								
+                                    </td>
+                                    <td>
+                                        <code class="code-example">
+                                            [<br>
+                                            &nbsp;&nbsp;{<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;enity_id : 'ID существующего объекта',<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;text     : 'Строка комментария',<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;author   : 'ID автора'<br>  
+                                            &nbsp;&nbsp;}<br>
+                                            ]<br>
+                                        </code>								
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+					</div>
+                    
 					<div class="content-sub-head">
 						<a name="sales-delete" class="fix-scroll">Удаление заявок</a>
 					</div>
