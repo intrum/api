@@ -12,7 +12,7 @@
     /* Для разных типов продуктов жополнительные поля отличаются чтоб получить список типов продуктов используйте */
     $typesData = $api->getStockTypes();
     //Первый тип из результата
-    $type = $typesData[0]['id'];
+    $type = $typesData['data'][1]['id'];
     
     /* Список категорий продуктов */
     $categories = $api->getStockCategory();
@@ -23,10 +23,11 @@
     
     
     //Выборка всех существующих полей
-    $fields = $api->getStockFields();
+    //$fields = $api->getStockFields();
         
     //Список дополнительных полей выбранного типа
-    $myFields = $fields['data'][$type]['fields'];
+    //$myFields = $fields['data'][$type]['fields'];
+    //print_r($myFields);
     
     // вернет массив id
     $result = $api->insertStock(
@@ -45,29 +46,57 @@
                 'related_with_customer' => 10643,
                 // дополнительные поля
                 'fields' => array(
-                    // описание
+                    // text
                     array(
-                        'id' => 791,
+                        'id' => 420,
                         'value' => 'Светлая и просторная двухэтажная квартира (143 м2) в центре Старого города'
                     ),
-                    // цена
+                    // price, integer, 
                     array(
-                        'id' => 339,
+                        'id' => 429,
                         'value' => 3765000
                     ),
-                    // гео координата
+                    // point
                     array(
-                        'id' => '442',
+                        'id' => 466,
                         'value' => array(
                             'lat' => 53.185577,
                             'lon' => 50.087652 
                         )
                     ),
+                    // radio
+                   array(
+                       'id' => 624,
+                       'value' => 1 // 1-да, 0 - нет
+                   ),
+                   //select
+                   array(
+                       'id' => 645,
+                       'value' => 'Billion'
+                   ),
+                    //date
+                   array(
+                       'id' => 421,
+                       'value' => "2017-01-01"
+                   ),
+                   //datetime
+                   array(
+                       'id' => 585,
+                       'value' => "2017-01-01 20:00:00"
+                   ),
+                   //multiselect
+                   array(
+                        'id'    => 477,
+                        'value' => 'one,four' //Выбранные варианты через запятую
+                    ), 
+                    
                 )
             )
         )
     );
-
+    
+    print_r($result);
+    
     // если продукт успешно добавлен
     if($result and $result['status'] === 'success'){
         $ids = $result['data'];

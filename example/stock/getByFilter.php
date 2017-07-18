@@ -26,7 +26,7 @@ $data = $api->getStockByFilter(array(
     'fields' => array(
         //Объекты с ценой больше 30000
         array(
-            'id' => 396,
+            'id'    => 396,
             'value' => ">=30000"
         )
     )

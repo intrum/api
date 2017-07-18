@@ -80,7 +80,7 @@
         //Картинки объектов
         public function getStockUrlPhoto($name)
         {
-            return "http://" .$this->host . "/files/crm/product/" . $name;
+            return "http://" .$this->host . "/files/crm/product/" . rawurlencode($name);
         }
 		
 		//вставка
@@ -335,12 +335,91 @@
 		}
 		
 		// поиск
+        /*
+            $params {
+                groups - массив id групп менеджеров
+                manager - id менеджера
+                byid - id клиента
+                marktype - массив id типов
+                nattype - одно из значений подтипа physface - Юрлицо, jurface - Физлицо, по умолчанию выводятся все
+                search - поисковая строка (может содержать фамилию или имя, email, телефон)
+                fields - массив условий для дополнительных свойств [ {id,value}, ]
+                order - направление сортировки asc - по возрастанию, desc - по убыванию
+                order_field - если в качестве значения указать customer_activity_date выборка будет сортироваться по дате активности
+                date - {from: "2015-10-29", to: "2015-11-19"} выборка за определенный период
+                date_field - если в качестве значения указать customer_activity_date выборка по параметру активности
+                page - страница
+                publish - 1 - активные, 0 - удаленные, по умолчанию 1
+                limit - число записей в выборке (макс. 50)
+            }
+         */
 		public function filterCustomers(array $params)
 		{
 			return $this->send("/purchaser/filter",$params);
 		}
 		
-		//вставка
+        /*
+         *  Обёртка над filterCustomers
+         *  $params те-же что и у filterCustomers, но limit = 10000
+         *  файлы возвращаются в формате {name: имя файла, link:путь к файлу}
+         */
+        public function getListCustomers(array $params)
+        {
+            $total = ($params['limit']) ? $params['limit'] : 10000;
+            if($total > 50){
+                $params['limit'] = 50;
+            }
+            $count = $params['count'];
+            $max = 199;
+            $page = 0;
+            $list = array();
+            while($page <= $max){
+                $page ++;
+                $params['page'] = $page;
+                if($total < $params['limit']){
+                    $params['limit'] = $total;
+                }
+                $data = $this->filterCustomers($params);
+                if(!$data['data']['list']){
+                    break;
+                }
+                $list = array_merge($list,$data['data']['list']);
+                $total -= count($data['data']['list']);
+            }
+            
+            foreach($list as $key=>$item){
+                foreach($item['fields'] as $key2=>$field){
+                    if($field['datatype'] == 'file'){
+                        $list[$key]['fields'][$key2]['link'] = $this->getCustomerUrlFile($field['value']);
+                    }
+                }
+            }
+            
+            return array(
+                'list'  => $list,
+                'count' => $data['data']['count']
+            );
+        }
+        
+        //Файлы клиентов
+        public function getCustomerUrlFile($name) {
+            return "http://" . $this->host . "/files/crm/" . rawurlencode($name);
+        }
+
+        //Добавление клиента
+        /*
+         *  $params {
+               name                  - Имя
+               surname               - Фамилия
+               secondname            - Отчество
+               manager_id            - ID менеджера
+               additional_manager_id - Массив ID дополнительных менеджеров
+               marktype              - Тип
+               email                 - массив email адресов
+               phone                 - массив номеров телефонов
+               fields                - Массив допполей
+         *  }
+         */
 		public function insertCustomers(array $params)
 		{
 			return $this->send("/purchaser/insert",$params);
@@ -360,7 +439,7 @@
          *      author    опционально
          *  }
          */
-        public function addCustomerComment(array $params) {
+        public function addCustomersComment(array $params) {
             return $this->send("/purchaser/addComment", $params);
         }
 
@@ -495,15 +574,68 @@
 			return $this->send("/utils/binded",$params);
 		}
 		
+        
+        /*
+         *  object - один из возможных вариантов (stock-Продукт, applications-Заявки, purchaser-Клиент)
+         *  $fieldId - (int) id поля файла
+         *  $list = {
+         *      $idObject( ID сущности CRM ) : [
+         *          "upload.jpg",
+         *          "upload1.jpg" //Список абсолютных путей к картинкам
+         *      ]
+         *  }
+         */
+        public function addFilesToObjects($objectType,$fieldId,$list)
+        {
+            $map = array();
+            $all = array();
+            foreach($list as $object=>$images){
+                foreach($images as $img){
+                    $map[] = $object;
+                    $all[] = $img;
+                }
+            }
+            $upp = array();
+            
+            $res = $this->uploadFile($objectType, $all);
+            
+            if($res['status'] === 'success'){
+                foreach($res['data']['name'] as $num=>$item){
+                    $upp[ $map[$num] ]['id'] = $map[$num];
+                    $upp[ $map[$num] ]['fields'][] = array(
+                        'id'    => $fieldId,
+                        'value' => $item,
+                        'mode'  => 'insert' 
+                    );
+                }
+                
+                if($objectType == 'stock'){
+                    $res = $this->updateStock($upp);
+                }elseif($objectType == 'applications'){
+                    $res = $this->updateSales($upp);
+                }elseif($objectType == 'purchaser'){
+                    $res = $this->updateCustomers($upp);
+                }
+                
+               return $res;
+            }
+            
+        }
+        
 		// загрузчик файлов
+        /*
+         *  object - один из возможных вариантов (stock-Продукт, applications-Заявки, purchaser-Клиент)
+            upload - имя поля загружаемого файла, поддерживает множественную загрузку
+         * 
+         */
 		public function uploadFile($object,$source)
 		{
 			$is_multiple = is_array($source);
 			$source = (array) $source;
-
+            
 			foreach($source as $i => $s){
 				if(!file_exists($s) or !is_readable($s)){
-                    pr($s);
+                    //Обработка ошибки, файл не найден
 					unset($source[$i]);
 				}
 			}
@@ -511,7 +643,8 @@
 			if(!$source){
 				return array(
 					"status"  => "fail",
-					"message" => "FILE_UPLOAD_ERROR"
+					"message" => "FILE_UPLOAD_ERROR",
+                    "error"   => "Нет доступных файлов для загрузки"
 				);
 			}	
 

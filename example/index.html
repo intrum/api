@@ -42,6 +42,20 @@
            font-size: 20px;
            line-height: 14px;
        }
+       .simple-line{
+           padding: 5px 15px;
+           display: flex;
+           align-items: center;
+       }
+       .simple-line__name{
+           width: 100px;
+           padding-right: 20px;
+           text-indent: 0px;
+           font-weight: bold;
+       }
+       .simple-line__value{
+           flex: 1;
+       }
        @media screen{
            .main-container{
                width: 845px;
@@ -1880,12 +1894,27 @@
 									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/purchaser/filter</span>
 								</td>
 							</tr>
-								<tr>
-                              		<td>
-                              			<span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span>
-                              		</td>
-							  		<td>метод:<strong> filterCustomers</strong></td>
-						  		</tr>
+                            <tr>
+                                <td>
+                                    <span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span>
+                                </td>
+                                <td>метод:<strong> filterCustomers , getListCustomers</strong></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span class="param-name">
+                                        Примеры на гитхабе
+                                    </span> 
+                                </td>
+                                <td>
+                                    <a href='https://github.com/intrum/api/blob/master/example/customer/getAll.php' target="_blank">
+                                        Выборка всех клиентов с файлами</a> ,
+                                    <a href='https://github.com/intrum/api/blob/master/example/customer/getByDate.php' target="_blank">
+                                        Выборка клиентов за диапозон дат</a> ,
+                                    <a href='https://github.com/intrum/api/blob/master/example/customer/getByFilter.php' target="_blank">
+                                        Выборка клиентов по фильтру</a>
+                                </td>
+                            </tr>
 							<tr>
 								<td>
 									<span class="param-name">params:</span>
@@ -1980,15 +2009,15 @@
 							</tr>
 						</tbody></table>
 					</div>
+                    
 					<div class="content-sub-head">
 						<a name="purchaser-insert" class="fix-scroll">Добавление клиентов</a>
 					</div>
 					<div class="content-text">
 						Аналогично добавлению <a href="#stock-insert">продуктов</a> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;(<span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> метод:<strong> insertCustomers</strong>)
 						<div><b>Доступные поля</b></div>
-						<div><span class="param-name">source</span> - один из вариантов ('online_consult','manager_customer','help_manager','mobile')</div>
-						<div><span class="param-name">name</span> - Имя</div>
-						<div><span class="param-name">surname</span> - Фамилия</div>
+						<div><span class="param-name">name</span>       - Имя</div>
+						<div><span class="param-name">surname</span>    - Фамилия</div>
 						<div><span class="param-name">secondname</span> - Отчество</div>
 						<div><span class="param-name">manager_id</span> - ID менеджера</div>
 						<div><span class="param-name">additional_manager_id</span> - Массив ID дополнительных менеджеров</div>
@@ -2002,12 +2031,34 @@
                         <p>
                             <span class='sup-up'>*</span> данный тип комментарием устаревший,  <a href='#utils-comment'> используйте </a>
                         </p>
+                        <div class="simple-line">
+                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__value">
+                                <a href='https://github.com/intrum/api/blob/master/example/customer/add.php' target="_blank">
+                                    Добавление 
+                                </a>,
+                                <a href='https://github.com/intrum/api/blob/master/example/customer/addListUnique.php' target="_blank">
+                                    Добавление только уникальных из списка 
+                                </a>
+                            </div>
+                        </div>
 					</div>
+                    
+                    
+                    
 					<div class="content-sub-head">
 						<a name="purchaser-update" class="fix-scroll">Редактирование клиентов</a>
 					</div>
 					<div class="content-text">
 						Аналогично редактированию <a href="#stock-update">продуктов</a> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;(<span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> метод:<strong> updateCustomers</strong>)
+                        <div class="simple-line">
+                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__value">
+                                <a href='https://github.com/intrum/api/blob/master/example/customer/edit.php' target="_blank">
+                                    Редактирование клиентов
+                                </a>
+                            </div>
+						</div>
 					</div>
                     
                     <div class="content-sub-head">
@@ -2032,7 +2083,7 @@
                                       </span> 
                                   </td>
                                   <td>
-                                      метод:<strong> addCustomerComment</strong>
+                                      метод:<strong> addCustomersComment</strong>
                                   </td>
                                </tr>
                                <tr>

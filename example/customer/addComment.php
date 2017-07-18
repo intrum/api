@@ -6,7 +6,7 @@
 
 require_once '../usage.php'; 
 
-$res = $api->addCustomerComment(array(
+$res = $api->addCustomersComment(array(
     'enity_id' => 98292, //ID объекта в Интруме
     'text'     => "Новый комментарий", //Текст комментария
     'author'   => 2, //ID ползователя в Интруме, от чьего имени будет комментарий, если передать 0, комментарий будет от имени системы,
