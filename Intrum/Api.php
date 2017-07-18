@@ -327,7 +327,19 @@
 			return $this->send("/purchaser/update",$params);
 		}
 		
-		//удаление
+        //Добавление комментариев
+        /*
+         *  $params : {
+         *      enity_id, обзательный
+         *      text,     обязательный
+         *      author    опционально
+         *  }
+         */
+        public function addCustomerComment(array $params) {
+            return $this->send("/purchaser/addComment", $params);
+        }
+
+        //удаление
 		public function deleteCustomers(array $params)
 		{
 			return $this->send("/purchaser/delete",$params);
