@@ -42,7 +42,22 @@
            font-size: 20px;
            line-height: 14px;
        }
-        
+       @media screen{
+           .main-container{
+               width: 845px;
+           }
+           .content {
+               max-height: calc(115vh - 200px);
+               overflow: auto;
+               margin-left: 220px;
+               padding-left:0px;
+           }
+           .menu {
+               max-height: calc(100vh - 110px);
+               overflow: auto;
+           }
+       }
+       
 		@media print {
 			.pre-header {
 				position: relative;
@@ -146,6 +161,7 @@
 							<li><a href="#stock-search">Вывод продуктов (фильтры, поиск)</a></li>
 							<li><a href="#stock-insert">Добавление продуктов</a></li>
 							<li><a href="#stock-update">Редактирование продуктов</a></li>
+                            <li><a href="#stock-addComment">Добавление комментариев</a></li>
 							<li><a href="#stock-delete">Удаление продуктов</a></li>
 						</ul>
 					</li>
@@ -693,6 +709,7 @@
 						</tbody></table>
 					</div>
 				</div>
+            </div>
 				
 				<div class="section">
 					<div class="content-head">
@@ -1325,6 +1342,7 @@
 							</tr>
 						</tbody></table>
 					</div>
+                    
 					<div class="content-sub-head">
 						<a name="stock-update" class="fix-scroll">Редактирование продуктов</a>
 					</div>
@@ -1392,6 +1410,64 @@
 							</tr>
 						</tbody></table>
 					</div>
+                    
+                    <div class="content-sub-head">
+						<a name="stock-addComment" class="fix-scroll">Добавление коммментариев</a>
+					</div>
+					<div class="content-text">
+					    Добавление комментариев к продуктам (для выполнении данной операции должен быть разрешен доступ на редактирование)
+						<table>
+							<tbody>
+                                <tr>
+                                    <td width="100px">
+                                        <span class="param-name">URL:</span>								
+                                    </td>
+                                    <td>
+                                        <span class="text-select">http://domainname.intrumnet.com:81/sharedapi/stock/addComment</span>								
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                      <span class="param-name">
+                                          <a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a>
+                                      </span> 
+                                  </td>
+                                  <td>
+                                      метод:<strong> addStockComment</strong>
+                                  </td>
+                               </tr>
+                               <tr>
+                                   <td>
+                                       <span class="param-name">
+                                           Пример на гитхабе
+                                       </span> 
+                                   </td>
+                                   <td>
+                                       <a href='https://github.com/intrum/api/blob/master/example/stock/addComment.php' target="_blank">
+                                           Добавление комментария
+                                       </a>
+                                   </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="param-name">params:</span>								
+                                    </td>
+                                    <td>
+                                        <code class="code-example">
+                                            [<br>
+                                            &nbsp;&nbsp;{<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;enity_id : 'ID существующего объекта',<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;text     : 'Строка комментария',<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;author   : 'ID автора'<br>  
+                                            &nbsp;&nbsp;}<br>
+                                            ]<br>
+                                        </code>								
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+					</div>
+                    
 					<div class="content-sub-head">
 						<a name="stock-delete" class="fix-scroll">Удаление продуктов</a>
 					</div>
@@ -4346,7 +4422,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"to_phone":"74950123456",<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"trunk_id":"4",<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"call_duration":"64",<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"url_record":"https://yourdomain.intrumnet.com/files/records/2016/07/21/28e013ed6c00575c2344407ce985a1c9.ogg"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"url_record":"https://yourdomain.intrumnet.com/files/records..."<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;},<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;}]<br>

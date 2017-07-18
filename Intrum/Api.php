@@ -109,6 +109,19 @@
 			));
 		}
         
+        //Добавление комментариев
+        /*
+         *  $params : {
+         *      enity_id, обзательный
+         *      text,     обязательный
+         *      author    опционально
+         *  }
+         */
+        public function addStockComment(array $params)
+        {
+            return $this->send("/stock/addComment",$params);
+        }
+        
         //список групп объектов
         public function getStockGroups()
         {
@@ -575,5 +588,6 @@
             $data = json_decode($input, 1);
             return $data;
         }
+        
 	}
 ?>
