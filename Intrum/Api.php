@@ -234,7 +234,20 @@
 			return $this->send("/applications/update",$params);
 		}
 		
-		//удаление
+        //Добавление комментариев
+        /*
+         *  $params : {
+         *      enity_id, обзательный
+         *      text,     обязательный
+         *      author    опционально
+         *  }
+         */
+        public function addRequestComment(array $params) 
+        {
+            return $this->send("/applications/addComment", $params);
+        }
+
+        //удаление
 		public function deleteRequests(array $params)
 		{
 			return $this->send("/applications/delete",$params);

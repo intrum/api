@@ -208,6 +208,7 @@
 							<li><a href="#applications-filter">Вывод заявок (фильтры, поиск)</a></li>
 							<li><a href="#applications-insert">Добавление заявок</a></li>
 							<li><a href="#applications-update">Редактирование заявок</a></li>
+                            <li><a href="#applications-addComment">Добавление комментариев</a></li>
 							<li><a href="#applications-delete">Удаление заявок</a></li>
 						</ul>
 					</li>
@@ -2333,13 +2334,71 @@
                             <span class='sup-up'>*</span> данный тип комментарием устаревший,  <a href='#utils-comment'> используйте </a>
                         </p>
 					</div>
+                    
 					<div class="content-sub-head">
 						<a name="applications-update" class="fix-scroll">Редактирование заявок</a><br>
-						
 					</div>
 					<div class="content-text">
 						Аналогично редактированию <a href="#stock-update">продуктов</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;(<span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> метод:<strong> updateRequests</strong>)
 					</div>
+                    
+                    <div class="content-sub-head">
+						<a name="applications-addComment" class="fix-scroll">Добавление коммментариев</a>
+					</div>
+					<div class="content-text">
+					    Добавление комментариев к заявкам (для выполнении данной операции должен быть разрешен доступ на редактирование)
+						<table>
+							<tbody>
+                                <tr>
+                                    <td width="100px">
+                                        <span class="param-name">URL:</span>								
+                                    </td>
+                                    <td>
+                                        <span class="text-select">http://domainname.intrumnet.com:81/sharedapi/applications/addComment</span>								
+                                    </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                      <span class="param-name">
+                                          <a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a>
+                                      </span> 
+                                  </td>
+                                  <td>
+                                      метод:<strong> addRequestComment</strong>
+                                  </td>
+                               </tr>
+                               <tr>
+                                   <td>
+                                       <span class="param-name">
+                                           Пример на гитхабе
+                                       </span> 
+                                   </td>
+                                   <td>
+                                       <a href='https://github.com/intrum/api/blob/master/example/request/addComment.php' target="_blank">
+                                           Добавление комментария
+                                       </a>
+                                   </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="param-name">params:</span>								
+                                    </td>
+                                    <td>
+                                        <code class="code-example">
+                                            [<br>
+                                            &nbsp;&nbsp;{<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;enity_id : 'ID существующего объекта',<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;text     : 'Строка комментария',<br>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;author   : 'ID автора'<br>  
+                                            &nbsp;&nbsp;}<br>
+                                            ]<br>
+                                        </code>								
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+					</div>
+                    
 					<div class="content-sub-head">
 						<a name="applications-delete" class="fix-scroll">Удаление заявок</a>
 					</div>
