@@ -264,29 +264,61 @@
 		/*
 			Продажи
 		*/
-		
+        
+		/*  Список типов продаж
+         */
 		public function getSaleTypes()
 		{
 			return $this->send("/sales/types");
 		}
 		
+        /*  Список fields для продаж
+         */
 		public function getSaleFields()
 		{
 			return $this->send("/sales/fields");
 		}
 		
+        //Выборка продаж по фильтру
 		public function filterSales(array $params)
 		{
 			return $this->send("/sales/filter",$params);
 		}
-		
-		//вставка
+        
+		//Добавление сделки
+        /*
+         *  $params [
+         *      {
+                   customers_id            - id клиента
+                   employee_id             - id ответственного менеджера
+                   additional_employee_id  - массив id дополнительных менеджеров
+                   sales_type_id           - id типа продажи
+                   sales_status_id         - id стадии продажи
+                   sale_name               - название продажи
+                   fields                  - массив данных полей
+         *      }, 
+         *      ...
+         *  ]
+         */
 		public function insertSales(array $params)
 		{
+            if(!$this->checkParamArr($params)){
+                return array(
+                    'error' => "Неправильный формат данных"
+                );
+            }
 			return $this->send("/sales/insert",$params);
 		}
 		
-		//обновление
+        private function checkParamArr($params)
+        {
+            print_r(gettype($params[0]));
+            if(gettype($params[0]) == 'array'){
+                return true;
+            }
+        }
+        
+		//Редактирование сделки
 		public function updateSales(array $params)
 		{
 			return $this->send("/sales/update",$params);
@@ -298,7 +330,7 @@
 			return $this->send("/sales/delete",$params);
 		}
 		
-		//дополнения
+		//доп инфа по сделке
 		public function getSaleDetails(array $params)
 		{
 			return $this->send("/sales/details",$params);
