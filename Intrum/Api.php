@@ -279,13 +279,29 @@
 			return $this->send("/sales/fields");
 		}
 		
-        //Выборка продаж по фильтру
+        //Выборка продаж по 
+        /* $params {
+                search       - поисковая строка
+                type         - массив id типов продаж
+                stage        - массив id стадий продаж
+                customer     - id клиента
+                manager      - id ответственного менеджера
+                page         - страница
+                publish      - 1 - активные, 0 - удаленные, по умолчанию 1
+                limit        - число записей в выборке (макс. 50)
+                byid         - получение продажи по ее id
+                order        - направление сортировки asc - по возрастанию, desc - по убыванию
+                order_field  - если в качестве значения указать sale_activity_date выборка будет сортироваться по дате активности
+                date         - {from: "2015-10-29", to: "2015-11-19"} выборка за определенный период
+                date_field   - если в качестве значения указать sale_activity_date выборка по параметру активности
+         * }
+         */
 		public function filterSales(array $params)
 		{
 			return $this->send("/sales/filter",$params);
 		}
         
-		//Добавление сделки
+		//Добавление сделок
         /*
          *  $params [
          *      {
@@ -295,7 +311,7 @@
                    sales_type_id           - id типа продажи
                    sales_status_id         - id стадии продажи
                    sale_name               - название продажи
-                   fields                  - массив данных полей
+                   fields                  - массив  [{id:123,values:''},...]
          *      }, 
          *      ...
          *  ]
@@ -310,16 +326,23 @@
 			return $this->send("/sales/insert",$params);
 		}
 		
-        private function checkParamArr($params)
-        {
-            print_r(gettype($params[0]));
-            if(gettype($params[0]) == 'array'){
-                return true;
-            }
-        }
-        
-		//Редактирование сделки
-		public function updateSales(array $params)
+		//Редактирование сделок
+        /*
+         *  $params [
+         *      {
+                    id                      - ID сделки в CRM, обязательное поле 
+                    customers_id            - id клиента
+                    employee_id             - id ответственного менеджера
+                    additional_employee_id  - массив id дополнительных менеджеров
+                    sales_type_id           - id типа продажи
+                    sales_status_id         - id стадии продажи
+                    sale_name               - название продажи
+                    fields                  - массив  [{id:123,values:''},...]
+         *      }, 
+         *      ...
+         *  ]
+         */
+        public function updateSales(array $params)
 		{
 			return $this->send("/sales/update",$params);
 		}
@@ -888,5 +911,12 @@
             return $this->send('/calls/history',$params);
         }
         
+        private function checkParamArr($params)
+        {
+            print_r(gettype($params[0]));
+            if(gettype($params[0]) == 'array'){
+                return true;
+            }
+        }
 	}
 ?>
