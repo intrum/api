@@ -63,8 +63,9 @@
            .content {
                max-height: calc(115vh - 200px);
                overflow: auto;
-               margin-left: 220px;
-               padding-left:0px;
+               margin-left:   220px;
+               padding-left:  0px;
+               padding-right: 10px;
            }
            .menu {
                max-height: calc(100vh - 110px);
@@ -294,6 +295,12 @@
 						<span>
 							<a href="#calls">Звонки</a>
 						</span>
+                        <ul>
+                            <li><a href="#calls-add">Добавление звонка</a></li>
+                            <li><a href="#calls-import">Импорт звонков</a></li>
+                            <li><a href="#calls-update">Редактирование звонков</a></li>
+                            <li><a href="#calls-request">Запрос из CRM на создание звонка</a></li>
+                        </ul>
 					</li>
 					<li>
 						<span>
@@ -3180,7 +3187,7 @@
 						API для добавления счетов, счета для добавления передаются в виде массива обьектов,за раз можно добавить не более 1000 счетов.
 						<p>Ответ возвращается так-же в виде массива, с результатом по кажому обьекту, и с ключом и описанием ошибок, если вставка обьекта не удалась.</p>
 						<table>
-							<tbody><tr>
+							<tr>
 								<td width="100px">
 									<span class="param-name">URL:</span>
 								</td>
@@ -3191,7 +3198,7 @@
 							<tr>
                               <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
 							  <td>метод:<strong> billsAdd</strong></td>
-						  </tr>
+						    </tr>
 							<tr>
 								<td>
 									<span class="param-name">params:</span>
@@ -3258,7 +3265,7 @@
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">mes</span> - Описание ошибки</div>
 								</td>
 							</tr>
-						</tbody></table>
+						</table>
 					</div>
 					<div class="content-sub-head">
 						<a name="accounts-update" class="fix-scroll">Обновление счетов</a>
@@ -4672,80 +4679,82 @@
 						</tbody></table>
 					</div>
 					
-					
 					<div class="content-sub-head">
-						<a name="sms-c-s" class="fix-scroll">Запросы <b>import</b>, <b>update</b>, <b>importall</b></a>
+						<a name="calls-add" class="fix-scroll"> Добавление звонка </a>
 					</div>
-					<div class="content-text">
-						Данные типы запросов используют общие параметры звонка. Некоторые параметры доступны только при создании звонка, а при обновлении их изменять нельзя.<br>
-						<br>Параметры, доступные при создании/добавлении звонка:<br>
-						<table>
-							<tbody>
-								<tr><td width="100px"><span class="param-name">uniqueId</span></td>
-								<td>Уникальный идентификатор звонка. 32-х символьная строка</td></tr>
-								
-								<tr><td><span class="param-name">from</span></td>
-								<td>Номер, с которого совершён звонок</td></tr>
-								
-								<tr><td><span class="param-name">to</span></td>
-								<td>Номер, на который был совершён звонок</td></tr>
-								
-								<tr><td><span class="param-name">trunkId</span></td>
-								<td>ID соединения, через которое был совершёл звонок</td></tr>
-								
-								<tr><td><span class="param-name">callerId</span></td>
-								<td>Caller ID звонящего (обычно совпадает с его номером)</td></tr>
-								
-								<tr><td><span class="param-name">timestamp</span></td>
-								<td>Время совершения звонка. Предпочтительно Unix Timestamp, либо в формате mysql со смещением GMT 0</td></tr>
-								
-								<tr><td><span class="param-name">isIncoming</span></td>
-								<td>Направление звонка с т.з. CRM системы: <b>true</b> или <b>1</b> - входящий, иначе - исходящий</td></tr>
-								
-								<tr><td><span class="param-name">url</span></td>
-								<td>url записи звонка. Звонок будет скачан и сохранён в CRM системе через некоторое время</td></tr>
-								
-								<tr><td><span class="param-name">callDuration</span></td>
-								<td>Длительность звонка в секундах</td></tr>
-								
-								<tr><td><span class="param-name">isAnswered</span></td>
-								<td>Был ли ответ на звонок</td></tr>
-								
-								<tr><td><span class="param-name">customStatus</span></td>
-								<td>ID назначенного звонку статуса</td></tr>
-							</tbody>
-						</table>
-						<br>Параметры, доступные при обновлении звонка:<br>
-						<table>
-							<tbody>
-								<tr><td width="100px"><span class="param-name">uniqueId</span></td>
-								<td>Уникальный идентификатор звонка, чья запись бует обновлена</td></tr>
-								
-								<tr><td><span class="param-name">url</span></td>
-								<td>url записи звонка. Звонок будет скачан и сохранён в CRM системе через некоторое время</td></tr>
-								
-								<tr><td><span class="param-name">callDuration</span></td>
-								<td>Длительность звонка в секундах</td></tr>
-								
-								<tr><td><span class="param-name">isAnswered</span></td>
-								<td>Был ли ответ на звонок</td></tr>
-								
-								<tr><td><span class="param-name">customStatus</span></td>
-								<td>ID назначенного звонку статуса</td></tr>
-							</tbody>
-						</table>
-						
-						В запросы <b>import</b> и <b>update</b> нужные поля из списков выше, передаются через ассоциативный массив <b>params</b>.<br>
-						В запрос <b>importall</b> передаётся массив <b>params[calls][]</b> с объектами-звонками, которые нужно импортировать.
-						<table>
-							<tbody>
-							<tr>
-								<td width="100px"><span class="param-name">Ответ</span></td>
+                    <div class="content-text">
+                        <table>
+                            <tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>
+								</td>
 								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/calls/import</span>
+								</td>
+							</tr>
+							<tr>
+                              <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							  <td>метод:<strong> callsAdd </strong></td>
+						    </tr>
+                            <tr>
+                                <td>
+                                    <span class="param-name">
+                                        Пример
+                                    </span> 
+                                </td>
+                                <td>
+                                    <a href='https://github.com/intrum/api/blob/master/example/calls/add.php' target="_blank">
+                                        Пример на гитхабе
+                                    </a>
+                                </td>
+                            </tr>
+							<tr>
+								<td width="120px"><span class="param-name">Параметры</span></td>
+								<td>
+									<table>
+                                        <tr><td width="100px"><span class="param-name">uniqueId</span></td>
+                                        <td>Уникальный идентификатор звонка. 32-х символьная строка</td></tr>
+
+                                        <tr><td><span class="param-name">from</span></td>
+                                        <td>Номер, с которого совершён звонок</td></tr>
+
+                                        <tr><td><span class="param-name">to</span></td>
+                                        <td>Номер, на который был совершён звонок</td></tr>
+
+                                        <tr><td><span class="param-name">trunkId</span></td>
+                                        <td>ID соединения, через которое был совершёл звонок, список соединений getCallsTrunks</td></tr>
+                                        
+                                        <tr><td><span class="param-name">isIncoming</span></td>
+                                        <td>Направление звонка с т.з. CRM системы: <b>true</b> или <b>1</b> - входящий, иначе - исходящий</td></tr>
+                                        
+                                        <tr><td><span class="param-name">callerId</span></td>
+                                        <td>Caller ID звонящего (обычно совпадает с его номером), не актуален при указанном isIncoming</td></tr>
+
+                                        <tr><td><span class="param-name">timestamp</span></td>
+                                        <td>Время совершения звонка. Unix Timestamp * 1000</td></tr>
+
+                                        <tr><td><span class="param-name">url</span></td>
+                                        <td>url записи звонка. Звонок будет скачан и сохранён в CRM системе через некоторое время</td></tr>
+
+                                        <tr><td><span class="param-name">callDuration</span></td>
+                                        <td>Длительность звонка в секундах</td></tr>
+
+                                        <tr><td><span class="param-name">isAnswered</span></td>
+                                        <td>Был ли ответ на звонок</td></tr>
+
+                                        <tr><td><span class="param-name">customStatus</span></td>
+                                        <td>ID назначенного звонку статуса, спискок доступных статусов getCallsStatuses</td></tr>
+                                    </table>
+								</td>
+							</tr>
+							<tr>
+								<td><span class="param-name">Ответ</span></td>
+								<td>
+									в случае успеха операции, вовзращается ID добавленного звонка, в CRM звонок появится через екоторое время:
 									<code class="code-example">
 										{<br>
-										&nbsp;&nbsp;"result": true,<br>
-										&nbsp;&nbsp;"callId":"ewegm0nrsy4nzbz4t48e7lp403dngr8v"<br>
+										&nbsp;&nbsp;"result": "1",<br>
+										&nbsp;&nbsp;"callId": "fd701d48bffba9713c38cf4631577ee5"<br>
 										}<br>
 									</code>
 								</td>
@@ -4756,18 +4765,193 @@
 									В случае ошибки:
 									<code class="code-example">
 										{<br>
-										&nbsp;&nbsp;"result":false,<br>
-										&nbsp;&nbsp;"error":"текст ошибки"<br>
+										&nbsp;&nbsp;"status":"fail",<br>
 										}
 									</code>
 								</td>
 							</tr>
-						</tbody></table>
+                        </table>
+                    </div>
+                    
+                    <div class="content-sub-head">
+						<a name="calls-import" class="fix-scroll"> Импорт звонков (Множественное добавление) </a>
 					</div>
-					
-					
+                    <div class="content-text">
+                        <table>
+                            <tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>
+								</td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/calls/importall</span>
+								</td>
+							</tr>
+							<tr>
+                              <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							  <td>метод:<strong> callsAddList </strong></td>
+						    </tr>
+                            <tr>
+                                <td>
+                                    <span class="param-name">
+                                        Пример
+                                    </span> 
+                                </td>
+                                <td>
+                                    <a href='https://github.com/intrum/api/blob/master/example/calls/addList.php' target="_blank">
+                                        Пример на гитхабе
+                                    </a>
+                                </td>
+                            </tr>
+							<tr>
+								<td width="120px"><span class="param-name">Параметры</span></td>
+								<td>
+									<table>
+                                        <tr><td width="100px"><span class="param-name">uniqueId</span></td>
+                                        <td>Уникальный идентификатор звонка. 32-х символьная строка</td></tr>
+
+                                        <tr><td><span class="param-name">from</span></td>
+                                        <td>Номер, с которого совершён звонок</td></tr>
+
+                                        <tr><td><span class="param-name">to</span></td>
+                                        <td>Номер, на который был совершён звонок</td></tr>
+
+                                        <tr><td><span class="param-name">trunkId</span></td>
+                                        <td>ID соединения, через которое был совершёл звонок, список соединений getCallsTrunks</td></tr>
+                                        
+                                        <tr><td><span class="param-name">isIncoming</span></td>
+                                        <td>Направление звонка с т.з. CRM системы: <b>true</b> или <b>1</b> - входящий, иначе - исходящий</td></tr>
+                                        
+                                        <tr><td><span class="param-name">callerId</span></td>
+                                        <td>Caller ID звонящего (обычно совпадает с его номером), не актуален при указанном isIncoming</td></tr>
+
+                                        <tr><td><span class="param-name">timestamp</span></td>
+                                        <td>Время совершения звонка. Unix Timestamp * 1000</td></tr>
+
+                                        <tr><td><span class="param-name">url</span></td>
+                                        <td>url записи звонка. Звонок будет скачан и сохранён в CRM системе через некоторое время</td></tr>
+
+                                        <tr><td><span class="param-name">callDuration</span></td>
+                                        <td>Длительность звонка в секундах</td></tr>
+
+                                        <tr><td><span class="param-name">isAnswered</span></td>
+                                        <td>Был ли ответ на звонок</td></tr>
+
+                                        <tr><td><span class="param-name">customStatus</span></td>
+                                        <td>ID назначенного звонку статуса, спискок доступных статусов getCallsStatuses</td></tr>
+                                    </table>
+								</td>
+							</tr>
+                            <tr>
+								<td><span class="param-name">Формат запроса</span></td>
+								<td>
+									Массив объектов call, в массиве с ключом calls
+									<code class="code-example">
+										{<br>
+										&nbsp;&nbsp;"calls": [<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"uniqueId" : "1a6bd050b157dbddb622049084473691",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"from"     : "880020002",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"to"       : "102",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"timestamp": "1500446673000",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"trunkId"  : 1,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"isIncoming"    : "1",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"url"           : "http://you.suite/rec.mp3",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"callDuration"  : "35",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"isAnswered"    : "1",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"customStatus"  : 1,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                        &nbsp;&nbsp;]<br>
+										}<br>
+									</code>
+								</td>
+							</tr>
+							<tr>
+								<td><span class="param-name">Ответ</span></td>
+								<td>
+									<code class="code-example">
+										{<br>
+										&nbsp;&nbsp;"result": "1",<br>
+										&nbsp;&nbsp;"inserted": "1",<br>
+                                        &nbsp;&nbsp;"error": "0"<br>
+										}<br>
+									</code>
+								</td>
+							</tr>
+                        </table>
+                    </div>
+                    
+                    
+                    <div class="content-sub-head">
+						<a name="calls-update" class="fix-scroll"> Редактирование звонка </a>
+					</div>
+                    <div class="content-text">
+                        
+                        <table>
+                            <tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>
+								</td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/calls/update</span>
+								</td>
+							</tr>
+							<tr>
+                              <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							  <td>метод:<strong> callsUpdate </strong></td>
+						    </tr>
+                            <tr>
+                                <td>
+                                    <span class="param-name">
+                                        Пример
+                                    </span> 
+                                </td>
+                                <td>
+                                    <a href='https://github.com/intrum/api/blob/master/example/calls/update.php' target="_blank">
+                                        Пример на гитхабе
+                                    </a>
+                                </td>
+                            </tr>
+							<tr>
+								<td width="120px"><span class="param-name">Параметры</span></td>
+								<td>
+									<table>
+                                        <tr><td width="100px"><span class="param-name">uniqueId</span></td>
+                                        <td>Уникальный идентификатор звонка. 32-х символьная строка</td></tr>
+
+                                        <tr><td><span class="param-name">timestamp</span></td>
+                                        <td>Время совершения звонка. Unix Timestamp * 1000</td></tr>
+
+                                        <tr><td><span class="param-name">url</span></td>
+                                        <td>url записи звонка. Звонок будет скачан и сохранён в CRM системе через некоторое время</td></tr>
+
+                                        <tr><td><span class="param-name">callDuration</span></td>
+                                        <td>Длительность звонка в секундах</td></tr>
+
+                                        <tr><td><span class="param-name">isAnswered</span></td>
+                                        <td>Был ли ответ на звонок</td></tr>
+
+                                        <tr><td><span class="param-name">customStatus</span></td>
+                                        <td>ID назначенного звонку статуса, спискок доступных статусов getCallsStatuses</td></tr>
+                                    </table>
+								</td>
+							</tr>
+							<tr>
+								<td><span class="param-name">Ответ</span></td>
+								<td>
+									в случае успеха операции, вовзращается ID добавленного звонка, в CRM звонок появится через некоторое время:
+									<code class="code-example">
+										{<br>
+										&nbsp;&nbsp;"result": "1",<br>
+										&nbsp;&nbsp;"callId": "fd701d48bffba9713c38cf4631577ee5"<br>
+										}<br>
+									</code>
+								</td>
+							</tr>
+                        </table>
+                    </div>
+                    
 					<div class="content-sub-head">
-						<a name="sms-s-c" class="fix-scroll">Запрос из CRM на создание звонка <b>call</b></a>
+						<a name="calls-request" class="fix-scroll">Запрос из CRM на создание звонка <b>call</b></a>
 					</div>
 					<div class="content-text">
 						В настройках телефонии можно создать виртуальное соединение, назначить ему исходящий номер, и закрепить этот номер за сотрудниками. При звонке сотрудника через данное виртуальное соединение, CRM-система отправит запрос <b>call</b> на указанный url.<br>

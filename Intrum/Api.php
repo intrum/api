@@ -759,5 +759,79 @@
             return $data;
         }
         
+        /* Звонки */
+        //Возвращает список возможных соединений
+        public function getCallsTrunks()
+        {
+            return $this->send('/calls/trunks');
+        }
+        
+        /*Список статусов*/
+        public function getCallsStatuses()
+        {
+            return $this->send('/calls/statuses');
+        }
+        
+        /* Импорт звонка */
+        /*
+         *  $params {
+                uniqueId	    Уникальный идентификатор звонка. 32-х символьная строка
+                from	        Номер, с которого совершён звонок
+                to	            Номер, на который был совершён звонок
+                timestamp	    Время совершения звонка. Unix Timestamp * 1000 ( в микросекундах )
+                trunkId	ID      соединения, через которое был совершёл звонок
+                callerId	    Caller ID звонящего (обычно совпадает с его номером), не актуален при указанном isIncoming
+                isIncoming	    Направление звонка с т.з. CRM системы: true или 1 - входящий, иначе - исходящий
+                url	            url записи звонка. Звонок будет скачан и сохранён в CRM системе через некоторое время
+                callDuration	Длительность звонка в секундах
+                isAnswered	    Был ли ответ на звонок
+                customStatus	ID назначенного звонку статуса
+         *  }
+         */
+        public function callsAdd(array $params)
+        {
+            return $this->send("/calls/import",$params);
+        }
+        
+        /* Импорт звонков */
+        /*
+         *  $params [
+               {
+                   uniqueId	        Уникальный идентификатор звонка. 32-х символьная строка
+                   from	            Номер, с которого совершён звонок
+                   to	            Номер, на который был совершён звонок
+                   timestamp	    Время совершения звонка. Unix Timestamp * 1000 ( в микросекундах )
+                   trunkId	ID      соединения, через которое был совершёл звонок
+                   callerId	        ID звонящего (обычно совпадает с его номером), не актуален при указанном isIncoming
+                   isIncoming	    Направление звонка с т.з. CRM системы: true или 1 - входящий, иначе - исходящий
+                   url	            url записи звонка. Звонок будет скачан и сохранён в CRM системе через некоторое время
+                   callDuration	    Длительность звонка в секундах
+                   isAnswered	    Был ли ответ на звонок
+                   customStatus	    ID назначенного звонку статуса
+                },
+                ...
+         *  ]
+         */
+        public function callsAddList(array $params)
+        {
+            return $this->send("/calls/importall",array(
+                'calls' => $params
+            ));
+        }
+        
+        /* Обновление информации о звонке
+         * $params {
+                uniqueId        Уникальный идентификатор звонка, чья запись бует обновлена
+                url             url записи звонка. Звонок будет скачан и сохранён в CRM системе через некоторое время
+                callDuration	Длительность звонка в секундах
+                isAnswered      Был ли ответ на звонок
+                customStatus	ID назначенного звонку статуса
+         * }
+         */
+        public function callsUpdate(array $params)
+        {
+            return $this->send('/calls/update',$params);
+        }
+        
 	}
 ?>
