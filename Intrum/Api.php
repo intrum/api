@@ -293,13 +293,31 @@
                 order        - направление сортировки asc - по возрастанию, desc - по убыванию
                 order_field  - если в качестве значения указать sale_activity_date выборка будет сортироваться по дате активности
                 date         - {from: "2015-10-29", to: "2015-11-19"} выборка за определенный период
-                date_field   - если в качестве значения указать sale_activity_date выборка по параметру активности
+                date_field   - если в качестве значения указать sale_activity_date выборка по параметру активности,
+                by_ids       - Выборка несколких продаж по их ID, [1,2,3,...]             
          * }
          */
 		public function filterSales(array $params)
 		{
 			return $this->send("/sales/filter",$params);
 		}
+        
+        /*
+         *  Список ID сделок стадии которых менялись за период времени
+         *  $params {
+         *      date_start - Дата в формате "2017-02-01"
+         *      date_end   - Дата в формате "2017-02-01"
+         *  }
+         */
+        public function getSalesChangeStage(array $params)
+        {
+            if(!$params['date_start'] || !$params['date_end']){
+                return array(
+                    'error' => 'Необходимо передать обязательные параметры: date_start, date_end'
+                );
+            }
+            return $this->send('/sales/getbychangestage',$params);
+        }
         
 		//Добавление сделок
         /*

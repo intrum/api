@@ -235,6 +235,7 @@
 							<li><a href="#sales-types">Типы продаж</a></li>
 							<li><a href="#sales-fields">Поля</a></li>
 							<li><a href="#sales-filter">Вывод продаж (фильтры, поиск)</a></li>
+                            <li><a href="#sales-filter-stage-period">Выборка продаж, стадия которых менялась за период</a></li>
 							<li><a href="#sales-details">Прикрепления</a></li>
 							<li><a href="#sales-insert">Добавление продаж</a></li>
 							<li><a href="#sales-update">Редактирование продаж</a></li>
@@ -2668,7 +2669,7 @@
 					<div class="content-text">
 						Получение списка продаж
 						<table>
-							<tbody><tr>
+							<tr>
 								<td width="100px">
 									<span class="param-name">URL:</span>
 								</td>
@@ -2694,6 +2695,7 @@
 									<div><span class="param-name">publish</span> - 1 - активные, 0 - удаленные, по умолчанию 1</div>
 									<div><span class="param-name">limit</span> - число записей в выборке (макс. 50)</div>
 									<div><span class="param-name">byid</span> - получение продажи по ее id</div>
+                                    <div><span class="param-name">by_ids</span> - получение продаж по массиву id [1, 2, 3, ...]</div>
 									<div><span class="param-name">order</span> - направление сортировки asc - по возрастанию, desc - по убыванию</div>
 									<div><span class="param-name">order_field</span> - если в качестве значения указать sale_activity_date выборка будет сортироваться по дате активности</div>
 									<div><span class="param-name">date</span> - {from: "2015-10-29", to: "2015-11-19"} выборка за определенный период</div>
@@ -2740,9 +2742,51 @@
 									<div><span class="param-name">count</span> - общее число найденных записей</div>
 								</td>
 							</tr>
-						</tbody></table>
+						</table>
 					</div>
 					
+                    <div class="content-sub-head">
+						<a name="sales-filter-stage-period" class="fix-scroll">Выборка продаж, стадия которых менялась за период</a>
+					</div>
+					<div class="content-text">
+						<table>
+							<tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>
+								</td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/sales/getbychangestage</span>
+								</td>
+							</tr>
+							<tr>
+                              <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							  <td>метод:<strong> getSalesChangeStage</strong></td>
+						    </tr>
+                            <tr>
+                               <td>
+                                   <span class="param-name">
+                                       Пример на гитхабе
+                                   </span> 
+                               </td>
+                               <td>
+                                   <a href='https://github.com/intrum/api/blob/master/example/stock/getByChangeStages.php' target="_blank">
+                                       Получение сделок, стадия которых поменялась в период от %Y-%m-%d - до %Y-%m-%d
+                                   </a>
+                               </td>
+                            </tr>
+						    <tr>
+								<td>
+									<span class="param-name">params:</span>
+								</td>
+								<td>
+                                    <div><span class="param-name">date_start</span> - Начало периода, в формате %Y-%m-%d</div>
+									<div><span class="param-name">date_end</span>   - Конец периода в формате %Y-%m-%d</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+                    
+                    
 					<div class="content-sub-head">
 						<a name="sales-details" class="fix-scroll">Прикрепления</a>
 					</div>
