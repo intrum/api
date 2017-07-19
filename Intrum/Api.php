@@ -222,13 +222,43 @@
 			return $this->send("/applications/filter",$params);
 		}
 		
+        //Список доступных статусов
+        public function getRequestStatuses()
+        {
+            return $this->send("/applications/statuses");
+        }
+        
 		//вставка
+        /*
+         *  $params [{
+         *      request_type             - ID типа заявок (обязательное поле)
+                customers_id             - ID клиента (обязательное поле)
+         *      source                   - один из вариантов ('help_manager','online_consult','none','online_form')
+                employee_id              - ID менеджера
+                additional_employee_id   - Массив ID дополнительных ответственных
+                request_name             - Название заявки
+                status                   - один из вариантов ('unselected','mustbeprocessed','processnow','processed','postponed','malformed','cancelled','reprocess'), getRequestStatuses
+         *      fields                   - [{id:id,value:value}, ...] 
+         * }]
+         */
 		public function insertRequests(array $params)
 		{
 			return $this->send("/applications/insert",$params);
 		}
 		
-		//обновление
+		/*
+         *  $params 
+         * [ 
+         *      {
+                    id                       - ID заявки в CRM
+                    employee_id              - ID менеджера
+                    additional_employee_id   - Массив ID дополнительных ответственных
+                    request_name             - Название заявки
+                    status                   - один из вариантов ('unselected','mustbeprocessed','processnow','processed','postponed','malformed','cancelled','reprocess'), getRequestStatuses
+             *      fields                   - [{id:id,value:value}, ...] 
+            * }
+           ]
+         */
 		public function updateRequests(array $params)
 		{
 			return $this->send("/applications/update",$params);
