@@ -538,13 +538,33 @@
 			));
 		}
 		
+        
 		/*
-			Счета
-		*/
+		 *	Счета
+		 */
 		
 		//Поиск / выборка
-		public function billsGet(array $params
-		){
+        /* $aprams{
+         *  type         - Тип счёта (in,out)
+            date_start   - Счёт создан в данную дату или позже  (формат YYYY-mm-dd)
+            date_start   - Счёт создан в данную дату или раньше (формат YYYY-mm-dd)
+            active       - Активые / неактивные счета (1,0)
+            pay_status   - Статус оплаты (not,part,full)
+            client_id    - ID клиента в CRM
+            search       - Строка поиска, поиск осуществляется : по номеру счёта, фамилии клиента, названию компании
+            author       - ID сотрудника создавшего счёт
+            company_id   - ID реквизитов клиента
+            sale_id      - ID связанной сделки в CRM
+            not_sale_id  - Выборка записей не связанных с указанной сделкой, при указании в фильтре sale_id и not_sale_id, not_sale_id - игнорируется
+            ids          - Выборка записей входящих массив / строку(разделеную ",") ID счетов , применение этого фильтра, очищает фильтр по умолчанию
+            orderType    - Сортировка по убыванию / возрастанию (ASC,DESC)
+            order        - Поле сортировки ('b.id' - номер счёта, "b.date_create" - дата создания счёта)
+            limit        - Количество результатов в одном (постарничном) запросе по умолчанию 1000
+            page         - Номер страницы вывода
+            period_pay   - Период полаты счёта, выодить счета по которам совершалась оплата в указанный период{date_start: YYYY-mm-dd, date_end: YYYY-mm-dd}
+         * } */
+		public function billsGet(array $params)
+        {
 			return $this->send("/accounts/get",$params);
 		}
 		
@@ -555,24 +575,92 @@
 		}
 		
 		//добавление
+        /* $aprams{
+         *      act_id         - ID прикреплёного акта
+                date_create    - Дата создания
+                product        - Массив продуктов
+                [    
+                    {
+                       count  - Кол-во продукта
+                       name   - Название продукта
+                       price  - Цена продукта
+                    }
+                ]
+                sale_id            - ID связанной сделки
+                client_company_id  - ID реквизитов клиента
+                client_id          - ID клиента
+                my_company_id      - ID реквизитов фирмы
+                nds                - Наличие ндс
+                type               - Тип счёта входящий / исходящий(in/out)
+         * }
+         */
 		public function billsAdd(array $params)
 		{
 			return $this->send("/accounts/add",$params);
 		}
 		
-		//обновление
-		public function billsUpdate(array $params)
-		{
-			return $this->send("/accounts/update",$params);
-		}
 		
 		//Редактирование
+        /*
+         *  $params =
+         *  {
+                bill_id - Уникальный номер счёта
+                act_id - ID прикрепленного акта
+                date_create - Дата создания "ГГГГ-ММ-ДД" / "ДД.ММ.ГГГГ"
+                product - Массив продуктов
+                    count - Кол-во продукта
+                    name - Название продукта
+                    price - Цена продукта
+                sale_id - ID связанной сделки
+                outer_id - внешний ID
+                client_company_id - ID реквизитов клиента
+                client_id - ID клиента
+                my_company_id - ID реквизитов фирмы
+                nds - Наличие ндс
+                is_cash - Оплата наличными
+                type - Тип счёта входящий / исходящий(in/out)
+            }
+         */
 		public function billsEdit(array $params)
 		{
 			return $this->send("/accounts/edit",$params);
 		}
 		
+        //Множественное редактирование (обновление) счетов
+        /*  
+         *  $params =
+         *  [
+                {
+                  bill_id - Уникальный номер счёта
+                  act_id - ID прикреплёного акта
+                  date_create - Дата создания
+                  product - Массив продуктов
+                      count - Кол-во продукта
+                      name - Название продукта
+                      price - Цена продукта
+                  sale_id - ID связанной сделки
+                  stockgroup_id - ID списка товаров
+                  client_company_id - ID реквизитов клиента
+                  client_id - ID клиента
+                  my_company_id - ID реквизитов фирмы
+                  nds - Наличие ндс
+                  type - Тип счёта входящий / исходящий(in/out)
+                }
+            ]
+         */
+		public function billsUpdate(array $params)
+		{
+			return $this->send("/accounts/update",$params);
+		}
+        
 		//Установить статус оплаты
+        /*  
+         *  $params
+         *  {
+                id - Уникальный номер счёта
+                pay - Сумма платежа (необязательный)
+            }
+         */
 		public function billsSetPay($id,$pay=null)
 		{
 			return $this->send("/accounts/set_pay",array('id'=>$id,'pay'=>$pay));

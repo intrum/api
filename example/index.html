@@ -2786,7 +2786,6 @@
 						</table>
 					</div>
                     
-                    
 					<div class="content-sub-head">
 						<a name="sales-details" class="fix-scroll">Прикрепления</a>
 					</div>
@@ -2968,9 +2967,21 @@
 								</td>
 							</tr>
 							<tr>
-                              <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
-							  <td>метод:<strong> billsGet</strong></td>
-						  </tr>
+                               <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							   <td>метод:<strong> billsGet</strong></td>
+						    </tr>
+                            <tr>
+                                <td>
+                                   <span class="param-name">
+                                       Пример на гитхабе
+                                   </span> 
+                                </td>
+                                <td>
+                                   <a href='https://github.com/intrum/api/blob/master/example/bills/get.php' target="_blank">
+                                       Выборка счётов, с оплатой за период
+                                   </a>
+                                </td>
+                            </tr>
 							<tr>
 								<td>
 									<span class="param-name">params:</span>
@@ -2993,6 +3004,10 @@
 									<div><span class="param-name">order</span> - Поле сортировки ('b.id' - номер счёта, "b.date_create" - дата создания счёта)</div>
 									<div><span class="param-name">limit</span> - Количество результатов в одном (постарничном) запросе по умолчанию 1000</div>
 									<div><span class="param-name">page</span> - Номер страницы вывода</div>
+                                    <div>
+                                        <span class="param-name">period_pay</span> - Период полаты счёта, выодить счета по которам совершалась 
+                                        оплата в указанный период {date_start: YYYY-mm-dd, date_end: YYYY-mm-dd}
+                                    </div>
 								</td>
 							</tr>
 							<tr>
@@ -3262,9 +3277,21 @@
 								</td>
 							</tr>
 							<tr>
-                              <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
-							  <td>метод:<strong> billsAdd</strong></td>
+                                <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							    <td>метод:<strong> billsAdd</strong></td>
 						    </tr>
+                            <tr>
+                                <td>
+                                   <span class="param-name">
+                                       Пример на гитхабе
+                                   </span> 
+                                </td>
+                                <td>
+                                   <a href='https://github.com/intrum/api/blob/master/example/bills/add.php' target="_blank">
+                                       Добавление счёта
+                                   </a>
+                                </td>
+                            </tr>
 							<tr>
 								<td>
 									<span class="param-name">params:</span>
@@ -3279,7 +3306,6 @@
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">name</span> - Название продукта</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">price</span> - Цена продукта</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">sale_id</span> - ID связанной сделки</div>
-									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">stockgroup_id</span> - ID списка товаров</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">client_company_id</span> - ID реквизитов клиента</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">client_id</span> - ID клиента</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">my_company_id</span> - ID реквизитов фирмы</div>
@@ -3291,7 +3317,7 @@
 							</tr>
 							<tr>
 								<td>
-									<span class="param-name" name="accounts-add">Ответ:</span>
+									<span class="param-name">Ответ:</span>
 								</td>
 								<td>
 									<code class="code-example">
@@ -3476,6 +3502,18 @@
 							    <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
 							    <td>метод:<strong> billsSetPay</strong></td>
 							</tr>
+                            <tr>
+                               <td>
+                                   <span class="param-name">
+                                       Пример на гитхабе
+                                   </span> 
+                               </td>
+                               <td>
+                                   <a href='https://github.com/intrum/api/blob/master/example/bills/setPay.php' target="_blank">
+                                       Оплата счёта
+                                   </a>
+                               </td>
+                            </tr>
 							<tr>
 								<td>
 									<span class="param-name">params:</span>
