@@ -296,6 +296,10 @@
 							<a href="#calls">Звонки</a>
 						</span>
                         <ul>
+                            <li><a href="#calls-trunks">Запрос списка соединений</a></li>
+                            <li><a href="#calls-phones">Запрос списка номеров</a></li>
+                            <li><a href="#calls-status">Запрос списка статусов</a></li>
+                            <li><a href="#calls-history">Список звонков из истории по фильтру</a></li>
                             <li><a href="#calls-add">Добавление звонка</a></li>
                             <li><a href="#calls-import">Импорт звонков</a></li>
                             <li><a href="#calls-update">Редактирование звонков</a></li>
@@ -4471,11 +4475,23 @@
 					</div>
 					
 					<div class="content-sub-head">
-						<a name="sms-c-s" class="fix-scroll">Запрос <b>trunks</b></a>
+						<a name="calls-trunks" class="fix-scroll">Запрос списка соединений</a>
 					</div>
 					<div class="content-text">
 						<table>
-							<tbody><tr>
+                            <tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>
+								</td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/calls/trunks</span>
+								</td>
+							</tr>
+							<tr>
+                                <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							    <td>метод:<strong> callsGetTrunks </strong></td>
+						    </tr>
+                            <tr>
 								<td width="120px"><span class="param-name">Параметры</span></td>
 								<td>
 									<i>Без параметров</i>
@@ -4510,15 +4526,27 @@
 									</code>
 								</td>
 							</tr>
-						</tbody></table>
+						</table>
 					</div>
 					
 					<div class="content-sub-head">
-						<a name="sms-c-s" class="fix-scroll">Запрос <b>phoneNumbers</b></a>
+						<a name="calls-phones" class="fix-scroll">Запрос списка номеров</a>
 					</div>
 					<div class="content-text">
 						<table>
-							<tbody><tr>
+                            <tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>
+								</td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/calls/phoneNumbers</span>
+								</td>
+							</tr>
+							<tr>
+                                <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							    <td>метод:<strong> getCallsPhones </strong></td>
+						    </tr>
+							<tr>
 								<td width="120px"><span class="param-name">Параметры</span></td>
 								<td>
 									<i>Без параметров</i>
@@ -4531,7 +4559,6 @@
 									<code class="code-example">
 										{<br>
 										&nbsp;&nbsp;"status":"success",<br>
-										
 										
 										&nbsp;&nbsp;"data":{<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;"in":[{<br>
@@ -4561,15 +4588,27 @@
 									</code>
 								</td>
 							</tr>
-						</tbody></table>
+						</table>
 					</div>
 					
 					<div class="content-sub-head">
-						<a name="sms-c-s" class="fix-scroll">Запрос <b>statuses</b></a>
+						<a name="calls-status" class="fix-scroll">Запрос списка статусов</a>
 					</div>
 					<div class="content-text">
 						<table>
-							<tbody><tr>
+                            <tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>
+								</td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/calls/statuses</span>
+								</td>
+							</tr>
+							<tr>
+                                <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							    <td>метод:<strong> callsGetStatuses </strong></td>
+						    </tr>
+							<tr>
 								<td width="120px"><span class="param-name">Параметры</span></td>
 								<td>
 									<i>Без параметров</i>
@@ -4616,15 +4655,39 @@
 									</code>
 								</td>
 							</tr>
-						</tbody></table>
+						</table>
 					</div>
 					
 					<div class="content-sub-head">
-						<a name="sms-c-s" class="fix-scroll">Запрос <b>history</b></a>
+						<a name="calls-history" class="fix-scroll">Список звонков из истории по фильтру</a>
 					</div>
 					<div class="content-text">
 						<table>
-							<tbody><tr>
+                            <tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>
+								</td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/calls/history</span>
+								</td>
+							</tr>
+							<tr>
+                                <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							    <td>метод:<strong> getCallsList </strong></td>
+						    </tr>
+                            <tr>
+                               <td>
+                                   <span class="param-name">
+                                       Пример на гитхабе
+                                   </span> 
+                               </td>
+                               <td>
+                                   <a href='https://github.com/intrum/api/blob/master/example/calls/getByFilter.php' target="_blank">
+                                       Звонки за период
+                                   </a>
+                               </td>
+                            </tr>
+							<tr>
 								<td width="120px"><span class="param-name">Параметры</span></td>
 								<td>
 									<b>fromPhone</b>&nbsp;&nbsp;&nbsp;Фильтр по номеру с которого звонили<br>
@@ -4676,7 +4739,7 @@
 									</code>
 								</td>
 							</tr>
-						</tbody></table>
+						</table>
 					</div>
 					
 					<div class="content-sub-head">
@@ -4693,8 +4756,8 @@
 								</td>
 							</tr>
 							<tr>
-                              <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
-							  <td>метод:<strong> callsAdd </strong></td>
+                                <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							    <td>метод:<strong> callsAdd </strong></td>
 						    </tr>
                             <tr>
                                 <td>
@@ -4722,7 +4785,7 @@
                                         <td>Номер, на который был совершён звонок</td></tr>
 
                                         <tr><td><span class="param-name">trunkId</span></td>
-                                        <td>ID соединения, через которое был совершёл звонок, список соединений getCallsTrunks</td></tr>
+                                            <td>ID соединения, через которое был совершёл звонок, <a href="calls-trunks">список соединений</a> </td></tr>
                                         
                                         <tr><td><span class="param-name">isIncoming</span></td>
                                         <td>Направление звонка с т.з. CRM системы: <b>true</b> или <b>1</b> - входящий, иначе - исходящий</td></tr>
@@ -4742,8 +4805,10 @@
                                         <tr><td><span class="param-name">isAnswered</span></td>
                                         <td>Был ли ответ на звонок</td></tr>
 
-                                        <tr><td><span class="param-name">customStatus</span></td>
-                                        <td>ID назначенного звонку статуса, спискок доступных статусов getCallsStatuses</td></tr>
+                                        <tr>
+                                            <td><span class="param-name">customStatus</span></td>
+                                            <td>ID назначенного звонку статуса, <a href='#calls-status'>список доступных статусов</a></td>
+                                        </tr>
                                     </table>
 								</td>
 							</tr>
@@ -4816,7 +4881,7 @@
                                         <td>Номер, на который был совершён звонок</td></tr>
 
                                         <tr><td><span class="param-name">trunkId</span></td>
-                                        <td>ID соединения, через которое был совершёл звонок, список соединений getCallsTrunks</td></tr>
+                                            <td>ID соединения, через которое был совершёл звонок, <a href="calls-trunks">список соединений</a> </td></tr>
                                         
                                         <tr><td><span class="param-name">isIncoming</span></td>
                                         <td>Направление звонка с т.з. CRM системы: <b>true</b> или <b>1</b> - входящий, иначе - исходящий</td></tr>
@@ -4836,8 +4901,10 @@
                                         <tr><td><span class="param-name">isAnswered</span></td>
                                         <td>Был ли ответ на звонок</td></tr>
 
-                                        <tr><td><span class="param-name">customStatus</span></td>
-                                        <td>ID назначенного звонку статуса, спискок доступных статусов getCallsStatuses</td></tr>
+                                        <tr>
+                                            <td><span class="param-name">customStatus</span></td>
+                                            <td>ID назначенного звонку статуса, <a href='#calls-status'>список доступных статусов</a></td>
+                                        </tr>
                                     </table>
 								</td>
 							</tr>
@@ -4930,8 +4997,10 @@
                                         <tr><td><span class="param-name">isAnswered</span></td>
                                         <td>Был ли ответ на звонок</td></tr>
 
-                                        <tr><td><span class="param-name">customStatus</span></td>
-                                        <td>ID назначенного звонку статуса, спискок доступных статусов getCallsStatuses</td></tr>
+                                        <tr>
+                                            <td><span class="param-name">customStatus</span></td>
+                                            <td>ID назначенного звонку статуса, <a href='#calls-status'>список доступных статусов</a></td>
+                                        </tr>
                                     </table>
 								</td>
 							</tr>

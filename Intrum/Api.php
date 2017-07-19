@@ -761,13 +761,18 @@
         
         /* Звонки */
         //Возвращает список возможных соединений
-        public function getCallsTrunks()
+        public function callsGetTrunks()
         {
             return $this->send('/calls/trunks');
         }
         
+        public function callsGetPhones()
+        {
+            return $this->send('/calls/phoneNumbers');
+        }
+        
         /*Список статусов*/
-        public function getCallsStatuses()
+        public function callsGetStatuses()
         {
             return $this->send('/calls/statuses');
         }
@@ -831,6 +836,24 @@
         public function callsUpdate(array $params)
         {
             return $this->send('/calls/update',$params);
+        }
+        
+        /* Получить список звонков по фильтру
+         * $params {
+         *      fromPhone   Фильтр по номеру с которого звонили
+                toPhone     Фильтр по номеру на который звонили
+                dateFrom    Искать звонки после даты
+                dateTo      Искать звонки до даты
+                type        Тип звонков: in, out
+                limit       Ограничить ответ количеством записей (макс. 1000)
+                page        Совместно с ограничением, определяет страницу выдачи
+                orderField  Сортировать по полю (по-умолчанию поле даты,date_time)
+                orderType   Направление сортировки: ASK, DESC (по-умолчанию DESK)
+         * }
+         */
+        public function callsGetList(array $params)
+        {
+            return $this->send('/calls/history',$params);
         }
         
 	}

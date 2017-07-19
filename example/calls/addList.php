@@ -7,12 +7,12 @@
 	 */
     
     //Список всех соединений, trunk_id
-    $trunks = $api->getCallsTrunks();
+    $trunks = $api->callsGetTrunks();
     //print_r($trunks);
     $trunkId = $trunks['data'][0]['trunk_id'];
     
     //Список всех статусов
-    //$statuses = $api->getCallsStatuses();
+    //$statuses = $api->callsGetStatuses();
     //print_r($statuses);
     
 	$res = $api->callsAddList(array(
