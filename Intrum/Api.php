@@ -63,6 +63,30 @@
 		}
 		
 		// поиск
+        /* $params{
+            type       - id типа продукта (обязательное поле, если не указаны byid/by_ids)
+            byid       - id продукта
+            by_ids     - Список id, все продукты из списка должны быть одного типа
+            category   - id категории продукта
+            nested     - значение true или false, включить вложенные категории
+            search     - поисковая строка может содержат имя продукта или вхождения в поля с типами text,select,multiselect (полнотекстовый поиск)
+            manager    - id менеджера
+            groups     - массив групп менеджеров
+            fields     - массив условий поиска по полям [{id:id свойства,value: значение},{...}] 
+                         для полей с типом integer,decimal,price,time,date,datetime возможно указывать границы:
+                value: '>= значение' - больше или равно
+                value: '<= значение' - меньше или равно
+                value: 'значение_1 & значение_2' - между значением 1 и 2
+            related_with_customer - связанный с продуктом клиент
+            order                 - направление сортировки asc - по возрастанию, desc - по убыванию
+            order_field           - если в качестве значения указать stock_activity_date выборка будет сортироваться по дате активности
+            date                  - {from: "2015-10-29 09:45:23", to: "2015-11-19 13:05:12"} выборка за определенный период
+            date_field            - если в качестве значения указать stock_activity_date выборка по параметру активности
+            page                  - страница
+            publish               - 1 - активные, 0 - удаленные, по умолчанию 1
+            limit                 - число записей в выборке, по умолчанию 20, макс. 500
+         * }
+         */
 		public function getStockByFilter(array $params)
 		{
 			return $this->send("/stock/filter",$params);
@@ -95,6 +119,26 @@
 			return $this->send("/stock/update",$params);
 		}
 		
+        //Групповое обновление полей по фильтру
+        /*  
+         *  $filter = getStockByFilter/$params 
+         *  $values = [
+         *   {
+                'property' : 870,
+                'type'     : 'type',
+                'value'    : "1", 
+            }
+         *  //Описание всех типов в примере /example/stock/editByGroup.php и в документации
+         * ] 
+         */
+        public function updateStockByFilter(array $filter,array $values)
+        {
+            return $this->send("/stock/updateByFilter",array(
+                'filter'  => $filter,
+                'values'  => $values
+            ));
+        }
+        
 		//удаление
 		public function deleteStock(array $params)
 		{

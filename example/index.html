@@ -176,6 +176,7 @@
 							<li><a href="#stock-search">Вывод продуктов (фильтры, поиск)</a></li>
 							<li><a href="#stock-insert">Добавление продуктов</a></li>
 							<li><a href="#stock-update">Редактирование продуктов</a></li>
+                            <li><a href="#stock-update-group">Групповое редактирование</a></li>
                             <li><a href="#stock-addComment">Добавление комментариев</a></li>
 							<li><a href="#stock-delete">Удаление продуктов</a></li>
 						</ul>
@@ -1175,7 +1176,7 @@
 					<div class="content-text">
 						Поиск в продуктах по различным критериям
 						<table>
-							<tbody><tr>
+							<tr>
 								<td width="100px">
 									<span class="param-name">URL:</span>								
                                 </td>
@@ -1207,13 +1208,15 @@
                             </tr>
 							<tr>
 								<td>
-									<span class="param-name">params:</span>								</td>
+									<span class="param-name">params:</span>								
+                                </td>
 								<td>
-									<div><span class="param-name">type</span> - id типа продукта (обязательное поле)</div>
+									<div><span class="param-name">type</span> - id типа продукта (обязательное поле, если не указаны byid/by_ids)</div>
+                                    <div><span class="param-name">byid</span> - id продукта</div>
+                                    <div><span class="param-name">by_ids</span> - массив id продуктов, все продукты из массива должны быит одного типа</div>
 									<div><span class="param-name">category</span> - id категории продукта</div>
 									<div><span class="param-name">nested</span> - значение true или false, включить вложенные категории</div>
 									<div><span class="param-name">search</span> - поисковая строка может содержат имя продукта или вхождения в поля с типами text,select,multiselect (полнотекстовый поиск)</div>
-									<div><span class="param-name">byid</span> - id продукта</div>
 									<div><span class="param-name">manager</span> - id менеджера</div>
 									<div><span class="param-name">groups</span> - массив групп менеджеров</div>
 									<div>
@@ -1235,7 +1238,8 @@
 							</tr>
 							<tr>
 								<td>
-									<span class="param-name">Ответ:</span>								</td>
+									<span class="param-name">Ответ:</span>								
+                                </td>
 								<td>
 									<code class="code-example">
 									{<br>
@@ -1283,7 +1287,7 @@
 									<div><span class="param-name">list</span> - массив выбранных данных</div>
 									<div><span class="param-name">count</span> - общее число найденных записей</div>								</td>
 							</tr>
-						</tbody></table>
+						</table>
 					</div>
 					<div class="content-sub-head">
 						<a name="stock-insert" class="fix-scroll">Добавление продуктов</a>
@@ -1291,7 +1295,7 @@
 					<div class="content-text">
 						Добавление в базу CRM новых продуктов (для выполнении данной операции должен быть разрешен доступ на запись)
 						<table>
-							<tbody><tr>
+							<tr>
 								<td width="100px">
 									<span class="param-name">URL:</span>								</td>
 								<td>
@@ -1358,18 +1362,23 @@
 									&nbsp;&nbsp;{<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;//аналогично предыдущему элементу<br>
 									&nbsp;&nbsp;}<br>
-									]									</code>
-									Пример загрузки файлов в разделе <a href="#utils-upload">Утилиты / Загрузка файлов</a>								</td>
+									]									
+                                    </code>
+									Пример загрузки файлов в разделе <a href="#utils-upload">Утилиты / Загрузка файлов</a>								
+                                </td>
 							</tr>
 							<tr>
 								<td>
-									<span class="param-name">Ответ:</span>								</td>
+									<span class="param-name">Ответ:</span>								
+                                </td>
 								<td>
 									<code class="code-example">
 										//ответ содержит массив добавленных продуктов<br>
-										[19321,19322,...]									</code>								</td>
+										[19321,19322,...]									
+                                    </code>								
+                                </td>
 							</tr>
-						</tbody></table>
+						</table>
 					</div>
                     
 					<div class="content-sub-head">
@@ -1378,11 +1387,13 @@
 					<div class="content-text">
 						Редактирование CRM продуктов (для выполнении данной операции должен быть разрешен доступ на редактирование)
 						<table>
-							<tbody><tr>
+							<tr>
 								<td width="100px">
-									<span class="param-name">URL:</span>								</td>
+									<span class="param-name">URL:</span>								
+                                </td>
 								<td>
-									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/stock/update</span>								</td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/stock/update</span>								
+                                </td>
 							</tr>
 							<tr>
                               <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
@@ -1405,7 +1416,8 @@
                            </tr>
 							<tr>
 								<td>
-									<span class="param-name">params:</span>								</td>
+									<span class="param-name">params:</span>								
+                                </td>
 								<td>
 									<code class="code-example">
 										//обновление записей аналогично вставке, в список параметров добавляется ID объекта<br>
@@ -1435,9 +1447,152 @@
 										&nbsp;&nbsp;{<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;//аналогично предыдущему элементу<br>
 										&nbsp;&nbsp;}<br>
-										]									</code>								</td>
+										]									
+                                    </code>								
+                                </td>
 							</tr>
-						</tbody></table>
+						</table>
+					</div>
+                    
+                    <div class="content-sub-head">
+						<a name="stock-update-group" class="fix-scroll">Групповое редактирование</a>
+					</div>
+					<div class="content-text">
+						Групповое редактирование CRM продуктов (для выполнении данной операции должен быть разрешен доступ на редактирование)
+						<table>
+							<tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>								
+                                </td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/stock/updateByFilter</span>								
+                                </td>
+							</tr>
+							<tr>
+                              <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+							  <td>метод:<strong> updateStockByFilter </strong></td>
+						   </tr>
+                           <tr>
+                               <td>
+                                   <span class="param-name">
+                                       Пример на гитхабе
+                                   </span> 
+                               </td>
+                               <td>
+                                   <a href='https://github.com/intrum/api/blob/master/example/stock/editByGroup.php' target="_blank">
+                                       Редактироание группы объектов по фильтру
+                                   </a>
+                               </td>
+                           </tr>
+							<tr>
+								<td>
+									<span class="param-name">params:</span>								
+                                </td>
+								<td>
+									<code class="code-example">
+                                        //Метод принимает два параметра, filter = <a href="#stock-search">аналогичный getStockByFilter</a> и  values, содержимое values для разных типов <br>
+										[<br>
+										&nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'property' => 870,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'type'     => 'radio',<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'value'    => "1", //Возможные ""-не выбрано, "1" - Да, "0"-Нет<br>
+                                        &nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;//text<br>
+                                        &nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'property' => 878,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'type'     => 'text',<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'value'    => "Новое описание", <br>
+                                        &nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;//integer //float //price<br>
+                                        &nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'property' => 876,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'type'     => 'integer',<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'value'    =>  '15',      //Увеличит свойство объектов на 15%<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"option" => {<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mode"&nbsp;&nbsp;  => "update",  // set Установить значение  , update - установить значение в процентах от текущего, <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"percent_mode"  => 1&nbsp;&nbsp;  // >0 = Увеличить, <0 - Уменьшить<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                        &nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;//attach<br>
+                                        &nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'property' => 882,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'type'     => 'attach',<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'value'    => {<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;    {<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'attach_id'   => "32915", //ID прикрепляемого объекта,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'attach_type' => "stock", //Тип прикрепляемого объекта, stock, customer, sale, request, employee,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'comment'     => "",      //Комментарий к связи,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'count'       => 1 ,      //Кол-во, 1 по умолчанию<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ext'&nbsp;&nbsp; => 882      //Extproperty<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;    }<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"option" => {<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mode" => "rewrite" // add Установить значение если его нет, rewrite - установить значение в любом случае<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                        &nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;//file<br>
+                                        &nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'property' => 880,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'type'     => 'file',<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;'value'    => [<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name"  => "597071f8ebcbc.jpg",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title" => "Без названия (1}.jpg"<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;],<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"option"  => {<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;    "filemode" => "del" //add - Добавить к существующим, del - Заменить существующие<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                        &nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;//point<br>
+                                        &nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"property" => 881,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"type"     => "point",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"value"    => "55.763634 37.613068 12"<br>
+                                        &nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;//select<br>
+                                        &nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"property" => 871,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"type"     => "select",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"value"    => "two"<br>
+                                        &nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;//multiselect<br>
+                                        &nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"property" => 872,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"type"     => "multiselect",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"option"   => {<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"multiselect_write_mode" => "append"  <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// append  - Добавить к текущим, <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// rewrite - заменить,очистьть поле перед вставкой, <br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// delete  - удалить выбранные значения из поля<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"value"    => {<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"two"<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                                        &nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;//Date<br>
+                                        &nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"property" => 873,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"type"     => "date",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"value"    => "2017-07-21"<br>
+                                        &nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;//Datetime<br>
+                                        &nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"property" => 874,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"type"     => "datetime",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"value"    => "2017-07-21 08:20:19"<br>
+                                        &nbsp;&nbsp;},<br>
+                                        &nbsp;&nbsp;//time<br>
+                                        &nbsp;&nbsp;{<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"property" => 874,<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"type"     => "time",<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;"value"    => "08:20:19"<br>
+                                        &nbsp;&nbsp;}<br>
+										]									
+                                    </code>								
+                                </td>
+							</tr>
+						</table>
 					</div>
                     
                     <div class="content-sub-head">
@@ -1723,7 +1878,7 @@
                                         Сотрудники отделов
                                     </a>,
                                     <a href='https://github.com/intrum/api/blob/master/example/employee/getByGroup.php' target="_blank">
-                                        сотрудники CRM группы
+                                        Сотрудники CRM группы
                                     </a>
                                 </td>
                             </tr>

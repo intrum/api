@@ -8,7 +8,7 @@
     $groups = $api->getStockGroups();
     $myGroup = $groups['data'][0];
 
-    //pr($myGroup);
+    //print_r($myGroup);
     
     //Получение списка объектов входящих в группу
     $data = $api->getStockByFilter(array(
@@ -26,18 +26,18 @@
     
     $firstGroupObject = reset($tree);
     
-    pr($myGroup,$firstGroupObject);
+    print_r($myGroup,$firstGroupObject);
     
     die();
     
     $stock = $data['data']['list'][0];
-    //pr($stock);
+    //print_r($stock);
     
     //Выборка всех существующих полей
     $fields = $api->getStockFields();
     //Список дополнительных полей выбранного объекта
     $myFields = $fields['data'][$stock['stock_type']]['fields'];
-    //pr($myFields);
+    //print_r($myFields);
     
     //Список файлов с абсолютними путями, которые нужно загрузить
     $files = array(
@@ -64,7 +64,7 @@
             )
         );
         
-        //pr($result);
+        //print_r($result);
         
         //Добавляем новые фото
         foreach($result['data']['name'] as $file){
@@ -88,7 +88,7 @@
 
         $res = $api->updateStock(array($updateStock));
 
-        pr($res);
+        print_r($res);
     }
    
 ?>
