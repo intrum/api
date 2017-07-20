@@ -217,11 +217,54 @@
 		}
 		
 		// поиск
+        /* $params{
+         *  search       - поисковая строка (может содержать фамилию клиента или слова из комментария или названия заявки)
+            groups       - массив групп менеджеров
+            manager      - id менеджера
+            byid         - id заявки
+            by_ids       - массив id заявок
+            customer     - id клиента
+            types        - массив id типов
+            order        - направление сортировки asc - по возрастанию, desc - по убыванию
+            order_field  - Поле для сортировки,  request_activity_date - дате активности
+            date         - {from: "2015-10-29", to: "2015-11-19"} выборка за определенный период
+            date_field   - если в качестве значения указать request_activity_date выборка по параметру активности
+            statuses     - массив id статусов 
+                unselected - Не выбран
+                mustbeprocessed - Требует обработки
+                processnow - Требует срочной обработки
+                processed - Требует доработки
+                postponed - Обработан
+                malformed - Отложен
+                cancelled - Неверен
+                reprocess - Отменен
+            page - страница
+            publish - 1 - активные, 0 - удаленные, по умолчанию 1
+            limit - число записей в выборке (макс. 50)
+         * }
+         */
 		public function filterRequests(array $params)
 		{
 			return $this->send("/applications/filter",$params);
 		}
 		
+        /*
+         *  Список ID заявок статус которых менялися за период времени
+         *  $params {
+         *      date_start - Дата в формате "2017-02-01"
+         *      date_end   - Дата в формате "2017-02-01"
+         *  }
+         */
+        public function getRequestChangeStatus(array $params)
+        {
+            if(!$params['date_start'] || !$params['date_end']){
+                return array(
+                    'error' => 'Необходимо передать обязательные параметры: date_start, date_end'
+                );
+            }
+            return $this->send('/applications/getbychangestatus',$params);
+        }
+        
         //Список доступных статусов
         public function getRequestStatuses()
         {

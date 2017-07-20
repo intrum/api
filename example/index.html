@@ -2288,7 +2288,7 @@
 					<div class="content-text">
 						Поиск в заявках
 						<table>
-							<tbody><tr>
+							<tr>
 								<td width="100px">
 									<span class="param-name">URL:</span>
 								</td>
@@ -2299,7 +2299,19 @@
 							<tr>
                               <td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
 							  <td>метод:<strong> filterRequests</strong></td>
-						  </tr>
+						    </tr>
+                            <tr>
+                               <td>
+                                   <span class="param-name">
+                                       Пример на гитхабе
+                                   </span> 
+                               </td>
+                               <td>
+                                   <a href='https://github.com/intrum/api/blob/master/example/request/getByChangeStatus.php' target="_blank">
+                                       Выборка заявок, изменивших статус за период времени
+                                   </a>
+                               </td>
+                            </tr>
 							<tr>
 								<td>
 									<span class="param-name">params:</span>
@@ -2309,6 +2321,7 @@
 									<div><span class="param-name">groups</span> - массив групп менеджеров</div>
 									<div><span class="param-name">manager</span> - id менеджера</div>
 									<div><span class="param-name">byid</span> - id заявки</div>
+                                    <div><span class="param-name">by_ids</span> - массив ids заявок</div>
 									<div><span class="param-name">customer</span> - id клиента</div>
 									<div><span class="param-name">types</span> - массив id типов</div>
 									<div><span class="param-name">order</span> - направление сортировки asc - по возрастанию, desc - по убыванию</div>
@@ -2377,7 +2390,7 @@
 									<div><span class="param-name">count</span> - общее число найденных записей</div>
 								</td>
 							</tr>
-						</tbody></table>
+						</table>
 					</div>
 
 					<div class="content-sub-head">
