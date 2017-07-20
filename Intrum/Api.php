@@ -168,7 +168,21 @@
 			return $this->send("/worker/filiation");
 		}
 		
-		// поиск
+		//Выборка сотрудников
+        /* $params{
+         *  group         - id группы менеджеров
+            id            - массив id сотрудников
+            division_id   - массив id отделов
+            suboffice_id  - массив id филиалов
+            surname       - фамилия
+            name          - имя
+            email         - email
+            phone         - телефон
+            fields        - массив условий для дополнительных свойств [{id:id, value:value}, ...]
+            status        - Статус сотрудника, по умолчанию [onstate,outstate] - все работающие, полный список:
+                            ['new', 'onstate', 'outstate', 'notworking', 'fired']
+         * }
+         */
 		public function filterEmployee(array $params = array())
 		{
 			return $this->send("/worker/filter",$params);
