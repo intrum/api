@@ -5841,12 +5841,25 @@
 						Далее после настройки адреса url и выбора событий, на которые осуществяется подписка, 
                         на url будет отправляться post запрос c параметрами произошедшего в системе события в режиме реального времени.
 					</div>
-                    
                     <div class="content-sub-head">
 						<a name="logwebhook-all" class="fix-scroll">Общий вид</a>
 					</div>
                     <div class="content-text">
-						Тело пост запроса, содержит массив данных, в формате json. Общий вид массива
+                        <div class="simple-line">
+                            <div class="simple-line__name"> Метод в библиотеке </div>
+                            <div class="simple-line__value">
+                                webhookPut
+                            </div>
+                        </div>
+                        <div class="simple-line">
+                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__value">
+                                <a href='https://github.com/intrum/api/blob/master/example/webhook/put.php' target="_blank">
+                                    Получение события
+                                </a>
+                            </div>
+                        </div>
+						<p>Тело пост запроса, содержит массив данных, в формате json. Общий вид массива</p>
                         <code class="code-example">
                             {<br>
                             &nbsp;&nbsp;"subject_type" : "employee",<br>
@@ -5886,8 +5899,8 @@
                         <div class="param-line">
                             <b> merge </b> - Массив изменений в свойствах объекта
                         </div>
-                        
 					</div>
+                    
                     
                     <div class="content-sub-head">
 						<a name="logwebhook-all-merge" class="fix-scroll">Массив прежных значений свойств объекта</a>
@@ -6180,6 +6193,14 @@
                             &nbsp;&nbsp;]<br>
                             }<br>
                         </code>
+                        <div class="simple-line">
+                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__value">
+                                <a href='https://github.com/intrum/api/blob/master/example/webhook/changeSaleStage.php' target="_blank">
+                                    Логирование изменения статуса сделки
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="content-sub-head">
