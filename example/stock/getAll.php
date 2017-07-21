@@ -30,24 +30,26 @@ $fields = $api->getStockFields();
 foreach($types as $type){
 
     $list = array();
+    $total = null;
+    $page = 1;
 
-    $data = $api->getStockByFilter(array(
-        'type'  => $type,
-        'page'  => 1,
-        'limit' => 500 //Максимум 500
-    ));
-    $list = $data['data']['list'];
+    while (true) {
+        $data = $api->getStockByFilter(array(
+            'type' => $type,
+            'page' => $page,
+            'limit' => 500 //Максимальный
+        ));
 
-    if($data['data']['count'] > 500 && 1==2){
-        $pages = ceil($data['data']['count'] / 500);
+        $page ++;
 
-        for($i=2; $i<=$pages; $i++){
-            $data = $api->getStockByFilter(array(
-                'type'  => $type,
-                'page'  => $i,
-                'limit' => 500 //Максимум 500
-            ));
-            $list = array_merge($list,$data['data']['list']);
+        $list = array_merge($list, (array) $data['data']['list']);
+
+        if ($total === null) {
+            $total = $data['data']['count'];
+        }
+
+        if (!$data['data']['list'] || count($data['data']['list']) < 500 || $page > 200) {
+            break;
         }
     }
 
@@ -59,8 +61,9 @@ foreach($types as $type){
             $list[$key]['fields'][$fieldKey]['name'] = $fields['data'][$type]['fields'][ $field['id'] ]['name'];
         }
     }
-
-    //$list - Все продукты данного типа, с фотографиями в виде ссылок, формат :
+}
+        
+//$list - Все продукты данного типа, с фотографиями в виде ссылок, формат :
     /*
     array(
         array(
@@ -118,6 +121,3 @@ foreach($types as $type){
         )
     )
     */
-}
-        
-        //Максимум 500

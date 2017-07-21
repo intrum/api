@@ -3,7 +3,7 @@
 	require_once '../usage.php'; //настройте данный конфигурационный файл
 	
 	/*
-	 * Пример добавления списка клиентов, с проверкой ( добавление только уникальных )
+	 * Пример добавления списка клиентов, с проверкой : добавление новых, обновление уже добавленных
 	 */
     
     //Список всех fields
@@ -11,7 +11,10 @@
     //print_r($fileds);
     //die();
     
-    //Тут проверка на уникальность по адресу аккаунта в вк
+    //Тут проверка на уникальность по id в вашей системе, для этого предварительно надо создать поле синхронизации в интруме,
+    // и при добавлении клиентов передвать это поле
+    
+    //В примере это поле 123
     
     $customers = array(
         array(
@@ -27,8 +30,8 @@
             'fields' => array(
                 // Акаунт в соцсети // text
                 array(
-                    'id' => 663,
-                    'value' => 'https://vk.com/id353123398'
+                    'id' => 123,
+                    'value' => 1
                 )
             )
         ),
@@ -38,8 +41,8 @@
             'secondname' => '',
             'fields' => array(
                 array(
-                    'id' => 663,
-                    'value' => 'https://vk.com/id14034522'
+                    'id' => 123,
+                    'value' => 2
                 )
             )
         ),
@@ -49,19 +52,20 @@
             'secondname' => '',
             'fields' => array(
                 array(
-                    'id' => 663,
-                    'value' => 'https://vk.com/intrum'
+                    'id' => 123,
+                    'value' => 3
                 )
             )
         )
     );
     
-    
+    //Ищем уже добавленные, их складываем в отдельный массив, по нему найденных клиентов обновим
+    $update = array();
     foreach($customers as $num=>$customer){
         $res = $api->filterCustomers(array(
             'fields' => array(
                 array(
-                    'id'    => 663,
+                    'id'    => 123,
                     'value' => $customer['fields'][0]['value']
                 )
             )
@@ -69,6 +73,8 @@
         //Значит дубль
         if($res['data']['list']){
             unset($customers[$num]);
+            $customer['id'] = $res['data']['list'][0]['id'];
+            $update[] = $customer;
         }
     }
     
@@ -85,6 +91,10 @@
         }
         //                            Тип объекта   ID поля   Двумерный массив, ключи - ID объектов в Intrum, значение массив путей к картинкам
         $re = $api->addFilesToObjects('purchaser',  862,      $list);
+    }
+    
+    if($update){
+        $api->updateCustomers($update);
     }
     
 ?>

@@ -543,7 +543,7 @@
             $params {
                 groups - массив id групп менеджеров
                 manager - id менеджера
-                byid - id клиента
+                byid - id клиента или массив id
                 marktype - массив id типов
                 nattype - одно из значений подтипа physface - Юрлицо, jurface - Физлицо, по умолчанию выводятся все
                 search - поисковая строка (может содержать фамилию или имя, email, телефон)
@@ -564,18 +564,19 @@
 		
         /*
          *  Обёртка над filterCustomers
-         *  $params те-же что и у filterCustomers, но limit = 10000
+         *  $params те-же что и у filterCustomers, но limit = 1000000, т.е. 500 * 200
          *  файлы возвращаются в формате {name: имя файла, link:путь к файлу}
          */
         public function getListCustomers(array $params)
         {
-            $total = ($params['limit']) ? $params['limit'] : 10000;
-            if($total > 50){
-                $params['limit'] = 50;
+            $total = ($params['limit']) ? $params['limit'] : 1000000;
+            if($total > 500){
+                $params['limit'] = 500;
             }
             $count = $params['count'];
             $max = 199;
             $page = 0;
+            $allCount = null;
             $list = array();
             while($page <= $max){
                 $page ++;
@@ -583,25 +584,37 @@
                 if($total < $params['limit']){
                     $params['limit'] = $total;
                 }
-                $data = $this->filterCustomers($params);
-                if(!$data['data']['list']){
+                if($params['limit']<1){
                     break;
                 }
-                $list = array_merge($list,$data['data']['list']);
+                
+                $data = $this->filterCustomers($params);
+                
+                if($allCount === null){
+                    $allCount = $data['data']['count'];
+                }
+                
+                $list = array_merge($list,(array)$data['data']['list']);
                 $total -= count($data['data']['list']);
+                
+                if(!$data['data']['list'] || count($data['data']['list'])<$params['limit']){
+                    break;
+                }
             }
             
             foreach($list as $key=>$item){
-                foreach($item['fields'] as $key2=>$field){
-                    if($field['datatype'] == 'file'){
-                        $list[$key]['fields'][$key2]['link'] = $this->getCustomerUrlFile($field['value']);
+                if($item['fields']){
+                    foreach($item['fields'] as $key2=>$field){
+                        if($field['datatype'] == 'file'){
+                            $list[$key]['fields'][$key2]['link'] = $this->getCustomerUrlFile($field['value']);
+                        }
                     }
                 }
             }
             
             return array(
                 'list'  => $list,
-                'count' => $data['data']['count']
+                'count' => $allCount
             );
         }
         
@@ -1024,8 +1037,9 @@
                         'result'  => $response
                     );
                 }
+                file_put_contents('error', $response);
                 return array(
-                    'error'=>$response
+                    'error' => $response, 
                 ); 
             }
 			
