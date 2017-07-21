@@ -12,7 +12,7 @@ $types = $api->getSaleTypes();
 //Выбираем второй тип
 $type    = $types['data'][1];
 $typeId  = $type['id'];
-//Запоминаем первую стадию, данного типа сделки
+//Запоминаем первую стадию данного типа сделки
 $stageId = $type['stages'][0]['id'];
 
 $res = $api->insertSales(array(
