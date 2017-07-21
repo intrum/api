@@ -21,7 +21,7 @@
     $myFields = $fields['data'][$stock['stock_type']]['fields'];
     //print_r($myFields);
     
-    //Список файлов с абсолютними путями, которые нужно загрузить
+    //Список файлов с абсолютными путями, которые нужно загрузить
     $files = array(
         $_SERVER['DOCUMENT_ROOT']."/example/upload.jpg",
         $_SERVER['DOCUMENT_ROOT']."/example/upload.jpg"
@@ -30,7 +30,7 @@
     
     $result = $api->uploadFile('stock', $files);
     if($result['status'] === 'success'){
-        //Файлы успешно загруженны , можно обновлять продукт
+        //Файлы успешно загруженны, можно обновлять продукт
         
         $updateStock = array(
             'id'     => $stockId,
