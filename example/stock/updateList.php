@@ -40,6 +40,7 @@ $list = array(
 
 // Отношение: тип объекта и id полей в CRM к вашим полям в массиве list
 // например, в типе объекта=9, поле цена имеет id=475
+// как определить id поля: 1) метод https://www.intrumnet.com/api/#stock-fields или 2) административная панель: см. скриншот https://yadi.sk/i/v-lUA90y3LPrhq
 $relations = array(
     9 => array(
         'articul' => 420,
