@@ -16,7 +16,7 @@
 	// параметры фильтрации
 	$filter = array(
         'type' => 7, // id типа продуктов (справочник типов по запросу https://www.intrumnet.ru/api/#stock-types или в админпанели см. скрин https://yadi.sk/i/9P5ojFLY3LQrFx)
-		'category' => 131, // id категории продуктов
+		'category' => 131, // id категории продуктов  (справочник категорий по запросу https://www.intrumnet.ru/api/#stock-category или в админпанели см. скрин https://yadi.sk/i/whL4AwPl3LR6k5)
 		'fields' => array( // список фильтров по полям
 			array(	
 				'id' => 81, //id поля (справочник по полям через запрос https://www.intrumnet.ru/api/#stock-fields или в админпанели см. скрин https://yadi.sk/i/v-lUA90y3LPrhq
