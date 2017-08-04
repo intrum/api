@@ -66,7 +66,9 @@ foreach($types as $type){
         }
     }
 }
-        
+ 
+print_r($list);
+
 //$list - формат :
     /*
     array(
