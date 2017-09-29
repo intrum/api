@@ -7,7 +7,7 @@ SDK для работы с API CRM Intrum с примерами
 
 ## Support
 
-При возникновении вопросов, можете писать запрос [Email](info@intrumnet.com). 
+При возникновении вопросов, можете писать запрос на Email info@intrumnet.com. 
 
 ## License
 
