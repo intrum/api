@@ -20,4 +20,4 @@ $data = $api->getStockByFilter(array(
 //Строим дерево сгруппированных объектов
 $res = $api->createTreeStockGroup($data['data']['list']);
 
-pr($res);
+print_r($res);

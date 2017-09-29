@@ -18,4 +18,4 @@ $data = $api->getStockByFilter(array(
 ));
 
 //В результируещем массиве так-же будет присутствовать объект родитель
-pr('data', $data);
+print_r('data', $data);
