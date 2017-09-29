@@ -1235,7 +1235,10 @@
 									<div><span class="param-name">date_field</span> - если в качестве значения указать stock_activity_date выборка по параметру активности</div>
 									<div><span class="param-name">page</span> - страница</div>
 									<div><span class="param-name">publish</span> - 1 - активные, 0 - удаленные, по умолчанию 1</div>
-									<div><span class="param-name">limit</span> - число записей в выборке, по умолчанию 20, макс. 500</div>								</td>
+									<div><span class="param-name">limit</span> - число записей в выборке, по умолчанию 20, макс. 500</div>
+									<div><span class="param-name">group_id</span> - ID группы для группированных объектов</div>	
+									<div><span class="param-name">object_groups</span> - Массив объектов родителей, для получения списка группированных объектов</div>	
+								</td>
 							</tr>
 							<tr>
 								<td>
@@ -1266,8 +1269,11 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customer_relation: "12643",<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//тип последней активности</span><br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stock_activity_type: "edit",<br>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//дата последней активности</span><br>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stock_activity_date: "2015-11-20 11:34:54",<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Объект оригинал, если group_id = 0, 
+										или родитель для сгруппированных объектов</span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy: 0,<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//ID группы для сгруппированных объектов</span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;group_id: 0,<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//данные полей</span><br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fields: [<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
