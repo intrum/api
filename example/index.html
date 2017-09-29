@@ -174,6 +174,7 @@
 							<li><a href="#stock-category">Категории продуктов</a></li>
 							<li><a href="#stock-fields">Поля</a></li>
 							<li><a href="#stock-search">Вывод продуктов (фильтры, поиск)</a></li>
+							<li><a href="#stock-group">Группы объектов</a></li>
 							<li><a href="#stock-insert">Добавление продуктов</a></li>
 							<li><a href="#stock-update">Редактирование продуктов</a></li>
                             <li><a href="#stock-update-group">Групповое редактирование</a></li>
@@ -1289,6 +1290,70 @@
 							</tr>
 						</table>
 					</div>
+					
+					<div class="content-sub-head">
+						<a name="stock-group" class="fix-scroll">Группы объектов</a>
+					</div>
+					<div class="content-text">
+						Получение списка групп объектов
+						<table>
+							<tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>								
+                        </td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/stock/groups</span>								
+                        </td>
+							</tr>
+							<tr>
+                        <td><span class="param-name">
+										<a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> 
+								</td>
+								<td>метод:<strong> getStockGroups</strong></td>
+							</tr>
+							<tr>
+								<td>
+									<span class="param-name">
+										Пример на гитхабе
+									</span> 
+								</td>
+								<td>
+									<a href='https://github.com/intrum/api/blob/master/example/stock/getGroups.php' target="_blank">
+										Получение списка групп и всех объектов по нему
+									</a>,
+									<a href='https://github.com/intrum/api/blob/master/example/stock/getGroupsChilds.php' target="_blank">
+										Получение списка прикреплённых объектов к группе
+									</a>,
+									<a href='https://github.com/intrum/api/blob/master/example/stock/editGroup.php' target="_blank">
+										Редактирование группы объектов
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="param-name">Ответ:</span>								
+                        </td>
+								<td>
+									<code class="code-example">
+										[<br>
+										&nbsp;&nbsp;{<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"id": "1",<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"name": "Колосс",<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"type": "9",<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"fields": ["433", "806", "807", "430", "429"],<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"publish": "1"<br>
+										&nbsp;&nbsp;}<br>
+										]<br>								
+									</code>
+									<div><span class="param-name">id</span> - ID группы объектов</div>
+									<div><span class="param-name">name</span> - Название группы объектов</div>	
+									<div><span class="param-name">type</span> - Тип объектов относящихся к группе</div>	
+									<div><span class="param-name">fields</span> - Уникальные ( отличающиеся у прикреплённых и у родителя ) поля объектов</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					
 					<div class="content-sub-head">
 						<a name="stock-insert" class="fix-scroll">Добавление продуктов</a>
 					</div>

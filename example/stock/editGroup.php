@@ -26,9 +26,6 @@
     
     $firstGroupObject = reset($tree);
     
-    print_r($myGroup,$firstGroupObject);
-    
-    die();
     
     $stock = $data['data']['list'][0];
     //print_r($stock);
