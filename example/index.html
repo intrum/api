@@ -10,7 +10,7 @@
 	<style>
 		body{ padding: 0;margin:0;font-family: "PT Sans";position: relative;}
 		table{width: 100%;text-indent:0;margin:10px 0;table-layout: fixed;border-collapse: collapse;}
-		table td {padding: 3px;}
+		table td {    padding: 5px;    vertical-align: top;}
 		ul { padding: 0; margin: 0; list-style: none;padding-top: 4px;}
 		ul li {padding: 0 5px;margin: 0;list-style: none;padding-top: 4px;}
 		ul li ul { padding-left: 10px;padding-top: 4px;;padding-bottom: 10px;}
@@ -24,8 +24,8 @@
 		.content-text a {color: #0073AF;}
 		.content{padding: 10px 0;padding-left: 210px;position: relative;margin-top: 80px;}
 		.content-head{color: #9EC638;font-size: 26px;line-height:2.5em;padding: 5px 0;position: relative;}
-		.content-sub-head{color: #9EC638;font-size: 16px;line-height:2.5em;padding: 5px 0;position: relative;}
-		.content-text{color: #94969B;font-size: 14px;line-height: 130%;text-indent: 20px;position: relative;}
+		.content-sub-head{color: #9EC638;font-size: 19px;line-height:2.5em;padding: 5px 0;position: relative;}
+		.content-text{color: #2f2f2f;font-size: 14px;line-height: 180%; position: relative;}
 		.code-example{color: #428BCA;font-family: monospace;font-weight: bold;background-color: #EEE;padding: 10px;font-size: 12px;display: block;text-indent: 0;margin: 5px 0;border-left: 5px solid #D1DEE9;position: relative;}
 		.code-example .comment{color: #999;font-weight: normal;font-style: italic;}
 		span.text-select{color: #788897;font-weight: bold;font-size: 13px;}
@@ -58,7 +58,7 @@
        }
        @media screen{
            .main-container{
-               width: 845px;
+               width: 1000px;
            }
            .content {
                max-height: calc(115vh - 200px);
@@ -122,7 +122,7 @@
 		</script>
 
 		<div class="pre-header"></div>
-		<div style="width:820px;margin:0 auto;">
+		<div style="width:1000px;margin:0 auto;">
 			<div class="header">
 				<img alt="plumbing" src="logo.png" style="margin-top:-10px;height:65px;">
 				<span style="color: #428BCA;font-size: 25px;font-weight: bold;">api v 2.8</span>
@@ -167,7 +167,7 @@
 					</li>
 					<li>
 						<span>
-							<a href="#stock">Продукты</a>
+							<a href="#stock">Продукты (Объекты базы данных)</a>
 						</span>
 						<ul>
 							<li><a href="#stock-types">Типы продуктов</a></li>
@@ -364,7 +364,7 @@
 					</li>
 					<li>
 						<span>
-							<a href="https://github.com/intrum/api"><b>PHP библиотека с примерами скриптов (zip)</b></a>
+							<a href="https://github.com/intrum/api"><b>PHP библиотека с примерами скриптов (Github)</b></a>
 						</span>
 					</li>
 				</ul>
@@ -1192,25 +1192,25 @@
                             <tr>
                                 <td>
                                     <span class="param-name">
-                                        Пример на гитхабе
+                                        Примеры скриптов на Github
                                     </span> 
                                 </td>
                                 <td>
                                     <a href='https://github.com/intrum/api/blob/master/example/stock/getByFilter.php' target="_blank">
-                                         с фильтром по полям
-                                    </a>,
+                                        фильтр по полям
+                                    </a><br>
                                     <a href='https://github.com/intrum/api/blob/master/example/stock/getByDate.php' target="_blank">
-                                        с фильтром по дате создания
-                                    </a>,
+                                        фильтр по дате создания
+                                    </a><br>
                                     <a href='https://github.com/intrum/api/blob/master/example/stock/getAll.php' target="_blank">
-                                        выбрка всех объектов
+                                        выборка всех объектов
                                     </a>
                                 </td>
                             </tr>
 							<tr>
 								<td>
 									<span class="param-name">params:</span>								
-                                </td>
+                        </td>
 								<td>
 									<div><span class="param-name">type</span> - id типа продукта (обязательное поле, если не указаны byid/by_ids)</div>
                                     <div><span class="param-name">byid</span> - id продукта</div>
@@ -1237,9 +1237,8 @@
 									<div><span class="param-name">publish</span> - 1 - активные, 0 - удаленные, по умолчанию 1</div>
 									<div><span class="param-name">limit</span> - число записей в выборке, по умолчанию 20, макс. 500</div>
 									<div><span class="param-name">group_id</span> - ID группы для группированных объектов</div>	
-									<div><span class="param-name">object_groups</span> - Массив объектов родителей, для получения списка группированных объектов</div>	
+									<div><span class="param-name">object_groups</span> - число записей в выборке, по умолчанию 20, макс. 500</div>	
 								</td>
-							</tr>
 							<tr>
 								<td>
 									<span class="param-name">Ответ:</span>								
@@ -1269,7 +1268,9 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customer_relation: "12643",<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//тип последней активности</span><br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stock_activity_type: "edit",<br>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Объект оригинал, если group_id = 0, 
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//дата последней активности</span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stock_activity_date: "2015-11-20 11:34:54",<br>
+									nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Объект оригинал, если group_id = 0, 
 										или родитель для сгруппированных объектов</span><br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;copy: 0,<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//ID группы для сгруппированных объектов</span><br>
@@ -1359,7 +1360,6 @@
 							</tr>
 						</table>
 					</div>
-					
 					<div class="content-sub-head">
 						<a name="stock-insert" class="fix-scroll">Добавление продуктов</a>
 					</div>
@@ -1379,12 +1379,12 @@
                             <tr>
                                 <td>
                                     <span class="param-name">
-                                        Пример
+                                        Примеры скриптов на Github
                                     </span> 
                                 </td>
                                 <td>
                                     <a href='https://github.com/intrum/api/blob/master/example/stock/add.php' target="_blank">
-                                        Пример на гитхабе
+                                       добавление нового объекта
                                     </a>
                                 </td>
                             </tr>
@@ -1473,15 +1473,15 @@
                            <tr>
                                <td>
                                    <span class="param-name">
-                                       Пример на гитхабе
+                                       Примеры скриптов на Github
                                    </span> 
                                </td>
                                <td>
                                    <a href='https://github.com/intrum/api/blob/master/example/stock/edit.php' target="_blank">
-                                       Редактироание одного объекта
-                                   </a>
+                                       Редактирование одного объекта
+                                   </a><br>
                                    <a href='https://github.com/intrum/api/blob/master/example/stock/updateList.php' target="_blank">
-                                       Редактироание списка объектов с сверкой/обновлением фотографий
+                                       Редактирование списка объектов с сверкой/обновлением фотографий
                                    </a>
                                </td>
                            </tr>
@@ -1546,7 +1546,7 @@
                            <tr>
                                <td>
                                    <span class="param-name">
-                                       Пример на гитхабе
+                                       Примеры скриптов на Github
                                    </span> 
                                </td>
                                <td>
@@ -1694,7 +1694,7 @@
                                <tr>
                                    <td>
                                        <span class="param-name">
-                                           Пример на гитхабе
+                                           Примеры скриптов на Github
                                        </span> 
                                    </td>
                                    <td>
@@ -1724,7 +1724,7 @@
 					</div>
                     
 					<div class="content-sub-head">
-						<a name="stock-delete" class="fix-scroll">Удаление продуктов</a>
+						<a name="stock-delete" class="fix-scroll">Удаление объекта базы данных (продукта)</a>
 					</div>
 					<div class="content-text">
 						Удаление CRM продуктов (для выполнении данной операции должен быть разрешен доступ на удаление)
@@ -1742,12 +1742,12 @@
                            <tr>
                                <td>
                                    <span class="param-name">
-                                       Пример
+                                      Примеры скриптов на Github
                                    </span> 
                                </td>
                                <td>
                                    <a href='https://github.com/intrum/api/blob/master/example/stock/del.php' target="_blank">
-                                       Пример на гитхабе
+                                       Удаление продукта
                                    </a>
                                </td>
                            </tr>
@@ -1938,7 +1938,7 @@
                             <tr>
                                 <td>
                                     <span class="param-name">
-                                        Примеры на гитхабе
+                                        Примеры скриптов на Github
                                     </span> 
                                 </td>
                                 <td>
@@ -2161,7 +2161,7 @@
                             <tr>
                                 <td>
                                     <span class="param-name">
-                                        Примеры на гитхабе
+                                        Примеры скриптов на Github
                                     </span> 
                                 </td>
                                 <td>
@@ -2290,7 +2290,7 @@
                             <span class='sup-up'>*</span> данный тип комментарием устаревший,  <a href='#utils-comment'> используйте </a>
                         </p>
                         <div class="simple-line">
-                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__name"> Примеры скриптов на Github </div>
                             <div class="simple-line__value">
                                 <a href='https://github.com/intrum/api/blob/master/example/customer/add.php' target="_blank">
                                     Добавление 
@@ -2313,7 +2313,7 @@
 					<div class="content-text">
 						Аналогично редактированию <a href="#stock-update">продуктов</a> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;(<span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> метод:<strong> updateCustomers</strong>)
                         <div class="simple-line">
-                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__name"> Примеры скриптов на Github </div>
                             <div class="simple-line__value">
                                 <a href='https://github.com/intrum/api/blob/master/example/customer/edit.php' target="_blank">
                                     Редактирование клиентов
@@ -2353,7 +2353,7 @@
                                <tr>
                                    <td>
                                        <span class="param-name">
-                                           Пример на гитхабе
+                                           Примеры скриптов на Github
                                        </span> 
                                    </td>
                                    <td>
@@ -2555,7 +2555,7 @@
                             <tr>
                                <td>
                                    <span class="param-name">
-                                       Пример на гитхабе
+                                       Примеры скриптов на Github
                                    </span> 
                                </td>
                                <td>
@@ -2664,7 +2664,7 @@
                         </p>
                         
                         <div class="simple-line">
-                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__name"> Примеры скриптов на Github </div>
                             <div class="simple-line__value">
                                 <a href='https://github.com/intrum/api/blob/master/example/request/add.php' target="_blank">
                                     Добавление заявки с загрузкой списка доступных типов и статусов
@@ -2679,7 +2679,7 @@
 					<div class="content-text">
 						Аналогично редактированию <a href="#stock-update">продуктов</a>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;(<span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> метод:<strong> updateRequests</strong>)
                         <div class="simple-line">
-                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__name"> Примеры скриптов на Github </div>
                             <div class="simple-line__value">
                                 <a href='https://github.com/intrum/api/blob/master/example/request/editStatus.php' target="_blank">
                                     Изменение статуса заявки
@@ -2716,7 +2716,7 @@
                                <tr>
                                    <td>
                                        <span class="param-name">
-                                           Пример на гитхабе
+                                           Примеры скриптов на Github
                                        </span> 
                                    </td>
                                    <td>
@@ -3047,7 +3047,7 @@
                             <tr>
                                <td>
                                    <span class="param-name">
-                                       Пример на гитхабе
+                                       Примеры скриптов на Github
                                    </span> 
                                </td>
                                <td>
@@ -3140,7 +3140,7 @@
 						<div><span class="param-name">fields</span> - массив данных полей</div>
                         
                         <div class="simple-line">
-                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__name"> Примеры скриптов на Github </div>
                             <div class="simple-line__value">
                                 <a href='https://github.com/intrum/api/blob/master/example/sales/add.php' target="_blank">
                                     Добавление продаж
@@ -3156,7 +3156,7 @@
 						Аналогично редактированию <a href="#stock-update">продуктов</a> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;(<span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> метод:<strong> updateSales</strong>)
                         <p> Добавляется обязательный параметр id - id сделки в CRM </p>
                         <div class="simple-line">
-                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__name"> Примеры скриптов на Github </div>
                             <div class="simple-line__value">
                                 <a href='https://github.com/intrum/api/blob/master/example/sale/editStage.php' target="_blank">
                                     Изменение стадии сделки
@@ -3193,7 +3193,7 @@
                                <tr>
                                    <td>
                                        <span class="param-name">
-                                           Пример на гитхабе
+                                           Примеры скриптов на Github
                                        </span> 
                                    </td>
                                    <td>
@@ -3255,7 +3255,7 @@
                             <tr>
                                 <td>
                                    <span class="param-name">
-                                       Пример на гитхабе
+                                       Примеры скриптов на Github
                                    </span> 
                                 </td>
                                 <td>
@@ -3565,7 +3565,7 @@
                             <tr>
                                 <td>
                                    <span class="param-name">
-                                       Пример на гитхабе
+                                       Примеры скриптов на Github
                                    </span> 
                                 </td>
                                 <td>
@@ -3787,7 +3787,7 @@
                             <tr>
                                <td>
                                    <span class="param-name">
-                                       Пример на гитхабе
+                                       Примеры скриптов на Github
                                    </span> 
                                </td>
                                <td>
@@ -5060,7 +5060,7 @@
                             <tr>
                                <td>
                                    <span class="param-name">
-                                       Пример на гитхабе
+                                       Примеры скриптов на Github
                                    </span> 
                                </td>
                                <td>
@@ -5144,12 +5144,12 @@
                             <tr>
                                 <td>
                                     <span class="param-name">
-                                        Пример
+                                        Примеры скриптов на Github
                                     </span> 
                                 </td>
                                 <td>
                                     <a href='https://github.com/intrum/api/blob/master/example/calls/add.php' target="_blank">
-                                        Пример на гитхабе
+                                        Добавление нового звонка
                                     </a>
                                 </td>
                             </tr>
@@ -5240,12 +5240,12 @@
                             <tr>
                                 <td>
                                     <span class="param-name">
-                                        Пример
+                                         Примеры скриптов на Github
                                     </span> 
                                 </td>
                                 <td>
                                     <a href='https://github.com/intrum/api/blob/master/example/calls/addList.php' target="_blank">
-                                        Пример на гитхабе
+                                       Импорт истории звоноков
                                     </a>
                                 </td>
                             </tr>
@@ -5351,12 +5351,12 @@
                             <tr>
                                 <td>
                                     <span class="param-name">
-                                        Пример
+                                        Примеры скриптов на Github
                                     </span> 
                                 </td>
                                 <td>
                                     <a href='https://github.com/intrum/api/blob/master/example/calls/update.php' target="_blank">
-                                        Пример на гитхабе
+                                        Редактирование звонка
                                     </a>
                                 </td>
                             </tr>
@@ -6104,7 +6104,7 @@
                             </div>
                         </div>
                         <div class="simple-line">
-                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__name"> Примеры скриптов на Github </div>
                             <div class="simple-line__value">
                                 <a href='https://github.com/intrum/api/blob/master/example/webhook/put.php' target="_blank">
                                     Получение события
@@ -6446,7 +6446,7 @@
                             }<br>
                         </code>
                         <div class="simple-line">
-                            <div class="simple-line__name"> Примеры на гитхабе </div>
+                            <div class="simple-line__name"> Примеры скриптов на Github </div>
                             <div class="simple-line__value">
                                 <a href='https://github.com/intrum/api/blob/master/example/webhook/changeSaleStage.php' target="_blank">
                                     Логирование изменения статуса сделки
