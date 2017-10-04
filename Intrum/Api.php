@@ -995,6 +995,7 @@
 		
 		private function send($sub_url,array $data = array())
 		{
+			ini_set('memory_limit','2048M');
 			if($this->cache == true){
 				$hash = md5($sub_url.serialize($data));
 				$cache = IntrumExternalCache::getInstance()->pop($hash);
