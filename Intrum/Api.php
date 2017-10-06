@@ -353,6 +353,43 @@
 			return $this->send("/applications/insert",$params);
 		}
 		
+		
+		//Одновременное добавление клиента и заявки, требуются права на добавление клиента и добавление заявки
+		/*
+		 *  $params [{
+		 *     customer : //Те-же параметры что и для insertCustomers
+			   {
+					name                  - Имя
+					surname               - Фамилия
+					secondname            - Отчество
+					manager_id            - ID менеджера
+					additional_manager_id - Массив ID дополнительных менеджеров
+					marktype              - Тип
+					email                 - массив email адресов
+					phone                 - массив номеров телефонов
+					fields                - Массив допполей
+		        }
+			   
+		 *     request  : //Те-же параметры что и для insertRequests, без customers_id
+		 *		{
+			       request_type             - ID типа заявок (обязательное поле)
+			       source                   - один из вариантов ('help_manager','online_consult','none','online_form')
+				   employee_id              - ID менеджера
+				   additional_employee_id   - Массив ID дополнительных ответственных
+				   request_name             - Название заявки
+				   status                   - один из вариантов ('unselected','mustbeprocessed','processnow','processed','postponed','malformed','cancelled','reprocess'), getRequestStatuses
+			       fields                   - [{id:id,value:value}, ...] 
+			  }
+		 *  }]
+		 */
+		public function addRequestAndCustomer($customer, $request)
+		{
+			return $this->send("/applications/addCustomer",array(
+				'request'  => $request,
+				'customer' => $customer
+			));
+		}
+		
 		/*
          *  $params 
          * [ 
@@ -479,6 +516,39 @@
                 );
             }
 			return $this->send("/sales/insert",$params);
+		}
+		
+		//Добавление сделки с клиентом
+		/*
+			customer : //Те-же параметры что и для insertCustomers
+			   {
+					name                  - Имя
+					surname               - Фамилия
+					secondname            - Отчество
+					manager_id            - ID менеджера
+					additional_manager_id - Массив ID дополнительных менеджеров
+					marktype              - Тип
+					email                 - массив email адресов
+					phone                 - массив номеров телефонов
+					fields                - Массив допполей
+		        }
+				
+			sale : //Те-же параметры что и для insertSales, без customers_id
+				{
+				   employee_id             - id ответственного менеджера
+				   additional_employee_id  - массив id дополнительных менеджеров
+				   sales_type_id           - id типа продажи
+				   sales_status_id         - id стадии продажи
+				   sale_name               - название продажи
+				   fields                  - массив  [{id:123,values:''},...]
+			   }
+		*/
+		public function addSaleAndCustomer($customer, $sale)
+		{
+			return $this->send('/sales/addCustomer',array(
+				'customer' => $customer,
+				'sale'     => $sale
+			));
 		}
 		
 		//Редактирование сделок
@@ -1171,7 +1241,7 @@
         
         private function checkParamArr($params)
         {
-            print_r(gettype($params[0]));
+            //print_r(gettype($params[0]));
             if(gettype($params[0]) == 'array'){
                 return true;
             }

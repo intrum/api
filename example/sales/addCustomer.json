@@ -1,0 +1,41 @@
+{
+	"customer" : {
+		"name"       : "Тест",                 
+		"surname"    : "Тестов",            
+		"secondname" : "Тестович",            
+		"manager_id" : 1,           
+		"additional_manager_id" : [2,3], 
+		"marktype"   : 1,             
+		"email"      : [
+			{
+				"mail"    : "test@test.ru",
+				"comment" : "Тестовый адрес"
+			}
+		],                 
+		"phone"      : [
+			{
+				"phone"   : "8800200002",
+				"comment" : "Первый номер телефона"
+			}
+		],             
+		"fields"     : [
+			{
+				"id"    : 99,
+				"value" : "Тест"
+			}
+		]
+	},
+	"sale"  : {
+		"employee_id"     : 1 ,             
+		"additional_employee_id" : [2,3],  
+		"sales_type_id"   : 2,           
+		"sales_status_id" : 23,         
+		"sale_name"       : "Тестовая сделка",              
+		"fields" : [
+			{
+				"id"    : 99,
+				"value" : "Тест"
+			}
+		]                
+	}
+}

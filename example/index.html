@@ -210,7 +210,7 @@
 							<li><a href="#purchaser-filter">Вывод клиентов (фильтры, поиск)</a></li>
 							<li><a href="#purchaser-insert">Добавление клиентов</a></li>
 							<li><a href="#purchaser-update">Редактирование клиентов</a></li>
-                            <li><a href="#purchaser-addComment">Добавление комментариев</a></li>
+                     <li><a href="#purchaser-addComment">Добавление комментариев</a></li>
 							<li><a href="#purchaser-delete">Удаление клиентов</a></li>
 							<li><a href="#purchaser-attach">Прикрепления</a></li>
 						</ul>
@@ -224,8 +224,9 @@
 							<li><a href="#applications-fields">Поля</a></li>
 							<li><a href="#applications-filter">Вывод заявок (фильтры, поиск)</a></li>
 							<li><a href="#applications-insert">Добавление заявок</a></li>
+							<li><a href="#applications-addCustomer">Добавление клиента с заявкой</a></li>
 							<li><a href="#applications-update">Редактирование заявок</a></li>
-                            <li><a href="#applications-addComment">Добавление комментариев</a></li>
+                     <li><a href="#applications-addComment">Добавление комментариев</a></li>
 							<li><a href="#applications-delete">Удаление заявок</a></li>
 						</ul>
 					</li>
@@ -237,11 +238,12 @@
 							<li><a href="#sales-types">Типы продаж</a></li>
 							<li><a href="#sales-fields">Поля</a></li>
 							<li><a href="#sales-filter">Вывод продаж (фильтры, поиск)</a></li>
-                            <li><a href="#sales-filter-stage-period">Выборка продаж, стадия которых менялась за период</a></li>
+                     <li><a href="#sales-filter-stage-period">Выборка продаж, стадия которых менялась за период</a></li>
 							<li><a href="#sales-details">Прикрепления</a></li>
 							<li><a href="#sales-insert">Добавление продаж</a></li>
+							<li><a href="#sales-addCustomer">Добавление клиента с продажей</a></li>
 							<li><a href="#sales-update">Редактирование продаж</a></li>
-                            <li><a href="#sales-addComment">Добавление комментариев</a></li>
+                     <li><a href="#sales-addComment">Добавление комментариев</a></li>
 							<li><a href="#sales-delete">Удаление продаж</a></li>
 						</ul>
 					</li>
@@ -2672,6 +2674,105 @@
                             </div>
 						</div>
 					</div>
+					
+					<div class="content-sub-head">
+						<a name="applications-addCustomer" class="fix-scroll">Добавление клиента с заявкой</a>
+					</div>
+					<div class="content-text">
+						Добавление в базу CRM клиента и заявки к нему (для выполнения данной операции требуется разрешение на добавление климентов и заявок)
+						<table>
+							<tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>								
+								</td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/applications/addCustomer</span>								
+								</td>
+							</tr>
+							<tr>
+								<td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+								<td>метод:<strong> addRequestAndCustomer</strong></td>
+							</tr>
+							<tr>
+								<td>
+									<span class="param-name">
+										Примеры скриптов на Github
+									</span> 
+								</td>
+								<td>
+									<a href='https://github.com/intrum/api/blob/master/example/applications/addCustomer.php' target="_blank">
+										добавление клиента с заявкой
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="param-name">params:</span>								
+								</td>
+								<td>
+									<code class="code-example">
+										{<br>
+										&nbsp;&nbsp;"customer" : {<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"name"       : "Тест",<br>                 
+										&nbsp;&nbsp;&nbsp;&nbsp;"surname"    : "Тестов",<br>            
+										&nbsp;&nbsp;&nbsp;&nbsp;"secondname" : "Тестович",<br>            
+										&nbsp;&nbsp;&nbsp;&nbsp;"manager_id" : 1,<br>           
+										&nbsp;&nbsp;&nbsp;&nbsp;"additional_manager_id" : [2,3],<br> 
+										&nbsp;&nbsp;&nbsp;&nbsp;"marktype"   : 1,<br>             
+										&nbsp;&nbsp;&nbsp;&nbsp;"email"      : [<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mail"    : "test@test.ru",<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"comment" : "Тестовый адрес"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;],<br>                 
+										&nbsp;&nbsp;&nbsp;&nbsp;"phone"      : [<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"phone"   : "8800200002",<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"comment" : "Первый номер телефона"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;],<br>             
+										&nbsp;&nbsp;&nbsp;&nbsp;"fields"     : [<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id"    : 99,<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value" : "Тест"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+										&nbsp;&nbsp;},<br>
+										&nbsp;&nbsp;"request"  : {<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"request_type" : 10,<br>             
+										&nbsp;&nbsp;&nbsp;&nbsp;"source"       : "online_form",<br>                   
+										&nbsp;&nbsp;&nbsp;&nbsp;"employee_id"  : 1,<br>              
+										&nbsp;&nbsp;&nbsp;&nbsp;"additional_employee_id" : [1,2],<br>  
+										&nbsp;&nbsp;&nbsp;&nbsp;"request_name" : "Тестовая заявка",  <br>          
+										&nbsp;&nbsp;&nbsp;&nbsp;"status"       : "unselected",       <br>  
+										&nbsp;&nbsp;&nbsp;&nbsp;"fields"			: [<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id"    : 99,<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value" : "Тест"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+										&nbsp;&nbsp;}<br>
+										}<br>				
+									</code>
+									Пример загрузки файлов в разделе <a href="#utils-upload">Утилиты / Загрузка файлов</a>								
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="param-name">Ответ:</span>								
+								</td>
+								<td>
+									<code class="code-example">
+										//ответ содержит ID клиента и ID заявки<br>
+										{<br>
+										&nbsp;&nbsp;"customer" : 98576,<br>
+										&nbsp;&nbsp;"request"  : 18641<br>
+										}
+									</code>								
+								</td>
+							</tr>
+						</table>
+					</div>
                     
 					<div class="content-sub-head">
 						<a name="applications-update" class="fix-scroll">Редактирование заявок</a><br>
@@ -3147,6 +3248,104 @@
                                 </a>
                             </div>
 						</div>
+					</div>
+					
+					<div class="content-sub-head">
+						<a name="sales-addCustomer" class="fix-scroll">Добавление клиента с продажей</a>
+					</div>
+					<div class="content-text">
+						Добавление в базу CRM клиента и продажи к нему (для выполнения данной операции требуется разрешение на добавление климентов и продаж)
+						<table>
+							<tr>
+								<td width="100px">
+									<span class="param-name">URL:</span>								
+								</td>
+								<td>
+									<span class="text-select">http://domainname.intrumnet.com:81/sharedapi/sales/addCustomer</span>								
+								</td>
+							</tr>
+							<tr>
+								<td><span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span> </td>
+								<td>метод:<strong> addSaleAndCustomer</strong></td>
+							</tr>
+							<tr>
+								<td>
+									<span class="param-name">
+										Примеры скриптов на Github
+									</span> 
+								</td>
+								<td>
+									<a href='https://github.com/intrum/api/blob/master/example/sales/addCustomer.php' target="_blank">
+										добавление клиента с продажей
+									</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="param-name">params:</span>								
+								</td>
+								<td>
+									<code class="code-example">
+										{<br>
+										&nbsp;&nbsp;"customer" : {<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"name"       : "Тест",<br>                 
+										&nbsp;&nbsp;&nbsp;&nbsp;"surname"    : "Тестов",<br>            
+										&nbsp;&nbsp;&nbsp;&nbsp;"secondname" : "Тестович",<br>            
+										&nbsp;&nbsp;&nbsp;&nbsp;"manager_id" : 1,<br>           
+										&nbsp;&nbsp;&nbsp;&nbsp;"additional_manager_id" : [2,3],<br> 
+										&nbsp;&nbsp;&nbsp;&nbsp;"marktype"   : 1,<br>             
+										&nbsp;&nbsp;&nbsp;&nbsp;"email"      : [<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mail"    : "test@test.ru",<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"comment" : "Тестовый адрес"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;],<br>                 
+										&nbsp;&nbsp;&nbsp;&nbsp;"phone"      : [<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"phone"   : "8800200002",<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"comment" : "Первый номер телефона"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;],<br>             
+										&nbsp;&nbsp;&nbsp;&nbsp;"fields"     : [<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id"    : 99,<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value" : "Тест"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+										&nbsp;&nbsp;},<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"sale"  : {<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"employee_id"     : 1 ,<br>             
+										&nbsp;&nbsp;&nbsp;&nbsp;"additional_employee_id" : [2,3],<br>  
+										&nbsp;&nbsp;&nbsp;&nbsp;"sales_type_id"   : 2,           <br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"sales_status_id" : 23,         <br>
+										&nbsp;&nbsp;&nbsp;&nbsp;"sale_name"       : "Тестовая сделка",<br>              
+										&nbsp;&nbsp;&nbsp;&nbsp;"fields" : [<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"id"    : 99,<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"value" : "Тест"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;]                <br>
+										&nbsp;&nbsp;}<br>
+										}<br>			
+									</code>
+									Пример загрузки файлов в разделе <a href="#utils-upload">Утилиты / Загрузка файлов</a>								
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<span class="param-name">Ответ:</span>								
+								</td>
+								<td>
+									<code class="code-example">
+										//ответ содержит ID клиента и ID продажи<br>
+										{<br>
+										&nbsp;&nbsp;"customer" : 98576,<br>
+										&nbsp;&nbsp;"sale"  : 18641<br>
+										}
+									</code>								
+								</td>
+							</tr>
+						</table>
 					</div>
 
 					<div class="content-sub-head">

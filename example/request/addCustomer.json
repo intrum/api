@@ -1,0 +1,42 @@
+{
+	"customer" : {
+		"name"       : "Тест",                 
+		"surname"    : "Тестов",            
+		"secondname" : "Тестович",            
+		"manager_id" : 1,           
+		"additional_manager_id" : [2,3], 
+		"marktype"   : 1,             
+		"email"      : [
+			{
+				"mail"    : "test@test.ru",
+				"comment" : "Тестовый адрес"
+			}
+		],                 
+		"phone"      : [
+			{
+				"phone"   : "8800200002",
+				"comment" : "Первый номер телефона"
+			}
+		],             
+		"fields"     : [
+			{
+				"id"    : 99,
+				"value" : "Тест"
+			}
+		]
+	},
+	"request"  : {
+		"request_type" : 10,             
+		"source"       : "online_form",                   
+		"employee_id"  : 1,              
+		"additional_employee_id" : [1,2],  
+		"request_name" : "Тестовая заявка",            
+		"status"       : "unselected",          
+		"fields"			: [
+			{
+				"id"    : 99,
+				"value" : "Тест"
+			}
+		]
+	}
+}
