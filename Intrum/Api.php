@@ -5,6 +5,11 @@
 	class Api
 	{
 		private static $instance = null;
+		private $host;
+		private $port;
+		private $url;
+		private $cache;
+		private $key;
 	
 		public function __construct(){}
 		
