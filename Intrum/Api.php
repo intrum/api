@@ -5,6 +5,11 @@
 	class Api
 	{
 		private static $instance = null;
+		private $host;
+		private $port;
+		private $url;
+		private $cache;
+		private $key;
 	
 		public function __construct(){}
 		
@@ -1068,7 +1073,7 @@
 			ini_set('memory_limit','2048M');
 			if($this->cache == true){
 				$hash = md5($sub_url.serialize($data));
-				$cache = IntrumExternalCache::getInstance()->pop($hash);
+				$cache = Cache::getInstance()->pop($hash);
 				
 				if($cache !== false){
                     if($this->debug){
@@ -1121,7 +1126,7 @@
             }
 			
 			if($this->cache == true){
-				IntrumExternalCache::getInstance()->push($hash,$res);
+				Cache::getInstance()->push($hash,$res);
 			}
 			
             if($this->debug) {
