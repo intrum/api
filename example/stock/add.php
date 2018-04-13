@@ -43,7 +43,7 @@
                 'additional_author' => array(2,3), //Массив ответственных, не обязательный
                 'author' => 0,
                 // id клиента - собственника, если есть
-                'related_with_customer' => 10643,
+                'associated_with_customer' => 10643,
                 // дополнительные поля
                 'fields' => array(
                     // text
