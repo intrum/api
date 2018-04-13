@@ -792,7 +792,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Имя</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;name: {...},<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Отчество</span><br>
-										&nbsp;&nbsp;&nbsp;&nbsp;secondname: {...},<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;patronymic: {...},<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Email адрес</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;email: {...},<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Телефон</span><br>
@@ -879,7 +879,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Имя</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;name: '',<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Отчество</span><br>
-										&nbsp;&nbsp;&nbsp;&nbsp;secondname: '',<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;patronymic: '',<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Email</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;email: '',<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//Телефон</span><br>
@@ -1229,7 +1229,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">value: '&lt;= значение'</span> - меньше или равно<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">value: 'значение_1 &amp; значение_2'</span> - между значением 1 и 2<br>
 									</div>
-									<div><span class="param-name">related_with_customer</span> - связанный с объектом контакта</div>
+									<div><span class="param-name">associated_with_customer</span> - связанный с объектом контакта</div>
 									<div><span class="param-name">order_direct</span> - направление сортировки asc - по возрастанию, desc - по убыванию</div>
 									<div><span class="param-name">order</span> - если в качестве значения указать stock_activity_date выборка будет сортироваться по дате активности</div>
 									<div><span class="param-name">date</span> - {from: "2015-10-29 09:45:23", to: "2015-11-19 13:05:12"} выборка за определенный период</div>
@@ -1404,7 +1404,7 @@
   									&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//массив id дополнительных ответственных</span><br>
 									&nbsp;&nbsp;&nbsp;&nbsp;additional_author: [48,49,50],<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id контакта - собственника</span><br>
-									&nbsp;&nbsp;&nbsp;&nbsp;related_with_customer: 10643,<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;associated_with_customer: 10643,<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//дополнительные поля</span><br>
   									&nbsp;&nbsp;&nbsp;&nbsp;fields:[<br>
   									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
@@ -1502,7 +1502,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//массив id дополнительных ответственных или false для удаления</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;additional_author: [48,49,50],<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id контакта - собственника</span><br>
-										&nbsp;&nbsp;&nbsp;&nbsp;related_with_customer: 10643,<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;associated_with_customer: 10643,<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//дополнительные поля</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;fields:[<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
@@ -1990,7 +1990,7 @@
 									&nbsp;&nbsp;&nbsp;&nbsp;boss: "0",<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;name: "Иванов",<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;surname: "Алексей",<br>
-									&nbsp;&nbsp;&nbsp;&nbsp;secondname: "Викторович",<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;patronymic: "Викторович",<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;internalemail: [<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email: "igor@7meridian.ru",<br>
@@ -2042,7 +2042,7 @@
 									<div><span class="param-name">boss</span> - отметка "начальник отдела"</div>
 									<div><span class="param-name">name</span> - имя</div>
 									<div><span class="param-name">surname</span> - фамилия</div>
-									<div><span class="param-name">secondname</span> - отчество</div>
+									<div><span class="param-name">patronymic</span> - отчество</div>
 									<div><span class="param-name">internalemail,externalemail</span> - внутренняя, внешняя почта</div>
 									<div><span class="param-name">internalphone,externalphone,mobilephone</span> - внутренний, внешний, мобильный телефон</div>
 									<div><span class="param-name">birthday</span> - дата рождения</div>
@@ -2183,7 +2183,7 @@
 									<div><span class="param-name">manager</span> - id менеджера</div>
 									<div><span class="param-name">byid</span> - id контакта</div>
 									<div><span class="param-name">marktype</span> - массив id типов</div>
-									<div><span class="param-name">nattype</span> - одно из значений подтипа physface - Юрлицо, jurface - Физлицо, по умолчанию выводятся все</div>
+									<div><span class="param-name">nattype</span> - одно из значений подтипа private_individual - Юрлицо, legal_entity - Физлицо, по умолчанию выводятся все</div>
 									<div><span class="param-name">search</span> - поисковая строка (может содержать фамилию или имя, email, телефон)</div>
 									<div><span class="param-name">fields</span> - массив условий для дополнительных свойств (аналогично объектам)</div>
 									<div><span class="param-name">order</span> - направление сортировки asc - по возрастанию, desc - по убыванию</div>
@@ -2213,7 +2213,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//имя</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: "Мария",<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//отчество</span><br>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;secondname: "Сергеевна",<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;patronymic: "Сергеевна",<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id ответственного менеджера</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;manager_id: "47",<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//массив id дополнительных ответственных</span><br>
@@ -2224,8 +2224,8 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;marktype: "0",<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//имя типа контакта</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;markname: "Не выбран",<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//подтип physface - Физлицо, jurface - Юрлицо</span><br>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nattype: "physface",<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//подтип private_individual - Физлицо, legal_entity - Юрлицо</span><br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nattype: "private_individual",<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//тип последней активности</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customer_activity_type: "manager",<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//дата последней активности по контакту</span><br>
@@ -2277,7 +2277,7 @@
 						<div><b>Доступные поля</b></div>
 						<div><span class="param-name">name</span>       - Имя</div>
 						<div><span class="param-name">surname</span>    - Фамилия</div>
-						<div><span class="param-name">secondname</span> - Отчество</div>
+						<div><span class="param-name">patronymic</span> - Отчество</div>
 						<div><span class="param-name">manager_id</span> - ID менеджера</div>
 						<div><span class="param-name">additional_manager_id</span> - Массив ID дополнительных менеджеров</div>
 						<!--div><span class="param-name">group_id</span> - ID группы</div-->
@@ -2408,7 +2408,7 @@
                               		<td>
                               			<span class="param-name"><a href="https://github.com/intrum/api" target="_blank">PHP библиотека</a></span>
                               		</td>
-							  		<td>метод:<strong> getCustomerAttaches</strong></td>
+							  		<td>метод:<strong> getCustomerAttachments</strong></td>
 						  		</tr>
 							<tr>
 								<td>
@@ -2714,7 +2714,7 @@
 										&nbsp;&nbsp;"customer" : {<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;"name"       : "Тест",<br>                 
 										&nbsp;&nbsp;&nbsp;&nbsp;"surname"    : "Тестов",<br>            
-										&nbsp;&nbsp;&nbsp;&nbsp;"secondname" : "Тестович",<br>            
+										&nbsp;&nbsp;&nbsp;&nbsp;"patronymic" : "Тестович",<br>            
 										&nbsp;&nbsp;&nbsp;&nbsp;"manager_id" : 1,<br>           
 										&nbsp;&nbsp;&nbsp;&nbsp;"additional_manager_id" : [2,3],<br> 
 										&nbsp;&nbsp;&nbsp;&nbsp;"marktype"   : 1,<br>             
@@ -3289,7 +3289,7 @@
 										&nbsp;&nbsp;"customer" : {<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;"name"       : "Тест",<br>                 
 										&nbsp;&nbsp;&nbsp;&nbsp;"surname"    : "Тестов",<br>            
-										&nbsp;&nbsp;&nbsp;&nbsp;"secondname" : "Тестович",<br>            
+										&nbsp;&nbsp;&nbsp;&nbsp;"patronymic" : "Тестович",<br>            
 										&nbsp;&nbsp;&nbsp;&nbsp;"manager_id" : 1,<br>           
 										&nbsp;&nbsp;&nbsp;&nbsp;"additional_manager_id" : [2,3],<br> 
 										&nbsp;&nbsp;&nbsp;&nbsp;"marktype"   : 1,<br>             
@@ -3617,7 +3617,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;		id: "10440"											<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;		logo: "10"											<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;		name: "Рика"									<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;		secondname: ""<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;		patronymic: ""<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;		surname: "Окамуро"<br>
 										&nbsp;&nbsp;	}<br>
 										&nbsp;&nbsp;	client_company: {<br>
@@ -3629,13 +3629,13 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;inn: "2311111067"<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;kpp: ""<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;ks: "30101810300000000757"<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;legal_addres: ""<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;mail_addres: ""<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;legal_address: ""<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;mail_address: ""<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;name: "ООО "Девелопмент-Недвижимость"1"<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;ogrn: ""<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;phone: ""<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;rs: ""<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;sity: ""<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;city: ""<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;type: "0"<br>
 										&nbsp;&nbsp;	}<br>
 										&nbsp;&nbsp;	date_create: "2015-10-06"<br>
@@ -3650,13 +3650,13 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;inn: "6311102704"<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;kpp: "631101001"<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;ks: "65464654646545"<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;legal_addres: "ул.Урицкого, д1"<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;mail_addres: "4305117"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;legal_address: "ул.Урицкого, д1"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;mail_address: "4305117"<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;name: "Реквизиты Центральные"<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;ogrn: "54645645"<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;phone: "(846)336-42-87"<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;rs: "40702810711030001415"<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;sity: "Самара"<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;city: "Самара"<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;type: "ООО"<br>
 										&nbsp;&nbsp;	}<br>
 										&nbsp;&nbsp;	nds: "0"<br>
@@ -3701,7 +3701,7 @@
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">id</span> - Уникальный номер в CRM</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">logo</span> - Логотип типа пользователя в системе</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">name</span> - Имя</div>
-									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">secondname</span> - Фамилия</div>
+									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">patronymic</span> - Фамилия</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">surname</span> - Отчество</div>
 									<div><span class="param-name">client_company</span> - Реквизиты контакта</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">bank_name</span> - Название банка</div>
@@ -3712,13 +3712,13 @@
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">inn</span> - ИНН</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">kpp</span> - КПП</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">ks</span> - КС</div>
-									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">legal_addres</span> - Юридический адрес</div>
-									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">mail_addres</span> - Почтовый адрес</div>
+									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">legal_address</span> - Юридический адрес</div>
+									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">mail_address</span> - Почтовый адрес</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">name</span> - Название</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">ogrn</span> - ОГРН</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">phone</span> - Телефон</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">rs</span> - РС</div>
-									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">sity</span> - Город</div>
+									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">city</span> - Город</div>
 									<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="param-name">type</span> - Тип</div>
 									<div><span class="param-name">date_create</span> - Дата создания</div>
 									<div><span class="param-name">hash</span> - Уникальная строка индентификатор, для печати бланков</div>
@@ -4815,7 +4815,7 @@
 					</div>
 					<div class="content-text">
 						<table>
-							<tbody><tr><td width="160px"><b>smsRecieved</b></td><td>получено новое сообщение</td></tr>
+							<tbody><tr><td width="160px"><b>smsReceived</b></td><td>получено новое сообщение</td></tr>
 						</tbody></table>
 					</div>
 					<div class="content-sub-head">
@@ -4929,14 +4929,14 @@
 					</div>
 					
 					<div class="content-sub-head">
-						<a name="sms-c-s" class="fix-scroll">Запрос <b>smsRecieved</b></a>
+						<a name="sms-c-s" class="fix-scroll">Запрос <b>smsReceived</b></a>
 					</div>
 					<div class="content-text">
 						<table>
 							<tbody><tr>
 								<td width="120px"><span class="param-name">Параметры</span></td>
 								<td>
-									<b>action</b>&nbsp;=&nbsp;<b>smsRecieved</b><br>
+									<b>action</b>&nbsp;=&nbsp;<b>smsReceived</b><br>
 									<b>sms_id</b>&nbsp;=&nbsp;числовой_идентификатор_смс (&gt; 0)<br>
 									<b>sender</b>&nbsp;=&nbsp;номер_отправителя<br>
 									<b>destination</b>&nbsp;=&nbsp;номер_назначения<br>
@@ -6315,7 +6315,7 @@
                             &nbsp;&nbsp;"subject_type" : "employee",<br>
                             &nbsp;&nbsp;"subject_type_id" : "2",<br>
                             &nbsp;&nbsp;"event" : "create",<br>
-                            &nbsp;&nbsp;"object_typ" : "customer",<br>
+                            &nbsp;&nbsp;"object_type" : "customer",<br>
                             &nbsp;&nbsp;"object_sub_type" : "0",<br>
                             &nbsp;&nbsp;"object_sub_id" : "10443",<br>
                             &nbsp;&nbsp;"snapshot" : [],<br>
@@ -6335,7 +6335,7 @@
                             <b> event </b> -  Тип события
                         </div>
                         <div class="param-line">
-                            <b> object_typ </b> - Объект события
+                            <b> object_type </b> - Объект события
                         </div>
                         <div class="param-line">
                             <b> object_sub_type </b> - Подтип объекта события
@@ -6447,7 +6447,7 @@
                             &nbsp;&nbsp;<span class="comment">//фамилия</span><br>
                             &nbsp;&nbsp;"surname" : "Иванов",<br>
                             &nbsp;&nbsp;<span class="comment">//отчество</span><br>
-                            &nbsp;&nbsp;"secondname" : "",<br>
+                            &nbsp;&nbsp;"patronymic" : "",<br>
                             &nbsp;&nbsp;<span class="comment">//менеджер</span><br>
                             &nbsp;&nbsp;"manager_id" : "2",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//список email адресов</span><br>
@@ -6477,7 +6477,7 @@
                             &nbsp;&nbsp;<span class="comment">//тип контакта</span><br>
                             &nbsp;&nbsp;"marktype" : "0",<br>
                             &nbsp;&nbsp;<span class="comment">//физлицо / юрлицо</span><br>
-                            &nbsp;&nbsp;"nattype" : "physface",<br>
+                            &nbsp;&nbsp;"nattype" : "private_individual",<br>
                             &nbsp;&nbsp;<span class="comment">//допполя</span><br>
                             &nbsp;&nbsp;"extproperty" : [<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;1246 : {<br>
@@ -6570,7 +6570,7 @@
                             &nbsp;&nbsp;<span class='comment'>//дата последнего собятия с объектом</span><br>
                             &nbsp;&nbsp;"stock_activity_date" : "2017-04-05 16:19:54",<br>
                             &nbsp;&nbsp;<span class='comment'>//объект связан с контактом</span><br>
-                            &nbsp;&nbsp;"related_with_customer" : "",<br>
+                            &nbsp;&nbsp;"associated_with_customer" : "",<br>
                             &nbsp;&nbsp;<span class='comment'>//автор</span><br>
                             &nbsp;&nbsp;"stock_creator_id" : "0
                             &nbsp;&nbsp;<span class='comment'>//список дополнительных менеджеров</span><br>
@@ -6764,7 +6764,7 @@
                             &nbsp;&nbsp;"changer_id" : "2",<br>
                             &nbsp;&nbsp;"changer_type" : "employee",<br>
                             &nbsp;&nbsp;"change_date" : "2017-04-07 10:11:17",<br>
-                            &nbsp;&nbsp;"desciption_rev" : "3",<br>
+                            &nbsp;&nbsp;"description_rev" : "3",<br>
                             &nbsp;&nbsp;"parent_task_id" : "0",<br>
                             &nbsp;&nbsp;"terms_pset" : "0",<br>
                             &nbsp;&nbsp;"files" : [<br>
@@ -6780,21 +6780,21 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;"type" : "director",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;"name" : "admin",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;"surname" : "admin",<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;"secondname" : "admin"<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;"patronymic" : "admin"<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;},<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;{<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;"id" : "6",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;"type" : "accomplice",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;"name" : "Вася",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;"surname" : "Уткин",<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;"secondname" : "",<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;"patronymic" : "",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;},<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;{<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;"id" : "8",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;"type" : "performer",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;"name" : "Валд",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;"surname" : "Валдим",<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;"secondname" : "",<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;"patronymic" : "",<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;}<br>
                             &nbsp;&nbsp;],<br>
                             &nbsp;&nbsp;"history" : [<br>
