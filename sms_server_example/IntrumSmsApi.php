@@ -9,7 +9,7 @@ abstract class IntrumSmsApi {
 	abstract protected function smsStatus($smsId);
 	
 	/* Сообщить о полученном сообщении */
-	abstract protected function smsRecieved($smsId, $sender, $destination, $message, $count);
+	abstract protected function smsReceived($smsId, $sender, $destination, $message, $count);
 	
 	/* Запрос к серверу INTRUM */
 	public function apiRequest($params, $apiKey, $url) {

@@ -18,7 +18,7 @@
 		$message = $_GET['send'];
 		$count = isset($_GET['count']) ? $_GET['count'] : 1;
 		
-		echo json_encode($api->smsRecieved($smsId, $sender, $destination, $message, $count));
+		echo json_encode($api->smsReceived($smsId, $sender, $destination, $message, $count));
 	
 	} else {
 		echo '<meta charset="utf-8"></meta>Мой SMS Server';

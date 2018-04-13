@@ -19,11 +19,11 @@ class CustomSmsService extends IntrumSmsApi {
 		return $statuses[ array_rand($statuses) ];
 	}
 	
-	public function smsRecieved($smsId, $sender, $destination, $message, $count) {
+	public function smsReceived($smsId, $sender, $destination, $message, $count) {
 		// TODO: А этот метод должен вызываться при получении смс
 		
 		$params = array(
-			'action' => 'smsRecieved',
+			'action' => 'smsReceived',
 			'sms_id' => $smsId,
 			'sender' => $sender,
 			'destination' => $destination,
