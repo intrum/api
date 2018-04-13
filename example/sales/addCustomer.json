@@ -2,7 +2,7 @@
 	"customer" : {
 		"name"       : "Тест",                 
 		"surname"    : "Тестов",            
-		"secondname" : "Тестович",            
+		"patronymic" : "Тестович",            
 		"manager_id" : 1,           
 		"additional_manager_id" : [2,3], 
 		"marktype"   : 1,             
