@@ -88,7 +88,7 @@
 					'id'     :  21910   //ID прикреплённого объекта
 				}
 		
-            related_with_customer - связанный с продуктом клиент
+            associated_with_customer - связанный с продуктом клиент
             order                 - направление сортировки asc - по возрастанию, desc - по убыванию
             order_field           - если в качестве значения указать stock_activity_date выборка будет сортироваться по дате активности
             date                  - {from: "2015-10-29 09:45:23", to: "2015-11-19 13:05:12"} выборка за определенный период
@@ -366,7 +366,7 @@
 			   {
 					name                  - Имя
 					surname               - Фамилия
-					secondname            - Отчество
+					patronymic            - Отчество
 					manager_id            - ID менеджера
 					additional_manager_id - Массив ID дополнительных менеджеров
 					marktype              - Тип
@@ -529,7 +529,7 @@
 			   {
 					name                  - Имя
 					surname               - Фамилия
-					secondname            - Отчество
+					patronymic            - Отчество
 					manager_id            - ID менеджера
 					additional_manager_id - Массив ID дополнительных менеджеров
 					marktype              - Тип
@@ -626,7 +626,7 @@
                 manager - id менеджера
                 byid - id клиента или массив id
                 marktype - массив id типов
-                nattype - одно из значений подтипа physface - Юрлицо, jurface - Физлицо, по умолчанию выводятся все
+                nattype - одно из значений подтипа private_individual - Юрлицо, legal_entity - Физлицо, по умолчанию выводятся все
                 search - поисковая строка (может содержать фамилию или имя, email, телефон)
                 fields - массив условий для дополнительных свойств [ {id,value}, ]
                 order - направление сортировки asc - по возрастанию, desc - по убыванию
@@ -709,7 +709,7 @@
          *  $params {
                name                  - Имя
                surname               - Фамилия
-               secondname            - Отчество
+               patronymic            - Отчество
                manager_id            - ID менеджера
                additional_manager_id - Массив ID дополнительных менеджеров
                marktype              - Тип
@@ -756,7 +756,7 @@
 		}
 		
 		// прикрепления
-		public function getCustomerAttaches($entity_id)
+		public function getCustomerAttachments($entity_id)
 		{
 			return $this->send("/purchaser/attach",array(
 				'ids' => $entity_id 
