@@ -20,7 +20,7 @@
 			array(
 			   'name'       => 'Иван',
                'surname'    => 'Иванов',
-               'secondname' => 'Иванович',
+               'patronymic' => 'Иванович',
                'manager_id' => 0,
                'marktype'   => 0,
                'email'      => array(

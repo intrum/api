@@ -18,7 +18,7 @@ $list = array(
         'id'         => 98328, // это id редактируемого объекта в CRM
         'name'       => "Иван",
         'surname'    => "Иванов",
-        'secondname' => "Иванович",
+        'patronymic' => "Иванович",
         'photo'      => array(
             realpath("1.jpg"),
             realpath("2.jpg"),
@@ -30,7 +30,7 @@ $list = array(
         'id'         => 98329, // это id редактируемого объекта в CRM
         'name'       => "Андрей",
         'surname'    => "Лященко",
-        'secondname' => "",
+        'patronymic' => "",
         'photo'      => array(
             realpath("1.jpg"),
             realpath("2.jpg"),
@@ -93,8 +93,8 @@ function crmIntrumEditGroupCustomer($list,$relation,$api)
         if($customer['surname'] != $item['surname']){
             $updates[ $item['id'] ]['surname'] = $item['surname'];
         }
-        if($customer['secondname'] != $item['secondname']){
-            $updates[ $item['id'] ]['secondname'] = $item['secondname'];
+        if($customer['patronymic'] != $item['patronymic']){
+            $updates[ $item['id'] ]['patronymic'] = $item['patronymic'];
         }
         
         if($customer['vk'] != $item['vk']){
@@ -170,7 +170,7 @@ function convertCustomer($customer,$relations,$api)
     
     $res['name']        = $customer['name'];
     $res['surname']     = $customer['surname'];
-    $res['secondname']  = $customer['secondname'];
+    $res['patronymic']  = $customer['patronymic'];
     
     foreach($customer['fields'] as $field){
         if($map[$field['id']]){

@@ -17,7 +17,7 @@
         array(
             'name' => 'Дмитрий',
             'surname' => 'Дмитриченко',
-            'secondname' => 'Дмитриевич',
+            'patronymic' => 'Дмитриевич',
             'email' => array(
                 "test1@test.ru"
             ),
@@ -35,7 +35,7 @@
         array(
             'name' => 'Андрей',
             'surname' => 'Лященко',
-            'secondname' => '',
+            'patronymic' => '',
             'fields' => array(
                 array(
                     'id' => 663,
@@ -46,7 +46,7 @@
         array(
             'name' => 'CRM',
             'surname' => 'Интрум',
-            'secondname' => '',
+            'patronymic' => '',
             'fields' => array(
                 array(
                     'id' => 663,
