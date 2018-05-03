@@ -1401,8 +1401,14 @@
   									&nbsp;&nbsp;&nbsp;&nbsp;author: 'ID сотрудника или 0',<br>
   									&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//массив id дополнительных ответственных</span><br>
 									&nbsp;&nbsp;&nbsp;&nbsp;additional_author: [48,49,50],<br>
-									&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id контакта - собственника</span><br>
-									&nbsp;&nbsp;&nbsp;&nbsp;associated_with_customer: 10643,<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id контакта, прикрепеленного к объекту</span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;related_with_customer: 10643,<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//cвязь с группой объектов (подробнее о группах https://www.intrumnet.com/wiki/gruppirovka_produktov___obektov__zhilye_kompleksy__kottedzhnye_poselki_-207)</span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id группы</span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;group_id: 4,<br>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//родительский объект группы</span><br>
+									&nbsp;&nbsp;&nbsp;&nbsp;copy: 536924,<br>
+									
 									&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//дополнительные поля</span><br>
   									&nbsp;&nbsp;&nbsp;&nbsp;fields:[<br>
   									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
@@ -1499,8 +1505,13 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;author: 'ID сотрудника или 0',<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//массив id дополнительных ответственных или false для удаления</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;additional_author: [48,49,50],<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id контакта - собственника</span><br>
+										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id контакта, прикрепленного к объекту</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;associated_with_customer: 10643,<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//cвязь с группой объектов (подробнее о группах https://www.intrumnet.com/wiki/gruppirovka_produktov___obektov__zhilye_kompleksy__kottedzhnye_poselki_-207)</span><br>
+										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id группы</span><br>
+										&nbsp;&nbsp;&nbsp;&nbsp;group_id: 4,<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//родительский объект группы</span><br>
+										&nbsp;&nbsp;&nbsp;&nbsp;copy: 536924,<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//дополнительные поля</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;fields:[<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
@@ -4762,7 +4773,7 @@
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text: "Comment text",<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//дата добавления</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date: "2016-05-31 12:13:15",<br>
-										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id контакта если есть</span><br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id контакта, если есть</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customer_id: "273954",<br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//id сотрудника</span><br>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;author_id: "47",<br>
