@@ -1,0 +1,266 @@
+body,
+html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-family: sans-serif;
+  font-size: 12px;
+}
+a {
+  text-decoration: none;
+  color: cornflowerblue;
+}
+a:hover {
+  text-decoration: underline;
+}
+.dialog-conteiner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+  align-content: flex-start;
+  -webkit-align-content: flex-start;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+}
+.dialog-conteiner > * {
+  width: 100%;
+}
+.dialog-conteiner .Online {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  display: inline-block;
+  padding: 5px;
+  padding-right: 15px;
+  background-color: rgba(185, 7, 0, 0.1);
+  border: solid 1px rgba(185, 7, 0, 0.2);
+  width: auto;
+  height: 40px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: flex;
+  display: -webkit-flex;
+  align-content: center;
+  -webkit-align-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+}
+.dialog-conteiner .Online:before {
+  content: "";
+  display: inline-block;
+  background-color: rgba(185, 7, 0, 0.1);
+  margin-right: 5px;
+  width: 24px;
+  height: 24px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.dialog-conteiner .Online:after {
+  content: "Не в сети";
+}
+.dialog-conteiner .Online.on:after {
+  content: "В сети";
+}
+.dialog-conteiner .Online.on {
+  background-color: rgba(0, 185, 2, 0.1);
+  border-color: rgba(0, 185, 2, 0.2);
+}
+.dialog-conteiner .Online.on:before {
+  background-color: rgba(0, 185, 2, 0.1);
+}
+.dialog-conteiner .Online.connecting:after {
+  content: "Соединение ...";
+}
+.dialog-conteiner .Online.connecting {
+  background-color: rgba(0, 77, 153, 0.1);
+  border-color: rgba(0, 77, 153, 0.2);
+}
+.dialog-conteiner .Online.connecting:before {
+  background-color: rgba(0, 77, 153, 0.1);
+}
+.dialog-conteiner .Writer {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dialog-conteiner .Writer textarea {
+  resize: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 8px;
+  border: none;
+  border-left: solid 2px;
+  width: 100%;
+  height: 70px;
+}
+.dialog-conteiner .HistoryWrapper {
+  flex-basis: 1;
+  flex-grow: 1;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-bottom: solid 2px;
+  height: 100%;
+  overflow: auto;
+}
+.dialog-conteiner .HistoryWrapper .History {
+  height: 100%;
+  overflow: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dialog-conteiner .HistoryWrapper .History .manager_icon {
+  display: inline-block;
+  background-image: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='iso-8859-1'?%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 422.692 422.692' style='enable-background:new 0 0 422.692 422.692;' xml:space='preserve' width='45px' height='45px'%3E%3Cg%3E%3Cg%3E%3Cpath d='M271.786,289.626v-7.36c2.08-1.68,4.08-3.52,6-5.44c15.373-16.927,25.053-38.246,27.68-60.96 c13.816-2.105,26.269-9.509,34.72-20.64c11.6-16.4,12.64-40,2.96-69.6c-0.569-1.707-1.696-3.173-3.2-4.16l-4.4-2.96 c0.649-26.708-8.581-52.716-25.92-73.04c-21.52-24.24-54.56-36.48-98.32-36.64c-43.68,0-76.8,12.4-98.32,36.32 c-17.339,20.324-26.569,46.332-25.92,73.04l-4.4,2.96c-1.504,0.987-2.631,2.453-3.2,4.16c-9.68,29.76-8.64,53.2,2.96,69.6 c8.419,11.209,20.872,18.698,34.72,20.88c2.638,22.75,12.348,44.099,27.76,61.04c1.905,1.916,3.907,3.732,6,5.44v7.36 c-30.64,5.92-152.96,34.64-150.88,116.24c0,4.418,3.582,8,8,8h406.64c4.418,0,8-3.582,8-8 C424.746,324.266,302.426,295.546,271.786,289.626z M112.346,197.946c-6.798-2.283-12.723-6.614-16.96-12.4l0.4,0.08 c-8-11.68-8.72-29.36-1.6-52.72l5.84-3.92c2.457-1.64,3.81-4.5,3.52-7.44c-1.346-23.91,6.431-47.441,21.76-65.84 c18.08-20.48,47.12-30.72,86-30.88c38.88-0.16,67.92,10.4,86.32,30.88c15.329,18.399,23.106,41.93,21.76,65.84 c-0.29,2.94,1.063,5.8,3.52,7.44l5.84,3.92c7.12,23.28,6.64,41.04-1.6,52.72c-4.266,5.791-10.217,10.122-17.04,12.4 c9.65-10.98,14.365-25.442,13.04-40c-1.499-8.759-6.065-16.698-12.88-22.4c-3.44-80-59.52-88.96-83.68-88.96 c-5.114-0.015-10.222,0.36-15.28,1.12c-5.057-0.761-10.166-1.135-15.28-1.12c-24,0-80,8.8-83.68,88.96 c-6.859,5.656-11.481,13.568-13.04,22.32C97.972,172.505,102.688,186.971,112.346,197.946z M294.346,132.346 c-33.569,1.94-66.928-6.435-95.6-24c-3.245-2.279-7.67-1.836-10.4,1.04c-16,17.2-45.2,21.2-59.28,22.08 c4.32-56.56,38.56-68.88,67.36-68.88c4.584-0.033,9.162,0.342,13.68,1.12c1.056,0.216,2.144,0.216,3.2,0 c4.518-0.776,9.096-1.151,13.68-1.12c28.56,0,62.96,12.64,66.96,69.68L294.346,132.346z M131.866,199.466l0.32,0.08 c0.017-1.972-0.695-3.881-2-5.36c-10.96-12.56-16-24-14.64-33.44c0.652-5.258,3.249-10.081,7.28-13.52c10.56,0,48-2,72-22.72 c27.029,15.539,57.623,23.808,88.8,24c5.36,0,10.8,0,16.48-0.88c3.921,3.348,6.482,8.014,7.2,13.12 c1.36,9.28-3.68,20.88-14.64,33.44c-1.305,1.479-2.017,3.388-2,5.36c0,0,0,1.6,0,4.16l-46.56,24.96 c-9.24-8.748-23.823-8.349-32.571,0.891c-8.748,9.24-8.349,23.823,0.891,32.571c9.24,8.748,23.823,8.349,32.571-0.891 c4.054-4.282,6.312-9.955,6.309-15.851c0.036-0.72,0.036-1.44,0-2.16l36.72-19.68c-3.152,15.775-10.567,30.384-21.44,42.24 c-14.182,13.654-33.379,20.835-53.04,19.84h-4c-19.619,0.974-38.774-6.172-52.96-19.76 C131.306,240.666,131.866,199.866,131.866,199.466z M235.306,245.386c0,3.932-3.188,7.12-7.12,7.12c-3.932,0-7.12-3.188-7.12-7.12 c0-3.932,3.188-7.12,7.12-7.12S235.306,241.454,235.306,245.386z M203.306,397.386H16.266c6.32-60.08,104-85.2,134.56-91.68v14.32 c0,18.16,22.08,32,52.48,34.32V397.386z M166.826,320.026v-0.24v-27.36c13.298,6.167,27.824,9.231,42.48,8.96h4 c14.656,0.271,29.182-2.793,42.48-8.96v27.6c0,7.6-17.36,18.56-44.48,18.56S166.826,327.626,166.826,320.026z M219.306,397.626 v-43.36c30.4-2.08,52.48-16,52.48-34.32v-14c30.8,6.4,128,31.52,134.56,91.68H219.306z' fill='%2300000'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E");
+  width: 45px;
+  height: 45px;
+}
+.dialog-conteiner .HistoryWrapper .History > li {
+  padding: 8px;
+  border-bottom: solid 1px #EFEFEF;
+  display: flex;
+  display: -webkit-flex;
+  align-content: flex-start;
+  -webkit-align-content: flex-start;
+  align-items: flex-start;
+  -webkit-align-items: flex-start;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+}
+.dialog-conteiner .HistoryWrapper .History > li > span {
+  padding: 8px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.dialog-conteiner .HistoryWrapper .History > li .head {
+  display: flex;
+  display: -webkit-flex;
+  align-content: center;
+  -webkit-align-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+}
+.dialog-conteiner .HistoryWrapper .History > li .head > span {
+  padding: 3px;
+}
+.dialog-conteiner .HistoryWrapper .History > li .head .name {
+  font-weight: bold;
+}
+.dialog-conteiner .HistoryWrapper .History > li .head .date {
+  font-style: italic;
+  color: #999;
+  font-size: 10px;
+}
+.dialog-conteiner .HistoryWrapper .History > li .text {
+  padding: 8px;
+}
+.dialog-conteiner .HistoryWrapper .History > li .iconWrap {
+  line-height: 0;
+}
+.dialog-conteiner .HistoryWrapper .History > li .message-icon {
+  display: inline-block;
+  background-image: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='iso-8859-1'?%3E%3C!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 60 60' style='enable-background:new 0 0 60 60;' xml:space='preserve' width='16px' height='14px'%3E%3Cpath d='M0,8.5v2.291v38.418V51.5h60v-2.291V10.791V8.5H0z M36.625,30.564l-5.446,5.472c-0.662,0.615-1.698,0.614-2.332,0.026 l-5.473-5.498l0.048-0.047L3.647,10.5h52.719L36.577,30.518L36.625,30.564z M20.524,30.533L2,48.355V11.923L20.524,30.533z M21.934,31.95l5.523,5.549c0.709,0.661,1.619,0.993,2.533,0.993c0.923,0,1.85-0.339,2.581-1.02l5.496-5.522L56.304,49.5H3.686 L21.934,31.95z M39.477,30.534L58,11.922v36.433L39.477,30.534z' fill='%23999999'/%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E");
+  width: 16px;
+  height: 14px;
+}
+.dialog-conteiner .HistoryWrapper .History li:not(.noread) .message-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='iso-8859-1'?%3E%3C!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 60 60' style='enable-background:new 0 0 60 60;' xml:space='preserve' width='16px' height='14px'%3E%3Cpath d='M0,8.5v2.291v38.418V51.5h60v-2.291V10.791V8.5H0z M36.625,30.564l-5.446,5.472c-0.662,0.615-1.698,0.614-2.332,0.026 l-5.473-5.498l0.048-0.047L3.647,10.5h52.719L36.577,30.518L36.625,30.564z M20.524,30.533L2,48.355V11.923L20.524,30.533z M21.934,31.95l5.523,5.549c0.709,0.661,1.619,0.993,2.533,0.993c0.923,0,1.85-0.339,2.581-1.02l5.496-5.522L56.304,49.5H3.686 L21.934,31.95z M39.477,30.534L58,11.922v36.433L39.477,30.534z' fill='%23077707'/%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E");
+}
+.dialog-conteiner .HistoryWrapper .History li.sending .message-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3C?xml version='1.0' encoding='iso-8859-1'?%3E%3C!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px' viewBox='0 0 60 60' style='enable-background:new 0 0 60 60;' xml:space='preserve' width='16px' height='14px'%3E%3Cpath d='M0,8.5v2.291v38.418V51.5h60v-2.291V10.791V8.5H0z M36.625,30.564l-5.446,5.472c-0.662,0.615-1.698,0.614-2.332,0.026 l-5.473-5.498l0.048-0.047L3.647,10.5h52.719L36.577,30.518L36.625,30.564z M20.524,30.533L2,48.355V11.923L20.524,30.533z M21.934,31.95l5.523,5.549c0.709,0.661,1.619,0.993,2.533,0.993c0.923,0,1.85-0.339,2.581-1.02l5.496-5.522L56.304,49.5H3.686 L21.934,31.95z M39.477,30.534L58,11.922v36.433L39.477,30.534z' fill='%23008b9c'/%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E");
+}
+.dialog-conteiner .HistoryWrapper .History li.in {
+  background-color: floralwhite;
+}
+.dialog-conteiner .HistoryWrapper .History > li:last-child {
+  border-bottom: none;
+}
+.dialog-conteiner .HistoryWrapper .client_icon {
+  background-color: aquamarine;
+  color: #000;
+  font-size: 18px;
+  width: 45px;
+  height: 45px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  display: flex;
+  display: -webkit-flex;
+  align-content: center;
+  -webkit-align-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: center;
+  -webkit-justify-content: center;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+}
+.dialog-conteiner .HistoryWrapper .client_icon:before {
+  content: "Я";
+}
+.dialog-conteiner .button {
+  display: inline-block;
+  padding: 8px;
+  background: #efefef;
+  cursor: pointer;
+  border-radius: 2px;
+  background-color: #017CB6;
+  color: #FFF;
+}
+.dialog-conteiner .button > div {
+  display: flex;
+  display: -webkit-flex;
+  align-content: center;
+  -webkit-align-content: center;
+  align-items: center;
+  -webkit-align-items: center;
+  justify-content: flex-start;
+  -webkit-justify-content: flex-start;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+}
+.dialog-conteiner .box {
+  padding: 5px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}

@@ -1,0 +1,9 @@
+В файле client_side.html 
+
+	/* comm channel id */ - id канала коммуникации
+	/* your system host */ - host (example test.intrumnet.com)
+
+В файле client_side.html 
+
+	/* your system host */ - host (example test.intrumnet.com)
+	/* apikey */ - api ключ с правами на внешние диалоги
