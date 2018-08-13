@@ -177,6 +177,10 @@
             return $this->send("/stock/addComment",$params);
         }
         
+		public function getStockAttach(array $params)
+		{
+			return $this->send("/stock/attach",$params);
+		}
         //список групп объектов
         public function getStockGroups()
         {
