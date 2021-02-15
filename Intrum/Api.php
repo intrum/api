@@ -1039,7 +1039,7 @@
 			}	
 
 			$boundary = "---------------------".substr(md5(rand(0,32000)), 0, 10);
-
+			$data = "";
 			$data .= "--{$boundary}\n";
 			$data .= "Content-Disposition: form-data; name=\"apikey\"\n\n{$this->key}\n";
 			$data .= "--{$boundary}\n";
