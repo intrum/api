@@ -1,74 +1,71 @@
 <?php
-	
-    namespace Intrum;
+namespace Intrum;
 
-	class Api
-	{
-		private static $instance = null;
-		private $host;
-		private $port;
-		private $url;
-		private $cache;
-		private $key;
-	
-		public function __construct(){}
-		
-		public static function getInstance()
-		{
-			if(null === self::$instance){
-				self::$instance = new self();
-			}
+class Api
+{
+    private static $instance = null;
+    private $host;
+    private $port;
+    private $url;
+    private $cache;
+    private $key;
 
-			return self::$instance;
-		}
-		
-		public function setup(array $params)
-		{
-			$this->key   = $params['apikey'];
-			$this->host  = $params['host'];
-			$this->port  = (isset($params['port']) ? ((int)$params['port']): 81);
-			$this->url   = "http://{$this->host}:{$this->port}/sharedapi";
-			$this->cache = $params['cache'];
-            
-			
-			return $this;
-		}
-		
-        private $debug = 0;
-        public $debugStack = array();
-        public function setDebug($set)
+    public static function getInstance()
+    {
+        if (null === self::$instance)
         {
-            $this->debug = $set;
+            self::$instance = new self();
         }
-        
-        public function printDebug()
-        {
-            return $this->debugStack;
-        }
-		/*
-			Продукты
-		*/
-		
-		// типы продуктов
-		public function getStockTypes()
-		{
-			return $this->send("/stock/types");
-		}
-		
-		// список категорий
-		public function getStockCategory()
-		{
-			return $this->send("/stock/category");
-		}
-		
-		// поля
-		public function getStockFields()
-		{
-			return $this->send("/stock/fields");
-		}
-		
-		// поиск
-        /* $params{
+
+        return self::$instance;
+    }
+
+    public function setup(array $params)
+    {
+        $this->key = $params['apikey'];
+        $this->host = $params['host'];
+        $this->port = (isset($params['port']) ? ((int)$params['port']) : 81);
+        $this->url = "http://{$this->host}:{$this->port}/sharedapi";
+        $this->cache = $params['cache'];
+
+        return $this;
+    }
+
+    private $debug = 0;
+    public $debugStack = array();
+    public function setDebug($set)
+    {
+        $this->debug = $set;
+    }
+
+    public function printDebug()
+    {
+        return $this->debugStack;
+    }
+    /*
+    Продукты
+    */
+
+    // типы продуктов
+    public function getStockTypes()
+    {
+        return $this->send("/stock/types");
+    }
+
+    // список категорий
+    public function getStockCategory()
+    {
+        return $this->send("/stock/category");
+    }
+
+    // поля
+    public function getStockFields()
+    {
+        return $this->send("/stock/fields");
+    }
+
+    // поиск
+    /* $params{
             type       - id типа продукта (обязательное поле, если не указаны byid/by_ids)
             byid       - id продукта
             by_ids     - Список id, все продукты из списка должны быть одного типа
@@ -82,12 +79,12 @@
                 value: '>= значение' - больше или равно
                 value: '<= значение' - меньше или равно
                 value: 'значение_1 & значение_2' - между значением 1 и 2
-				Для полей с типом attach
-				value: {
-					'object' : 'stock', //Тип прикрепления, 'customer','request','sale','stock','employee','email','call','task' 
-					'id'     :  21910   //ID прикреплённого объекта
-				}
-		
+    Для полей с типом attach
+    value: {
+    	'object' : 'stock', //Тип прикрепления, 'customer','request','sale','stock','employee','email','call','task' 
+    	'id'     :  21910   //ID прикреплённого объекта
+    }
+    
             associated_with_customer - связанный с продуктом клиент
             order                 - направление сортировки asc - по возрастанию, desc - по убыванию
             order_field           - если в качестве значения указать stock_activity_date выборка будет сортироваться по дате активности
@@ -97,41 +94,41 @@
             publish               - 1 - активные, 0 - удаленные, по умолчанию 1
             limit                 - число записей в выборке, по умолчанию 20, макс. 500
          * }
-         */
-		public function getStockByFilter(array $params)
-		{
-			return $this->send("/stock/filter",$params);
-		}
-        
-        //Получение конкретного объекта
-        public function getStockById($id)
-        {
-            $data = $this->getStockByFilter(array(
-                'byid' => $id
-            ));
-            return $data['data']['list'][0];
-        }
-        
-        //Картинки объектов
-        public function getStockUrlPhoto($name)
-        {
-            return "http://" .$this->host . "/files/crm/product/" . rawurlencode($name);
-        }
-		
-		//вставка
-		public function insertStock(array $params)
-		{
-			return $this->send("/stock/insert",$params);
-		}
-		
-		//обновление
-		public function updateStock(array $params)
-		{
-			return $this->send("/stock/update",$params);
-		}
-		
-        //Групповое обновление полей по фильтру
-        /*  
+    */
+    public function getStockByFilter(array $params)
+    {
+        return $this->send("/stock/filter", $params);
+    }
+
+    //Получение конкретного объекта
+    public function getStockById($id)
+    {
+        $data = $this->getStockByFilter(array(
+            'byid' => $id
+        ));
+        return $data['data']['list'][0];
+    }
+
+    //Картинки объектов
+    public function getStockUrlPhoto($name)
+    {
+        return "http://" . $this->host . "/files/crm/product/" . rawurlencode($name);
+    }
+
+    //вставка
+    public function insertStock(array $params)
+    {
+        return $this->send("/stock/insert", $params);
+    }
+
+    //обновление
+    public function updateStock(array $params)
+    {
+        return $this->send("/stock/update", $params);
+    }
+
+    //Групповое обновление полей по фильтру
+    /*
          *  $filter = getStockByFilter/$params 
          *  $values = [
          *   {
@@ -141,94 +138,97 @@
             }
          *  //Описание всех типов в примере /example/stock/editByGroup.php и в документации
          * ] 
-         */
-        public function updateStockByFilter(array $filter,array $values)
+    */
+    public function updateStockByFilter(array $filter, array $values)
+    {
+        return $this->send("/stock/updateByFilter", array(
+            'filter' => $filter,
+            'values' => $values
+        ));
+    }
+
+    //удаление
+    public function deleteStock(array $params)
+    {
+        return $this->send("/stock/delete", $params);
+    }
+
+    // комментарии
+    public function getStockComments($entity_id)
+    {
+        return $this->send("/stock/comments", array(
+            'entity_id' => $entity_id
+        ));
+    }
+
+    //Добавление комментариев
+    /*
+     *  $params : {
+     *      enity_id, обзательный
+     *      text,     обязательный
+     *      author    опционально
+     *  }
+    */
+    public function addStockComment(array $params)
+    {
+        return $this->send("/stock/addComment", $params);
+    }
+
+    public function getStockAttach(array $params)
+    {
+        return $this->send("/stock/attach", $params);
+    }
+    //список групп объектов
+    public function getStockGroups()
+    {
+        return $this->send('/stock/groups');
+    }
+
+    //Создание дерева групп объектов из списка объектов
+    public function createTreeStockGroup($list)
+    {
+        $tree = array();
+        foreach ($list as $key => $item)
         {
-            return $this->send("/stock/updateByFilter",array(
-                'filter'  => $filter,
-                'values'  => $values
-            ));
-        }
-        
-		//удаление
-		public function deleteStock(array $params)
-		{
-			return $this->send("/stock/delete",$params);
-		}
-		
-		// комментарии
-		public function getStockComments($entity_id)
-		{
-			return $this->send("/stock/comments",array(
-				'entity_id' => $entity_id
-			));
-		}
-        
-        //Добавление комментариев
-        /*
-         *  $params : {
-         *      enity_id, обзательный
-         *      text,     обязательный
-         *      author    опционально
-         *  }
-         */
-        public function addStockComment(array $params)
-        {
-            return $this->send("/stock/addComment",$params);
-        }
-        
-		public function getStockAttach(array $params)
-		{
-			return $this->send("/stock/attach",$params);
-		}
-        //список групп объектов
-        public function getStockGroups()
-        {
-            return $this->send('/stock/groups');
-        }
-		
-        //Создание дерева групп объектов из списка объектов
-        public function createTreeStockGroup($list)
-        {
-            $tree = array();
-            foreach($list as $key=>$item){
-                if($item['copy'] == 0){
-                    $item['childs'] = array();
-                    $tree[ $item['id'] ] = $item;
-                    unset($list[$key]);
-                }
+            if ($item['copy'] == 0)
+            {
+                $item['childs'] = array();
+                $tree[$item['id']] = $item;
+                unset($list[$key]);
             }
-            
-            foreach($list as $item){
-                $tree[ $item['copy'] ]['childs'][] = $item;
-            }
-            return $tree;
         }
-        
-		/*
-			Сотрудники
-		*/
-		
-		// поля
-		public function getEmployeeFields()
-		{
-			return $this->send("/worker/fields");
-		}
-		
-		// отделы
-		public function getDepartment()
-		{
-			return $this->send("/worker/department");
-		}
-		
-		// филиалы
-		public function getFiliation()
-		{
-			return $this->send("/worker/filiation");
-		}
-		
-		//Выборка сотрудников
-        /* $params{
+
+        foreach ($list as $item)
+        {
+            $tree[$item['copy']]['childs'][] = $item;
+        }
+        return $tree;
+    }
+
+    /*
+    Сотрудники
+    */
+
+    // поля
+    public function getEmployeeFields()
+    {
+        return $this->send("/worker/fields");
+    }
+
+    // отделы
+    public function getDepartment()
+    {
+        return $this->send("/worker/department");
+    }
+
+    // филиалы
+    public function getFiliation()
+    {
+        return $this->send("/worker/filiation");
+    }
+
+    //Выборка сотрудников
+    /* $params{
          *  group         - id группы менеджеров
             id            - массив id сотрудников
             division_id   - массив id отделов
@@ -241,56 +241,56 @@
             status        - Статус сотрудника, по умолчанию [onstate,outstate] - все работающие, полный список:
                             ['new', 'onstate', 'outstate', 'notworking', 'fired']
          * }
-         */
-		public function filterEmployee(array $params = array())
-		{
-			return $this->send("/worker/filter",$params);
-		}
-		
-		/*
-			Группы менеджеров
-		*/
-		
-		//получение списка групп
-		public function getAvailGroups()
-		{
-			return $this->send("/managergroup");
-		}
-		
-		/*
-			Статьи
-		*/
-		
-		// список статей
-		public function getArticlesList(array $params)
-		{
-			return $this->send("/publication/list",$params);
-		}
-		
-		// содержимое статьи
-		public function getArticleContent(array $params)
-		{
-			return $this->send("/publication/single",$params);
-		}
-		
-		/*
-			Заявки
-		*/
-		
-		// типы заявок
-		public function getRequestTypes()
-		{
-			return $this->send("/applications/types");
-		}
-		
-		// поля
-		public function getRequestFields()
-		{
-			return $this->send("/applications/fields");
-		}
-		
-		// поиск
-        /* $params{
+    */
+    public function filterEmployee(array $params = array())
+    {
+        return $this->send("/worker/filter", $params);
+    }
+
+    /*
+    Группы менеджеров
+    */
+
+    //получение списка групп
+    public function getAvailGroups()
+    {
+        return $this->send("/managergroup");
+    }
+
+    /*
+    Статьи
+    */
+
+    // список статей
+    public function getArticlesList(array $params)
+    {
+        return $this->send("/publication/list", $params);
+    }
+
+    // содержимое статьи
+    public function getArticleContent(array $params)
+    {
+        return $this->send("/publication/single", $params);
+    }
+
+    /*
+    Заявки
+    */
+
+    // типы заявок
+    public function getRequestTypes()
+    {
+        return $this->send("/applications/types");
+    }
+
+    // поля
+    public function getRequestFields()
+    {
+        return $this->send("/applications/fields");
+    }
+
+    // поиск
+    /* $params{
          *  search       - поисковая строка (может содержать фамилию клиента или слова из комментария или названия заявки)
             groups       - массив групп менеджеров
             manager      - id менеджера
@@ -315,37 +315,38 @@
             publish - 1 - активные, 0 - удаленные, по умолчанию 1
             limit - число записей в выборке (макс. 50)
          * }
-         */
-		public function filterRequests(array $params)
-		{
-			return $this->send("/applications/filter",$params);
-		}
-		
-        /*
-         *  Список ID заявок статус которых менялися за период времени
-         *  $params {
-         *      date_start - Дата в формате "2017-02-01"
-         *      date_end   - Дата в формате "2017-02-01"
-         *  }
-         */
-        public function getRequestChangeStatus(array $params)
+    */
+    public function filterRequests(array $params)
+    {
+        return $this->send("/applications/filter", $params);
+    }
+
+    /*
+     *  Список ID заявок статус которых менялися за период времени
+     *  $params {
+     *      date_start - Дата в формате "2017-02-01"
+     *      date_end   - Дата в формате "2017-02-01"
+     *  }
+    */
+    public function getRequestChangeStatus(array $params)
+    {
+        if (!$params['date_start'] || !$params['date_end'])
         {
-            if(!$params['date_start'] || !$params['date_end']){
-                return array(
-                    'error' => 'Необходимо передать обязательные параметры: date_start, date_end'
-                );
-            }
-            return $this->send('/applications/getbychangestatus',$params);
+            return array(
+                'error' => 'Необходимо передать обязательные параметры: date_start, date_end'
+            );
         }
-        
-        //Список доступных статусов
-        public function getRequestStatuses()
-        {
-            return $this->send("/applications/statuses");
-        }
-        
-		//вставка
-        /*
+        return $this->send('/applications/getbychangestatus', $params);
+    }
+
+    //Список доступных статусов
+    public function getRequestStatuses()
+    {
+        return $this->send("/applications/statuses");
+    }
+
+    //вставка
+    /*
          *  $params [{
          *      request_type             - ID типа заявок (обязательное поле)
                 customers_id             - ID клиента (обязательное поле)
@@ -356,50 +357,49 @@
                 status                   - один из вариантов ('unselected','mustbeprocessed','processnow','processed','postponed','malformed','cancelled','reprocess'), getRequestStatuses
          *      fields                   - [{id:id,value:value}, ...] 
          * }]
-         */
-		public function insertRequests(array $params)
-		{
-			return $this->send("/applications/insert",$params);
-		}
-		
-		
-		//Одновременное добавление клиента и заявки, требуются права на добавление клиента и добавление заявки
-		/*
-		 *  $params [{
-		 *     customer : //Те-же параметры что и для insertCustomers
-			   {
-					name                  - Имя
-					surname               - Фамилия
-					patronymic            - Отчество
-					manager_id            - ID менеджера
-					additional_manager_id - Массив ID дополнительных менеджеров
-					marktype              - Тип
-					email                 - массив email адресов
-					phone                 - массив номеров телефонов
-					fields                - Массив допполей
-		        }
-			   
-		 *     request  : //Те-же параметры что и для insertRequests, без customers_id
-		 *		{
-			       request_type             - ID типа заявок (обязательное поле)
-			       source                   - один из вариантов ('help_manager','online_consult','none','online_form')
-				   employee_id              - ID менеджера
-				   additional_employee_id   - Массив ID дополнительных ответственных
-				   request_name             - Название заявки
-				   status                   - один из вариантов ('unselected','mustbeprocessed','processnow','processed','postponed','malformed','cancelled','reprocess'), getRequestStatuses
-			       fields                   - [{id:id,value:value}, ...] 
-			  }
-		 *  }]
-		 */
-		public function addRequestAndCustomer($customer, $request)
-		{
-			return $this->send("/applications/addCustomer",array(
-				'request'  => $request,
-				'customer' => $customer
-			));
-		}
-		
-		/*
+    */
+    public function insertRequests(array $params)
+    {
+        return $this->send("/applications/insert", $params);
+    }
+
+    //Одновременное добавление клиента и заявки, требуются права на добавление клиента и добавление заявки
+    /*
+    *  $params [{
+    *     customer : //Те-же параметры что и для insertCustomers
+      {
+    	name                  - Имя
+    	surname               - Фамилия
+    	patronymic            - Отчество
+    	manager_id            - ID менеджера
+    	additional_manager_id - Массив ID дополнительных менеджеров
+    	marktype              - Тип
+    	email                 - массив email адресов
+    	phone                 - массив номеров телефонов
+    	fields                - Массив допполей
+          }
+      
+    *     request  : //Те-же параметры что и для insertRequests, без customers_id
+    *		{
+          request_type             - ID типа заявок (обязательное поле)
+          source                   - один из вариантов ('help_manager','online_consult','none','online_form')
+       employee_id              - ID менеджера
+       additional_employee_id   - Массив ID дополнительных ответственных
+       request_name             - Название заявки
+       status                   - один из вариантов ('unselected','mustbeprocessed','processnow','processed','postponed','malformed','cancelled','reprocess'), getRequestStatuses
+          fields                   - [{id:id,value:value}, ...] 
+     }
+    *  }]
+    */
+    public function addRequestAndCustomer($customer, $request)
+    {
+        return $this->send("/applications/addCustomer", array(
+            'request' => $request,
+            'customer' => $customer
+        ));
+    }
+
+    /*
          *  $params 
          * [ 
          *      {
@@ -411,59 +411,59 @@
              *      fields                   - [{id:id,value:value}, ...] 
             * }
            ]
-         */
-		public function updateRequests(array $params)
-		{
-			return $this->send("/applications/update",$params);
-		}
-		
-        //Добавление комментариев
-        /*
-         *  $params : {
-         *      enity_id, обзательный
-         *      text,     обязательный
-         *      author    опционально
-         *  }
-         */
-        public function addRequestComment(array $params) 
-        {
-            return $this->send("/applications/addComment", $params);
-        }
+    */
+    public function updateRequests(array $params)
+    {
+        return $this->send("/applications/update", $params);
+    }
 
-        //удаление
-		public function deleteRequests(array $params)
-		{
-			return $this->send("/applications/delete",$params);
-		}
-		
-		// комментарии
-		public function getRequestComments($entity_id)
-		{
-			return $this->send("/applications/comments",array(
-				'entity_id' => $entity_id
-			));
-		}
-		
-		/*
-			Продажи
-		*/
-        
-		/*  Список типов продаж
-         */
-		public function getSaleTypes()
-		{
-			return $this->send("/sales/types");
-		}
-		
-        /*  Список fields для продаж
-         */
-		public function getSaleFields()
-		{
-			return $this->send("/sales/fields");
-		}
-		
-        //Выборка продаж по 
-        /* $params {
+    //Добавление комментариев
+    /*
+     *  $params : {
+     *      enity_id, обзательный
+     *      text,     обязательный
+     *      author    опционально
+     *  }
+    */
+    public function addRequestComment(array $params)
+    {
+        return $this->send("/applications/addComment", $params);
+    }
+
+    //удаление
+    public function deleteRequests(array $params)
+    {
+        return $this->send("/applications/delete", $params);
+    }
+
+    // комментарии
+    public function getRequestComments($entity_id)
+    {
+        return $this->send("/applications/comments", array(
+            'entity_id' => $entity_id
+        ));
+    }
+
+    /*
+    Продажи
+    */
+
+    /*  Список типов продаж
+    */
+    public function getSaleTypes()
+    {
+        return $this->send("/sales/types");
+    }
+
+    /*  Список fields для продаж
+    */
+    public function getSaleFields()
+    {
+        return $this->send("/sales/fields");
+    }
+
+    //Выборка продаж по
+    /* $params {
                 search       - поисковая строка
                 type         - массив id типов продаж
                 stage        - массив id стадий продаж
@@ -479,31 +479,32 @@
                 date_field   - если в качестве значения указать sale_activity_date выборка по параметру активности,
                 by_ids       - Выборка несколких продаж по их ID, [1,2,3,...]             
          * }
-         */
-		public function filterSales(array $params)
-		{
-			return $this->send("/sales/filter",$params);
-		}
-        
-        /*
-         *  Список ID сделок стадии которых менялись за период времени
-         *  $params {
-         *      date_start - Дата в формате "2017-02-01"
-         *      date_end   - Дата в формате "2017-02-01"
-         *  }
-         */
-        public function getSalesChangeStage(array $params)
+    */
+    public function filterSales(array $params)
+    {
+        return $this->send("/sales/filter", $params);
+    }
+
+    /*
+     *  Список ID сделок стадии которых менялись за период времени
+     *  $params {
+     *      date_start - Дата в формате "2017-02-01"
+     *      date_end   - Дата в формате "2017-02-01"
+     *  }
+    */
+    public function getSalesChangeStage(array $params)
+    {
+        if (!$params['date_start'] || !$params['date_end'])
         {
-            if(!$params['date_start'] || !$params['date_end']){
-                return array(
-                    'error' => 'Необходимо передать обязательные параметры: date_start, date_end'
-                );
-            }
-            return $this->send('/sales/getbychangestage',$params);
+            return array(
+                'error' => 'Необходимо передать обязательные параметры: date_start, date_end'
+            );
         }
-        
-		//Добавление сделок
-        /*
+        return $this->send('/sales/getbychangestage', $params);
+    }
+
+    //Добавление сделок
+    /*
          *  $params [
          *      {
                    customers_id            - id клиента
@@ -516,52 +517,53 @@
          *      }, 
          *      ...
          *  ]
-         */
-		public function insertSales(array $params)
-		{
-            if(!$this->checkParamArr($params)){
-                return array(
-                    'error' => "Неправильный формат данных"
-                );
-            }
-			return $this->send("/sales/insert",$params);
-		}
-		
-		//Добавление сделки с клиентом
-		/*
-			customer : //Те-же параметры что и для insertCustomers
-			   {
-					name                  - Имя
-					surname               - Фамилия
-					patronymic            - Отчество
-					manager_id            - ID менеджера
-					additional_manager_id - Массив ID дополнительных менеджеров
-					marktype              - Тип
-					email                 - массив email адресов
-					phone                 - массив номеров телефонов
-					fields                - Массив допполей
-		        }
-				
-			sale : //Те-же параметры что и для insertSales, без customers_id
-				{
-				   employee_id             - id ответственного менеджера
-				   additional_employee_id  - массив id дополнительных менеджеров
-				   sales_type_id           - id типа продажи
-				   sales_status_id         - id стадии продажи
-				   sale_name               - название продажи
-				   fields                  - массив  [{id:123,values:''},...]
-			   }
-		*/
-		public function addSaleAndCustomer($customer, $sale)
-		{
-			return $this->send('/sales/addCustomer',array(
-				'customer' => $customer,
-				'sale'     => $sale
-			));
-		}
-		
-		//Редактирование сделок
-        /*
+    */
+    public function insertSales(array $params)
+    {
+        if (!$this->checkParamArr($params))
+        {
+            return array(
+                'error' => "Неправильный формат данных"
+            );
+        }
+        return $this->send("/sales/insert", $params);
+    }
+
+    //Добавление сделки с клиентом
+    /*
+    customer : //Те-же параметры что и для insertCustomers
+      {
+    	name                  - Имя
+    	surname               - Фамилия
+    	patronymic            - Отчество
+    	manager_id            - ID менеджера
+    	additional_manager_id - Массив ID дополнительных менеджеров
+    	marktype              - Тип
+    	email                 - массив email адресов
+    	phone                 - массив номеров телефонов
+    	fields                - Массив допполей
+          }
+    
+    sale : //Те-же параметры что и для insertSales, без customers_id
+    {
+       employee_id             - id ответственного менеджера
+       additional_employee_id  - массив id дополнительных менеджеров
+       sales_type_id           - id типа продажи
+       sales_status_id         - id стадии продажи
+       sale_name               - название продажи
+       fields                  - массив  [{id:123,values:''},...]
+      }
+    */
+    public function addSaleAndCustomer($customer, $sale)
+    {
+        return $this->send('/sales/addCustomer', array(
+            'customer' => $customer,
+            'sale' => $sale
+        ));
+    }
+
+    //Редактирование сделок
+    /*
          *  $params [
          *      {
                     id                      - ID сделки в CRM, обязательное поле 
@@ -575,56 +577,57 @@
          *      }, 
          *      ...
          *  ]
-         */
-        public function updateSales(array $params)
-		{
-			return $this->send("/sales/update",$params);
-		}
-		
-		//удаление
-		public function deleteSales(array $params)
-		{
-			return $this->send("/sales/delete",$params);
-		}
-		
-		//доп инфа по сделке
-		public function getSaleDetails(array $params)
-		{
-			return $this->send("/sales/details",$params);
-		}
-		
-		// комментарии
-		public function getSalesComments($entity_id)
-		{
-			return $this->send("/sales/comments",array(
-				'entity_id' => $entity_id
-			));
-		}
-        
-        //Добавление комментариев
-        /*
-         *  $params : {
-         *      enity_id, обзательный
-         *      text,     обязательный
-         *      author    опционально
-         *  }
-         */
-        public function addSalesComment(array $params) {
-            return $this->send("/sales/addComment", $params);
-        }
+    */
+    public function updateSales(array $params)
+    {
+        return $this->send("/sales/update", $params);
+    }
 
-        /*
-			Клиенты
-		*/
-		
-		// поля
-		public function getCustomerFields()
-		{
-			return $this->send("/purchaser/fields");
-		}
-		
-		// поиск
-        /*
+    //удаление
+    public function deleteSales(array $params)
+    {
+        return $this->send("/sales/delete", $params);
+    }
+
+    //доп инфа по сделке
+    public function getSaleDetails(array $params)
+    {
+        return $this->send("/sales/details", $params);
+    }
+
+    // комментарии
+    public function getSalesComments($entity_id)
+    {
+        return $this->send("/sales/comments", array(
+            'entity_id' => $entity_id
+        ));
+    }
+
+    //Добавление комментариев
+    /*
+     *  $params : {
+     *      enity_id, обзательный
+     *      text,     обязательный
+     *      author    опционально
+     *  }
+    */
+    public function addSalesComment(array $params)
+    {
+        return $this->send("/sales/addComment", $params);
+    }
+
+    /*
+    Клиенты
+    */
+
+    // поля
+    public function getCustomerFields()
+    {
+        return $this->send("/purchaser/fields");
+    }
+
+    // поиск
+    /*
             $params {
                 groups - массив id групп менеджеров
                 manager - id менеджера
@@ -641,75 +644,86 @@
                 publish - 1 - активные, 0 - удаленные, по умолчанию 1
                 limit - число записей в выборке (макс. 50)
             }
-         */
-		public function filterCustomers(array $params)
-		{
-			return $this->send("/purchaser/filter",$params);
-		}
-		
-        /*
-         *  Обёртка над filterCustomers
-         *  $params те-же что и у filterCustomers, но limit = 1000000, т.е. 500 * 200
-         *  файлы возвращаются в формате {name: имя файла, link:путь к файлу}
-         */
-        public function getListCustomers(array $params)
+    */
+    public function filterCustomers(array $params)
+    {
+        return $this->send("/purchaser/filter", $params);
+    }
+
+    /*
+     *  Обёртка над filterCustomers
+     *  $params те-же что и у filterCustomers, но limit = 1000000, т.е. 500 * 200
+     *  файлы возвращаются в формате {name: имя файла, link:путь к файлу}
+    */
+    public function getListCustomers(array $params)
+    {
+        $total = ($params['limit']) ? $params['limit'] : 1000000;
+        if ($total > 500)
         {
-            $total = ($params['limit']) ? $params['limit'] : 1000000;
-            if($total > 500){
-                $params['limit'] = 500;
+            $params['limit'] = 500;
+        }
+        $count = $params['count'];
+        $max = 199;
+        $page = 0;
+        $allCount = null;
+        $list = array();
+        while ($page <= $max)
+        {
+            $page++;
+            $params['page'] = $page;
+            if ($total < $params['limit'])
+            {
+                $params['limit'] = $total;
             }
-            $count = $params['count'];
-            $max = 199;
-            $page = 0;
-            $allCount = null;
-            $list = array();
-            while($page <= $max){
-                $page ++;
-                $params['page'] = $page;
-                if($total < $params['limit']){
-                    $params['limit'] = $total;
-                }
-                if($params['limit']<1){
-                    break;
-                }
-                
-                $data = $this->filterCustomers($params);
-                
-                if($allCount === null){
-                    $allCount = $data['data']['count'];
-                }
-                
-                $list = array_merge($list,(array)$data['data']['list']);
-                $total -= count($data['data']['list']);
-                
-                if(!$data['data']['list'] || count($data['data']['list'])<$params['limit']){
-                    break;
-                }
+            if ($params['limit'] < 1)
+            {
+                break;
             }
-            
-            foreach($list as $key=>$item){
-                if($item['fields']){
-                    foreach($item['fields'] as $key2=>$field){
-                        if($field['datatype'] == 'file'){
-                            $list[$key]['fields'][$key2]['link'] = $this->getCustomerUrlFile($field['value']);
-                        }
+
+            $data = $this->filterCustomers($params);
+
+            if ($allCount === null)
+            {
+                $allCount = $data['data']['count'];
+            }
+
+            $list = array_merge($list, (array)$data['data']['list']);
+            $total -= count($data['data']['list']);
+
+            if (!$data['data']['list'] || count($data['data']['list']) < $params['limit'])
+            {
+                break;
+            }
+        }
+
+        foreach ($list as $key => $item)
+        {
+            if ($item['fields'])
+            {
+                foreach ($item['fields'] as $key2 => $field)
+                {
+                    if ($field['datatype'] == 'file')
+                    {
+                        $list[$key]['fields'][$key2]['link'] = $this->getCustomerUrlFile($field['value']);
                     }
                 }
             }
-            
-            return array(
-                'list'  => $list,
-                'count' => $allCount
-            );
-        }
-        
-        //Файлы клиентов
-        public function getCustomerUrlFile($name) {
-            return "http://" . $this->host . "/files/crm/" . rawurlencode($name);
         }
 
-        //Добавление клиента
-        /*
+        return array(
+            'list' => $list,
+            'count' => $allCount
+        );
+    }
+
+    //Файлы клиентов
+    public function getCustomerUrlFile($name)
+    {
+        return "http://" . $this->host . "/files/crm/" . rawurlencode($name);
+    }
+
+    //Добавление клиента
+    /*
          *  $params {
                name                  - Имя
                surname               - Фамилия
@@ -721,59 +735,59 @@
                phone                 - массив номеров телефонов
                fields                - Массив допполей
          *  }
-         */
-		public function insertCustomers(array $params)
-		{
-			return $this->send("/purchaser/insert",$params);
-		}
-		
-		//обновление
-		public function updateCustomers(array $params)
-		{
-			return $this->send("/purchaser/update",$params);
-		}
-		
-        //Добавление комментариев
-        /*
-         *  $params : {
-         *      enity_id, обзательный
-         *      text,     обязательный
-         *      author    опционально
-         *  }
-         */
-        public function addCustomersComment(array $params) {
-            return $this->send("/purchaser/addComment", $params);
-        }
+    */
+    public function insertCustomers(array $params)
+    {
+        return $this->send("/purchaser/insert", $params);
+    }
 
-        //удаление
-		public function deleteCustomers(array $params)
-		{
-			return $this->send("/purchaser/delete",$params);
-		}
-		
-		// комментарии
-		public function getCustomerComments($entity_id)
-		{
-			return $this->send("/purchaser/comments",array(
-				'entity_id' => $entity_id
-			));
-		}
-		
-		// прикрепления
-		public function getCustomerAttachments($entity_id)
-		{
-			return $this->send("/purchaser/attach",array(
-				'ids' => $entity_id 
-			));
-		}
-		
-        
-		/*
-		 *	Счета
-		 */
-		
-		//Поиск / выборка
-        /* $aprams{
+    //обновление
+    public function updateCustomers(array $params)
+    {
+        return $this->send("/purchaser/update", $params);
+    }
+
+    //Добавление комментариев
+    /*
+     *  $params : {
+     *      enity_id, обзательный
+     *      text,     обязательный
+     *      author    опционально
+     *  }
+    */
+    public function addCustomersComment(array $params)
+    {
+        return $this->send("/purchaser/addComment", $params);
+    }
+
+    //удаление
+    public function deleteCustomers(array $params)
+    {
+        return $this->send("/purchaser/delete", $params);
+    }
+
+    // комментарии
+    public function getCustomerComments($entity_id)
+    {
+        return $this->send("/purchaser/comments", array(
+            'entity_id' => $entity_id
+        ));
+    }
+
+    // прикрепления
+    public function getCustomerAttachments($entity_id)
+    {
+        return $this->send("/purchaser/attach", array(
+            'ids' => $entity_id
+        ));
+    }
+
+    /*
+     *	Счета
+    */
+
+    //Поиск / выборка
+    /* $aprams{
          *  type         - Тип счёта (in,out)
             date_start   - Счёт создан в данную дату или позже  (формат YYYY-mm-dd)
             date_start   - Счёт создан в данную дату или раньше (формат YYYY-mm-dd)
@@ -792,19 +806,21 @@
             page         - Номер страницы вывода
             period_pay   - Период полаты счёта, выодить счета по которам совершалась оплата в указанный период{date_start: YYYY-mm-dd, date_end: YYYY-mm-dd}
          * } */
-		public function billsGet(array $params)
-        {
-			return $this->send("/accounts/get",$params);
-		}
-		
-		//Получение подробной информации по массиву счетов
-		public function billsGetFull(array $ids)
-		{
-			return $this->send("/accounts/get_full",array('ids' => $ids));
-		}
-		
-		//добавление
-        /* $aprams{
+    public function billsGet(array $params)
+    {
+        return $this->send("/accounts/get", $params);
+    }
+
+    //Получение подробной информации по массиву счетов
+    public function billsGetFull(array $ids)
+    {
+        return $this->send("/accounts/get_full", array(
+            'ids' => $ids
+        ));
+    }
+
+    //добавление
+    /* $aprams{
          *      act_id         - ID прикреплёного акта
                 date_create    - Дата создания
                 product        - Массив продуктов
@@ -822,15 +838,14 @@
                 nds                - Наличие ндс
                 type               - Тип счёта входящий / исходящий(in/out)
          * }
-         */
-		public function billsAdd(array $params)
-		{
-			return $this->send("/accounts/add",$params);
-		}
-		
-		
-		//Редактирование
-        /*
+    */
+    public function billsAdd(array $params)
+    {
+        return $this->send("/accounts/add", $params);
+    }
+
+    //Редактирование
+    /*
          *  $params =
          *  {
                 bill_id - Уникальный номер счёта
@@ -849,14 +864,14 @@
                 is_cash - Оплата наличными
                 type - Тип счёта входящий / исходящий(in/out)
             }
-         */
-		public function billsEdit(array $params)
-		{
-			return $this->send("/accounts/edit",$params);
-		}
-		
-        //Множественное редактирование (обновление) счетов
-        /*  
+    */
+    public function billsEdit(array $params)
+    {
+        return $this->send("/accounts/edit", $params);
+    }
+
+    //Множественное редактирование (обновление) счетов
+    /*
          *  $params =
          *  [
                 {
@@ -876,301 +891,313 @@
                   type - Тип счёта входящий / исходящий(in/out)
                 }
             ]
-         */
-		public function billsUpdate(array $params)
-		{
-			return $this->send("/accounts/update",$params);
-		}
-        
-		//Установить статус оплаты
-        /*  
+    */
+    public function billsUpdate(array $params)
+    {
+        return $this->send("/accounts/update", $params);
+    }
+
+    //Установить статус оплаты
+    /*
          *  $params
          *  {
                 id - Уникальный номер счёта
                 pay - Сумма платежа (необязательный)
             }
-         */
-		public function billsSetPay($id,$pay=null)
-		{
-			return $this->send("/accounts/set_pay",array('id'=>$id,'pay'=>$pay));
-		}
-		
-		/*
-			Акты
-		*/
-		//Поиск / выборка
-		public function actsGet(array $params)
-		{
-			return $this->send("/acts/get",$params);
-		}
-		
-		//добавление
-		public function actsAdd(array $params)
-		{
-			return $this->send("/acts/add",$params);
-		}
-		
-		//обновление
-		public function actsUpdate(array $params)
-		{
-			return $this->send("/acts/update",$params);
-		}
-		
-		//Редактирвоание
-		public function actsEdit(array $params)
-		{
-			return $this->send("/acts/edit",$params);
-		}
-		//Установить статус оплаты
-		public function actsSetPay($id,$pay=null)
-		{
-			return $this->send("/acts/set_pay",array('id'=>$id,'pay'=>$pay));
-		}
-		
-		/*
-			Выписки
-		*/
-		//Поиск / выборка
-		public function checksGet(array $params)
-		{
-			return $this->send("/checks/get",$params);
-		}
-		
-		//добавление
-		public function checksAdd(array $params)
-		{
-			return $this->send("/checks/add",$params);
-		}
-		
-		//обновление
-		public function checksUpdate(array $params)
-		{
-			return $this->send("/checks/update",$params);
-		}
-		
-		/* 
-			Служебные 
-		*/
-		 
-		// варианты выбора
-		public function getSelectVariants(array $params)
-		{
-			return $this->send("/utils/variants",$params);
-		}
-		
-		// дочерние варианты выбора привязанные к конкретному варианту родителя 
-		public function getBindedSelectVariants(array $params)
-		{
-			return $this->send("/utils/binded",$params);
-		}
-		
-        
-        /*
-         *  object - один из возможных вариантов (stock-Продукт, applications-Заявки, purchaser-Клиент)
-         *  $fieldId - (int) id поля файла
-         *  $list = {
-         *      $idObject( ID сущности CRM ) : [
-         *          "upload.jpg",
-         *          "upload1.jpg" //Список абсолютных путей к картинкам
-         *      ]
-         *  }
-         */
-        public function addFilesToObjects($objectType,$fieldId,$list)
+    */
+    public function billsSetPay($id, $pay = null)
+    {
+        return $this->send("/accounts/set_pay", array(
+            'id' => $id,
+            'pay' => $pay
+        ));
+    }
+
+    /*
+    Акты
+    */
+    //Поиск / выборка
+    public function actsGet(array $params)
+    {
+        return $this->send("/acts/get", $params);
+    }
+
+    //добавление
+    public function actsAdd(array $params)
+    {
+        return $this->send("/acts/add", $params);
+    }
+
+    //обновление
+    public function actsUpdate(array $params)
+    {
+        return $this->send("/acts/update", $params);
+    }
+
+    //Редактирвоание
+    public function actsEdit(array $params)
+    {
+        return $this->send("/acts/edit", $params);
+    }
+    //Установить статус оплаты
+    public function actsSetPay($id, $pay = null)
+    {
+        return $this->send("/acts/set_pay", array(
+            'id' => $id,
+            'pay' => $pay
+        ));
+    }
+
+    /*
+    Выписки
+    */
+    //Поиск / выборка
+    public function checksGet(array $params)
+    {
+        return $this->send("/checks/get", $params);
+    }
+
+    //добавление
+    public function checksAdd(array $params)
+    {
+        return $this->send("/checks/add", $params);
+    }
+
+    //обновление
+    public function checksUpdate(array $params)
+    {
+        return $this->send("/checks/update", $params);
+    }
+
+    /*
+    Служебные
+    */
+
+    // варианты выбора
+    public function getSelectVariants(array $params)
+    {
+        return $this->send("/utils/variants", $params);
+    }
+
+    // дочерние варианты выбора привязанные к конкретному варианту родителя
+    public function getBindedSelectVariants(array $params)
+    {
+        return $this->send("/utils/binded", $params);
+    }
+
+    /*
+     *  object - один из возможных вариантов (stock-Продукт, applications-Заявки, purchaser-Клиент)
+     *  $fieldId - (int) id поля файла
+     *  $list = {
+     *      $idObject( ID сущности CRM ) : [
+     *          "upload.jpg",
+     *          "upload1.jpg" //Список абсолютных путей к картинкам
+     *      ]
+     *  }
+    */
+    public function addFilesToObjects($objectType, $fieldId, $list)
+    {
+        $map = array();
+        $all = array();
+        foreach ($list as $object => $images)
         {
-            $map = array();
-            $all = array();
-            foreach($list as $object=>$images){
-                foreach($images as $img){
-                    $map[] = $object;
-                    $all[] = $img;
-                }
+            foreach ($images as $img)
+            {
+                $map[] = $object;
+                $all[] = $img;
             }
-            $upp = array();
-            
-            $res = $this->uploadFile($objectType, $all);
-            
-            if($res['status'] === 'success'){
-                foreach($res['data']['name'] as $num=>$item){
-                    $upp[ $map[$num] ]['id'] = $map[$num];
-                    $upp[ $map[$num] ]['fields'][] = array(
-                        'id'    => $fieldId,
-                        'value' => $item,
-                        'mode'  => 'insert' 
-                    );
-                }
-                
-                if($objectType == 'stock'){
-                    $res = $this->updateStock($upp);
-                }elseif($objectType == 'applications'){
-                    $res = $this->updateSales($upp);
-                }elseif($objectType == 'purchaser'){
-                    $res = $this->updateCustomers($upp);
-                }
-                
-               return $res;
-            }
-            
         }
-        
-		// загрузчик файлов
-        /*
-         *  object - один из возможных вариантов (stock-Продукт, applications-Заявки, purchaser-Клиент)
-            upload - имя поля загружаемого файла, поддерживает множественную загрузку
-         * 
-         */
-		public function uploadFile($object,$source)
-		{
-			$is_multiple = is_array($source);
-			$source = (array) $source;
-            
-			foreach($source as $i => $s){
-				if(!file_exists($s) or !is_readable($s)){
-                    //Обработка ошибки, файл не найден
-					unset($source[$i]);
-				}
-			}
+        $upp = array();
 
-			if(!$source){
-				return array(
-					"status"  => "fail",
-					"message" => "FILE_UPLOAD_ERROR",
-                    "error"   => "Нет доступных файлов для загрузки"
-				);
-			}	
+        $res = $this->uploadFile($objectType, $all);
 
-			$boundary = "---------------------".substr(md5(rand(0,32000)), 0, 10);
-			$data = "";
-			$data .= "--{$boundary}\n";
-			$data .= "Content-Disposition: form-data; name=\"apikey\"\n\n{$this->key}\n";
-			$data .= "--{$boundary}\n";
-			$data .= "Content-Disposition: form-data; name=\"params[object]\"\n\n{$object}\n";
-			$data .= "--{$boundary}\n";
-
-			foreach($source as $s){
-				$data .= "Content-Disposition: form-data; name=\"upload" . ($is_multiple ? '[]' : '') . "\"; filename=\"" . basename($s) . "\"\n";
-				$data .= "Content-Transfer-Encoding: binary\n\n";
-				$data .= file_get_contents($s)."\n";
-				$data .= "--{$boundary}\n";
-			}
-		
-			$context = stream_context_create(
-				array(
-					'http' => array(
-						'method' => 'POST',
-						'header' => 'Content-Type: multipart/form-data; boundary='.$boundary,
-						'content' => $data
-					)
-				)
-			);
-			
-			$response = file_get_contents(
-				$this->url . "/utils/upload",
-				false,
-				$context
-			);
-			
-			return json_decode($response,true);
-		}
-		
-		private function send($sub_url,array $data = array())
-		{
-			ini_set('memory_limit','2048M');
-			if($this->cache == true){
-				$hash = md5($sub_url.serialize($data));
-				$cache = Cache::getInstance()->pop($hash);
-				
-				if($cache !== false){
-                    if($this->debug){
-                        $this->debugStack[] = array(
-                            'url'     => $this->url . $sub_url,
-                            'isCache' => true,
-                            'params'  => $data,
-                            'result'  => $cache
-                        );
-                    }
-					return $cache;
-				}
-			}
-		
-			$context = stream_context_create(
-				array(
-					'http' => array(
-						'method' => 'POST',
-						'header' => 'Content-Type: application/x-www-form-urlencoded' . PHP_EOL,
-						'content' => http_build_query(
-							array(
-								"apikey" => $this->key,
-								"params" => $data
-							)
-						),
-					)
-				)
-			);
-			
-			$response = file_get_contents(
-				$this->url . $sub_url,
-				false,
-				$context
-			);
-            
-			$res = json_decode($response,true);
-			if(!$res){
-                if ($this->debug) {
-                    $this->debugStack[] = array(
-                        'url'     => $this->url . $sub_url,
-                        'isError' => true,
-                        'params'  => $data,
-                        'result'  => $response
-                    );
-                }
-                file_put_contents('error', $response);
-                return array(
-                    'error' => $response, 
-                ); 
-            }
-			
-			if($this->cache == true){
-				Cache::getInstance()->push($hash,$res);
-			}
-			
-            if($this->debug) {
-                $this->debugStack[] = array(
-                    'url'     => $this->url . $sub_url,
-                    'params'  => $data,
-                    'result'  => $res
+        if ($res['status'] === 'success')
+        {
+            foreach ($res['data']['name'] as $num => $item)
+            {
+                $upp[$map[$num]]['id'] = $map[$num];
+                $upp[$map[$num]]['fields'][] = array(
+                    'id' => $fieldId,
+                    'value' => $item,
+                    'mode' => 'insert'
                 );
             }
 
+            if ($objectType == 'stock')
+            {
+                $res = $this->updateStock($upp);
+            }
+            elseif ($objectType == 'applications')
+            {
+                $res = $this->updateSales($upp);
+            }
+            elseif ($objectType == 'purchaser')
+            {
+                $res = $this->updateCustomers($upp);
+            }
+
             return $res;
-		}
-        
-        public function webhookPut()
-        {
-            $input = file_get_contents('php://input');
-            $data = json_decode($input, 1);
-            return $data;
         }
-        
-        /* Звонки */
-        //Возвращает список возможных соединений
-        public function callsGetTrunks()
+
+    }
+
+    // загрузчик файлов
+    /*
+         *  object - один из возможных вариантов (stock-Продукт, applications-Заявки, purchaser-Клиент)
+            upload - имя поля загружаемого файла, поддерживает множественную загрузку
+         * 
+    */
+    public function uploadFile($object, $source)
+    {
+        $is_multiple = is_array($source);
+        $source = (array)$source;
+
+        foreach ($source as $i => $s)
         {
-            return $this->send('/calls/trunks');
+            if (!file_exists($s) or !is_readable($s))
+            {
+                //Обработка ошибки, файл не найден
+                unset($source[$i]);
+            }
         }
-        
-        public function callsGetPhones()
+
+        if (!$source)
         {
-            return $this->send('/calls/phoneNumbers');
+            return array(
+                "status" => "fail",
+                "message" => "FILE_UPLOAD_ERROR",
+                "error" => "Нет доступных файлов для загрузки"
+            );
         }
-        
-        /*Список статусов*/
-        public function callsGetStatuses()
+
+        $boundary = "---------------------" . substr(md5(rand(0, 32000)) , 0, 10);
+        $data = "";
+        $data .= "--{$boundary}\n";
+        $data .= "Content-Disposition: form-data; name=\"apikey\"\n\n{$this->key}\n";
+        $data .= "--{$boundary}\n";
+        $data .= "Content-Disposition: form-data; name=\"params[object]\"\n\n{$object}\n";
+        $data .= "--{$boundary}\n";
+
+        foreach ($source as $s)
         {
-            return $this->send('/calls/statuses');
+            $data .= "Content-Disposition: form-data; name=\"upload" . ($is_multiple ? '[]' : '') . "\"; filename=\"" . basename($s) . "\"\n";
+            $data .= "Content-Transfer-Encoding: binary\n\n";
+            $data .= file_get_contents($s) . "\n";
+            $data .= "--{$boundary}\n";
         }
-        
-        /* Импорт звонка */
-        /*
+
+        $context = stream_context_create(array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => 'Content-Type: multipart/form-data; boundary=' . $boundary,
+                'content' => $data
+            )
+        ));
+
+        $response = file_get_contents($this->url . "/utils/upload", false, $context);
+
+        return json_decode($response, true);
+    }
+
+    private function send($sub_url, array $data = array())
+    {
+        ini_set('memory_limit', '2048M');
+        if ($this->cache == true)
+        {
+            $hash = md5($sub_url . serialize($data));
+            $cache = Cache::getInstance()->pop($hash);
+
+            if ($cache !== false)
+            {
+                if ($this->debug)
+                {
+                    $this->debugStack[] = array(
+                        'url' => $this->url . $sub_url,
+                        'isCache' => true,
+                        'params' => $data,
+                        'result' => $cache
+                    );
+                }
+                return $cache;
+            }
+        }
+
+        $context = stream_context_create(array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => 'Content-Type: application/x-www-form-urlencoded' . PHP_EOL,
+                'content' => http_build_query(array(
+                    "apikey" => $this->key,
+                    "params" => $data
+                )) ,
+            )
+        ));
+
+        $response = file_get_contents($this->url . $sub_url, false, $context);
+
+        $res = json_decode($response, true);
+        if (!$res)
+        {
+            if ($this->debug)
+            {
+                $this->debugStack[] = array(
+                    'url' => $this->url . $sub_url,
+                    'isError' => true,
+                    'params' => $data,
+                    'result' => $response
+                );
+            }
+            file_put_contents('error', $response);
+            return array(
+                'error' => $response,
+            );
+        }
+
+        if ($this->cache == true)
+        {
+            Cache::getInstance()
+                ->push($hash, $res);
+        }
+
+        if ($this->debug)
+        {
+            $this->debugStack[] = array(
+                'url' => $this->url . $sub_url,
+                'params' => $data,
+                'result' => $res
+            );
+        }
+
+        return $res;
+    }
+
+    public function webhookPut()
+    {
+        $input = file_get_contents('php://input');
+        $data = json_decode($input, 1);
+        return $data;
+    }
+
+    /* Звонки */
+    //Возвращает список возможных соединений
+    public function callsGetTrunks()
+    {
+        return $this->send('/calls/trunks');
+    }
+
+    public function callsGetPhones()
+    {
+        return $this->send('/calls/phoneNumbers');
+    }
+
+    /*Список статусов*/
+    public function callsGetStatuses()
+    {
+        return $this->send('/calls/statuses');
+    }
+
+    /* Импорт звонка */
+    /*
          *  $params {
                 uniqueId	    Уникальный идентификатор звонка. 32-х символьная строка
                 from	        Номер, с которого совершён звонок
@@ -1184,14 +1211,14 @@
                 isAnswered	    Был ли ответ на звонок
                 customStatus	ID назначенного звонку статуса
          *  }
-         */
-        public function callsAdd(array $params)
-        {
-            return $this->send("/calls/import",$params);
-        }
-        
-        /* Импорт звонков */
-        /*
+    */
+    public function callsAdd(array $params)
+    {
+        return $this->send("/calls/import", $params);
+    }
+
+    /* Импорт звонков */
+    /*
          *  $params [
                {
                    uniqueId	        Уникальный идентификатор звонка. 32-х символьная строка
@@ -1208,15 +1235,15 @@
                 },
                 ...
          *  ]
-         */
-        public function callsAddList(array $params)
-        {
-            return $this->send("/calls/importall",array(
-                'calls' => $params
-            ));
-        }
-        
-        /* Обновление информации о звонке
+    */
+    public function callsAddList(array $params)
+    {
+        return $this->send("/calls/importall", array(
+            'calls' => $params
+        ));
+    }
+
+    /* Обновление информации о звонке
          * $params {
                 uniqueId        Уникальный идентификатор звонка, чья запись бует обновлена
                 url             url записи звонка. Звонок будет скачан и сохранён в CRM системе через некоторое время
@@ -1224,13 +1251,13 @@
                 isAnswered      Был ли ответ на звонок
                 customStatus	ID назначенного звонку статуса
          * }
-         */
-        public function callsUpdate(array $params)
-        {
-            return $this->send('/calls/update',$params);
-        }
-        
-        /* Получить список звонков по фильтру
+    */
+    public function callsUpdate(array $params)
+    {
+        return $this->send('/calls/update', $params);
+    }
+
+    /* Получить список звонков по фильтру
          * $params {
          *      fromPhone   Фильтр по номеру с которого звонили
                 toPhone     Фильтр по номеру на который звонили
@@ -1242,18 +1269,19 @@
                 orderField  Сортировать по полю (по-умолчанию поле даты,date_time)
                 orderType   Направление сортировки: ASK, DESC (по-умолчанию DESK)
          * }
-         */
-        public function callsGetList(array $params)
+    */
+    public function callsGetList(array $params)
+    {
+        return $this->send('/calls/history', $params);
+    }
+
+    private function checkParamArr($params)
+    {
+        //print_r(gettype($params[0]));
+        if (gettype($params[0]) == 'array')
         {
-            return $this->send('/calls/history',$params);
+            return true;
         }
-        
-        private function checkParamArr($params)
-        {
-            //print_r(gettype($params[0]));
-            if(gettype($params[0]) == 'array'){
-                return true;
-            }
-        }
-	}
+    }
+}
 ?>
