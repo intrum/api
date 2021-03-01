@@ -147,12 +147,18 @@ class Api
         ));
     }
 
-    //удаление
+    // удаление
     public function deleteStock(array $params)
     {
         return $this->send("/stock/delete", $params);
     }
 
+    // восстановление
+    public function aliveStock(array $params)
+    {
+        return $this->send("/stock/alive", $params);
+    }
+    
     // комментарии
     public function getStockComments($entity_id)
     {
@@ -430,12 +436,18 @@ class Api
         return $this->send("/applications/addComment", $params);
     }
 
-    //удаление
+    // удаление
     public function deleteRequests(array $params)
     {
         return $this->send("/applications/delete", $params);
     }
 
+    // восстановление
+    public function aliveRequests(array $params)
+    {
+        return $this->send("/applications/alive", $params);
+    }
+    
     // комментарии
     public function getRequestComments($entity_id)
     {
@@ -583,13 +595,19 @@ class Api
         return $this->send("/sales/update", $params);
     }
 
-    //удаление
+    // удаление
     public function deleteSales(array $params)
     {
         return $this->send("/sales/delete", $params);
     }
 
-    //доп инфа по сделке
+    // восстановление
+    public function aliveSales(array $params)
+    {
+        return $this->send("/sales/alive", $params);
+    }
+    
+    // доп инфа по сделке
     public function getSaleDetails(array $params)
     {
         return $this->send("/sales/details", $params);
@@ -760,12 +778,18 @@ class Api
         return $this->send("/purchaser/addComment", $params);
     }
 
-    //удаление
+    // удаление
     public function deleteCustomers(array $params)
     {
         return $this->send("/purchaser/delete", $params);
     }
 
+    // восстановление
+    public function aliveCustomers(array $params)
+    {
+        return $this->send("/purchaser/alive", $params);
+    }
+    
     // комментарии
     public function getCustomerComments($entity_id)
     {
