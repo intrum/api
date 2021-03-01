@@ -3,7 +3,7 @@
     "type": "library",
     "description": "API CRM Intrum",
     "license": "MIT",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
