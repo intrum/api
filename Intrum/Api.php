@@ -639,6 +639,12 @@ class Api
     */
 
     // поля
+    public function getCustomerTypes()
+    {
+        return $this->send("/purchaser/types");
+    }
+    
+    // поля
     public function getCustomerFields()
     {
         return $this->send("/purchaser/fields");
